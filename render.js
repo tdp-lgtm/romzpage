@@ -1,5 +1,4 @@
 // render.js — reads data arrays and builds page content
-// You should never need to edit this file.
 
 function _isPublished(item) { return !item || item.published !== false; }
 function _isOnCV(item) { return !item || item.cv !== false; }
@@ -33,7 +32,6 @@ function renderResearchBio(id) {
 function renderPublications(id) {
   const el = document.getElementById(id);
   if (!el) return;
-
   const categories = [
     { key: 'Article',  label: 'Articles' },
     { key: 'Book',     label: 'Books' },
@@ -42,13 +40,10 @@ function renderPublications(id) {
     { key: 'Review',   label: 'Reviews' },
     { key: 'Public',   label: 'Public writing' },
   ];
-
   let html = '';
   categories.forEach(({ key, label }) => {
     const items = PUBLICATIONS.filter(p => _isPublished(p) && (p.type || 'Article') === key);
-    if (items.length) {
-      html += `<span class="section-label">${label}</span><ul class="pub-list">${items.map(_pubItem).join('')}</ul>`;
-    }
+    if (items.length) html += `<span class="section-label">${label}</span><ul class="pub-list">${items.map(_pubItem).join('')}</ul>`;
   });
   if (!html) html = '<p style="color:var(--fg-3)">No publications yet.</p>';
   el.innerHTML = html;
@@ -56,34 +51,20 @@ function renderPublications(id) {
 
 function _pubItem(p) {
   const rawYear = p.year ? String(p.year) : '';
-  const displayYear = rawYear === 'Forthcoming'  ? 'Forthc.'
-                    : rawYear === 'Online first'  ? 'Online'
-                    : rawYear;
-
-  const volStr    = (p.volume || p.issue)
-    ? (p.volume ? (p.issue ? `${p.volume}(${p.issue})` : p.volume) : `(${p.issue})`)
-        + (p.pages ? `: ${p.pages}` : '')
+  const displayYear = rawYear === 'Forthcoming' ? 'Forthc.' : rawYear === 'Online first' ? 'Online' : rawYear;
+  const volStr = (p.volume || p.issue)
+    ? (p.volume ? (p.issue ? `${p.volume}(${p.issue})` : p.volume) : `(${p.issue})`) + (p.pages ? `: ${p.pages}` : '')
     : (p.pages || '');
-  const citation  = [
-    p.journal ? `<em>${p.journal}</em>` : '',
-    volStr,
-  ].filter(Boolean).join(' ');
-
+  const citation = [p.journal ? `<em>${p.journal}</em>` : '', volStr].filter(Boolean).join(' ');
   const abstractId = `abs-${Math.random().toString(36).slice(2, 7)}`;
-  const abstractBtn = p.abstract
-    ? `<button onclick="_toggleAbstract('${abstractId}',this)">&#8801; Abstract</button>`
-    : '';
-  const abstractDiv = p.abstract
-    ? `<div class="pub-abstract" id="${abstractId}"><div class="pub-abstract-inner">${p.abstract}</div></div>`
-    : '';
-
+  const abstractBtn = p.abstract ? `<button onclick="_toggleAbstract('${abstractId}',this)">&#8801; Abstract</button>` : '';
+  const abstractDiv = p.abstract ? `<div class="pub-abstract" id="${abstractId}"><div class="pub-abstract-inner">${p.abstract}</div></div>` : '';
   const links = [
     abstractBtn,
     p.pdf ? `<a href="${p.pdf}" target="_blank" rel="noopener">&#8595; PDF</a>` : '',
     p.doi ? `<a href="${p.doi}" target="_blank" rel="noopener">Publisher &#8599;</a>` : '',
     p.prize ? `<span class="award-inline">${p.prize}</span>` : '',
   ].filter(Boolean);
-
   return `<li class="pub">
     <div class="yr">${displayYear}</div>
     <div>
@@ -106,27 +87,18 @@ function renderWIP(id) {
   const el = document.getElementById(id);
   if (!el) return;
   if (!WIP || !WIP.length) { el.innerHTML = '<p style="color:var(--fg-3)">Nothing to show yet.</p>'; return; }
-
-  const groups = {};
-  const order  = [];
+  const groups = {}; const order = [];
   WIP.filter(_isPublished).forEach(p => {
     const key = p.status || 'In preparation';
     if (!groups[key]) { groups[key] = []; order.push(key); }
     groups[key].push(p);
   });
-
   el.innerHTML = order.map(status => {
     const items = groups[status].map(p => {
       const abstractId = `abs-${Math.random().toString(36).slice(2,7)}`;
-      const abstractBtn = p.abstract
-        ? `<button onclick="_toggleAbstract('${abstractId}',this)">&#8801; Abstract</button>`
-        : '';
-      const abstractDiv = p.abstract
-        ? `<div class="pub-abstract" id="${abstractId}"><div class="pub-abstract-inner">${p.abstract}</div></div>` : '';
-      const links = [
-        abstractBtn,
-        p.pdf ? `<a href="${p.pdf}" target="_blank" rel="noopener">&#8595; Draft PDF</a>` : '',
-      ].filter(Boolean);
+      const abstractBtn = p.abstract ? `<button onclick="_toggleAbstract('${abstractId}',this)">&#8801; Abstract</button>` : '';
+      const abstractDiv = p.abstract ? `<div class="pub-abstract" id="${abstractId}"><div class="pub-abstract-inner">${p.abstract}</div></div>` : '';
+      const links = [abstractBtn, p.pdf ? `<a href="${p.pdf}" target="_blank" rel="noopener">&#8595; Draft PDF</a>` : ''].filter(Boolean);
       return `<li class="pub pub--wip">
         <div class="yr"></div>
         <div>
@@ -141,61 +113,41 @@ function renderWIP(id) {
 }
 
 function _talkPresRow(p) {
-  const tag = p.type === 'Invited' ? '<sup class="talk-tag">*</sup>'
-            : p.type === 'Peer-Review' ? '<sup class="talk-tag">†</sup>' : '';
+  const tag = p.type === 'Invited' ? '<sup class="talk-tag">*</sup>' : p.type === 'Peer-Review' ? '<sup class="talk-tag">†</sup>' : '';
   const date = p.month ? `${p.month} ${p.year}` : String(p.year || '');
   const where = [p.venue, p.institution].filter(Boolean).join(', ');
   const comment = p.comment ? ` <em class="talk-comment">${p.comment}</em>` : '';
-  return `<div class="talk-row">
-    <div class="talk-yr">${date}</div>
-    <div class="talk-row-detail">${where}${tag}${comment}</div>
-  </div>`;
+  return `<div class="talk-row"><div class="talk-yr">${date}</div><div class="talk-row-detail">${where}${tag}${comment}</div></div>`;
 }
 
 function _talkItem(talk) {
   const rows = (talk.presentations || []).filter(_isPublished).map(_talkPresRow).join('');
-  return `<li class="talk-item">
-    <div class="talk-row"><div class="talk-yr"></div><h3>${talk.title}</h3></div>
-    <div class="talk-pres-list">${rows}</div>
-  </li>`;
+  return `<li class="talk-item"><div class="talk-row"><div class="talk-yr"></div><h3>${talk.title}</h3></div><div class="talk-pres-list">${rows}</div></li>`;
 }
 
 function renderTalks(containerId) {
   const el = document.getElementById(containerId);
   if (!el) return;
-  if (!TALKS || !TALKS.length) {
-    el.innerHTML = '<p style="color:var(--fg-3)">Nothing to show yet.</p>';
-    return;
-  }
+  if (!TALKS || !TALKS.length) { el.innerHTML = '<p style="color:var(--fg-3)">Nothing to show yet.</p>'; return; }
   el.innerHTML = `<ul class="pub-list">${TALKS.filter(_isPublished).map(_talkItem).join('')}</ul>`;
 }
 
 function renderTeaching(id) {
   const el = document.getElementById(id);
   if (!el) return;
-
   const roleOrder = ['Lecturer', 'Seminar Convenor', 'Teaching Assistant', 'Supervisor'];
   const groups = {};
   TEACHING.filter(_isPublished).forEach(inst => {
-    (inst.entries || []).forEach(e => {
-      (groups[e.role] = groups[e.role] || []).push({ ...e, institution: inst.institution });
-    });
+    (inst.entries || []).forEach(e => { (groups[e.role] = groups[e.role] || []).push({ ...e, institution: inst.institution }); });
   });
-  const roles = roleOrder.filter(r => groups[r])
-    .concat(Object.keys(groups).filter(r => roleOrder.indexOf(r) === -1));
-
+  const roles = roleOrder.filter(r => groups[r]).concat(Object.keys(groups).filter(r => roleOrder.indexOf(r) === -1));
   el.innerHTML = roles.map((role, i) => {
     const rows = groups[role].map(e => {
       const note = e.note ? ` <span class="talk-comment">${e.note}</span>` : '';
-      const levels = (e.levels && e.levels.length)
-        ? ` <span class="teaching-levels">${[].concat(e.levels).join(', ')}</span>` : '';
-      return `<div class="talk-row">
-        <div class="talk-yr">${e.year || ''}</div>
-        <div class="talk-row-detail">${e.course}${levels}${note}</div>
-      </div>`;
+      const levels = (e.levels && e.levels.length) ? ` <span class="teaching-levels">${[].concat(e.levels).join(', ')}</span>` : '';
+      return `<div class="talk-row"><div class="talk-yr">${e.year || ''}</div><div class="talk-row-detail">${e.course}${levels}${note}</div></div>`;
     }).join('');
-    return `<span class="section-label${i === 0 ? ' section-label--first' : ''}">${role}</span>
-      <div class="talk-pres-list">${rows}</div>`;
+    return `<span class="section-label${i === 0 ? ' section-label--first' : ''}">${role}</span><div class="talk-pres-list">${rows}</div>`;
   }).join('');
 }
 
@@ -205,13 +157,7 @@ function renderWorkshops(id) {
   el.innerHTML = `<ul class="pub-list">${WORKSHOPS.filter(_isPublished).map(w => {
     const date = [w.month, w.year].filter(Boolean).join(' ');
     const meta = [w.institution, date, w.coorganisers ? `Organised with ${w.coorganisers}` : ''].filter(Boolean).join(' · ');
-    return `<li class="pub">
-      <div class="yr">${w.year || ''}</div>
-      <div>
-        <h3><a href="${w.id}.html">${w.title}</a></h3>
-        <p class="venue">${meta}.</p>
-      </div>
-    </li>`;
+    return `<li class="pub"><div class="yr">${w.year || ''}</div><div><h3><a href="${w.id}.html">${w.title}</a></h3><p class="venue">${meta}.</p></div></li>`;
   }).join('')}</ul>`;
 }
 
@@ -222,64 +168,110 @@ function renderWorkshopPage(workshopId, containerId) {
   if (!w) { el.innerHTML = '<p>Workshop not found.</p>'; return; }
   const date = [w.month, w.year].filter(Boolean).join(' ');
   const meta = [w.institution, date, w.coorganisers ? `Organised with ${w.coorganisers}` : ''].filter(Boolean).join(' · ');
-
   const speakers = (w.programme || []).filter(e => e.name);
   const programme = speakers.length
-    ? `<span class="section-label ws-speakers-label">Speakers</span>
-       <ul class="pub-list ws-speaker-list">${speakers.map(e => {
-        const pairs = [];
-        const addPair = (n, a) => { (n || '').split('\n').forEach((nm, i) => {
-          if (nm.trim()) pairs.push({ name: nm.trim(), aff: ((a || '').split('\n')[i] || '').trim() });
-        }); };
-        addPair(e.name, e.affiliation);
-        addPair(e.name2, e.affiliation2);
-        const speakerHtml = pairs.map(p => {
-          const aff = p.aff ? ` <span class="ws-affiliation">${p.aff}</span>` : '';
-          return `${p.name}${aff}`;
-        }).join(' &middot; ');
-        const titleHtml = e.title && e.title !== 'TBA'
-          ? `<p class="venue ws-paper-title">${e.title}</p>`
-          : '';
-        return `<li class="ws-speaker-item">
-          <h3 class="ws-speaker">${speakerHtml}</h3>
-          ${titleHtml}
-        </li>`;
-      }).join('')}</ul>`
-    : '';
-
-  const descHtml = w.description
-    ? `<div class="workshop-description"${w.justify ? ' style="text-align:justify"' : ''}>${_prepHtml(w.description)}</div>`
-    : '';
+    ? `<span class="section-label ws-speakers-label">Speakers</span><ul class="pub-list ws-speaker-list">${speakers.map(e => {
+        const pairs = []; const addPair = (n, a) => { (n || '').split('\n').forEach((nm, i) => { if (nm.trim()) pairs.push({ name: nm.trim(), aff: ((a || '').split('\n')[i] || '').trim() }); }); };
+        addPair(e.name, e.affiliation); addPair(e.name2, e.affiliation2);
+        const speakerHtml = pairs.map(p => `${p.name}${p.aff ? ` <span class="ws-affiliation">${p.aff}</span>` : ''}`).join(' &middot; ');
+        const titleHtml = e.title && e.title !== 'TBA' ? `<p class="venue ws-paper-title">${e.title}</p>` : '';
+        return `<li class="ws-speaker-item"><h3 class="ws-speaker">${speakerHtml}</h3>${titleHtml}</li>`;
+      }).join('')}</ul>` : '';
+  const descHtml = w.description ? `<div class="workshop-description"${w.justify ? ' style="text-align:justify"' : ''}>${_prepHtml(w.description)}</div>` : '';
   const regHtml = w.registration ? `<p class="ws-registration">${w.registration}</p>` : '';
-  el.innerHTML = `
-    <p class="section-subtitle">${meta}</p>
-    ${descHtml}
-    ${programme}
-    ${regHtml}`;
+  el.innerHTML = `<p class="section-subtitle">${meta}</p>${descHtml}${programme}${regHtml}`;
   document.title = `${w.title} — Romy Eskens`;
   const heading = document.getElementById('ws-title');
   if (heading) heading.textContent = w.title;
+}
+
+function renderVeniPage(id) {
+  const el = document.getElementById(id);
+  if (!el || typeof VENI_DATA === 'undefined') return;
+  const v = VENI_DATA;
+  const funding = [v.subtitle, v.duration, v.amount].filter(Boolean).join(' · ');
+  const meta = funding ? `<p class="section-subtitle">${funding}</p>` : '';
+  const desc = v.description ? `<div class="workshop-description">${_prepHtml(v.description)}</div>` : '';
+  const newsItems = v.news || [];
+  const newsHtml = newsItems.length
+    ? `<span class="section-label">In the news</span><ul class="pub-list">${newsItems.map(n => {
+        const venue = [n.outlet, n.date].filter(Boolean).join(', ');
+        return `<li class="pub"><div class="yr">${n.year || ''}</div><div>
+          <h3><a href="${n.url}" target="_blank" rel="noopener">${n.title}</a></h3>
+          ${n.subtitle ? `<p class="venue"><em>${n.subtitle}</em></p>` : ''}
+          ${venue ? `<p class="venue">${venue}</p>` : ''}
+        </div></li>`;
+      }).join('')}</ul>`
+    : '';
+  el.innerHTML = meta + desc + newsHtml;
+}
+
+function renderPublicPhilosophy(id) {
+  const el = document.getElementById(id);
+  if (!el || typeof PUBLIC_PHILOSOPHY === 'undefined') return;
+  const data = PUBLIC_PHILOSOPHY;
+  let html = '';
+
+  const interviews = data.interviews || [];
+  if (interviews.length) {
+    html += `<span class="section-label section-label--first">Interviews</span><ul class="pub-list">` +
+      interviews.map(n => {
+        const venue = [n.outlet, n.date].filter(Boolean).join(', ');
+        return `<li class="pub"><div class="yr">${n.year || ''}</div><div>
+          <h3><a href="${n.url}" target="_blank" rel="noopener">${n.title}</a></h3>
+          ${n.subtitle ? `<p class="venue"><em>${n.subtitle}</em></p>` : ''}
+          ${venue ? `<p class="venue">${venue}</p>` : ''}
+        </div></li>`;
+      }).join('') + '</ul>';
+  }
+
+  const talks = data.talks || [];
+  if (talks.length) {
+    html += `<span class="section-label">Public talks</span><ul class="pub-list">` +
+      talks.map(t => {
+        const venue = [t.venue, t.date].filter(Boolean).join(', ');
+        const links = [
+          t.video ? `<a href="${t.video}" target="_blank" rel="noopener">&#9654; Video</a>` : '',
+          t.radio ? `<a href="${t.radio}" target="_blank" rel="noopener">&#9655; Radio interview</a>` : '',
+        ].filter(Boolean);
+        return `<li class="pub"><div class="yr">${t.year || ''}</div><div>
+          <h3>${t.title}</h3>
+          ${t.subtitle ? `<p class="venue"><em>${t.subtitle}</em></p>` : ''}
+          ${venue ? `<p class="venue">${venue}</p>` : ''}
+          ${links.length ? `<div class="pub-links">${links.join('')}</div>` : ''}
+        </div></li>`;
+      }).join('') + '</ul>';
+  }
+
+  const writing = data.writing || [];
+  if (writing.length) {
+    html += `<span class="section-label">Writing</span><ul class="pub-list">` +
+      writing.map(w => {
+        const venue = [w.outlet, w.date].filter(Boolean).join(', ');
+        return `<li class="pub"><div class="yr">${w.year || ''}</div><div>
+          <h3><a href="${w.url}" target="_blank" rel="noopener">${w.title}</a></h3>
+          ${w.subtitle ? `<p class="venue"><em>${w.subtitle}</em></p>` : ''}
+          ${venue ? `<p class="venue">${venue}</p>` : ''}
+        </div></li>`;
+      }).join('') + '</ul>';
+  }
+
+  el.innerHTML = html || '<p style="color:var(--fg-3)">Nothing to show yet.</p>';
 }
 
 // ---- CV ----
 
 function renderCV() {
   const cv = window.CV_DATA || {};
-
   _renderCVContact(cv.contact || {});
   _renderCVAreas(cv);
-
-  _renderCVSection('cv-employment', (cv.employment || []).map(e => ({
-    year: e.year, detail: e.title, sub: e.institution,
-  })));
-
+  _renderCVSection('cv-employment', (cv.employment || []).map(e => ({ year: e.year, detail: e.title, sub: e.institution })));
   _renderCVSection('cv-education', (cv.education || []).map(e => {
     const supLabel = e.supervisors && e.supervisors.split(',').filter(s => s.trim()).length > 1 ? 'Supervisors' : 'Supervisor';
-    const exLabel  = e.examiners && e.examiners.split(',').filter(s => s.trim()).length > 1 ? 'Examiners' : 'Examiner';
+    const exLabel  = e.examiners  && e.examiners.split(',').filter(s => s.trim()).length > 1  ? 'Examiners'  : 'Examiner';
     const parts = [e.note, e.thesis ? `Thesis: ${e.thesis}` : '', e.supervisors ? `${supLabel}: ${e.supervisors}` : '', e.examiners ? `${exLabel}: ${e.examiners}` : ''].filter(Boolean);
     return { year: e.year, detail: `${e.degree}, ${e.institution}`, sub: parts.join(' · ') || '' };
   }));
-
   const pubGroups = [
     { types: ['Article', undefined, null, ''], label: 'Articles' },
     { types: ['Book'],    label: 'Books' },
@@ -296,39 +288,25 @@ function renderCV() {
       if (!items.length) return;
       const rendered = items.map(p => {
         const vol = (p.volume || p.issue)
-          ? (p.volume ? (p.issue ? `${p.volume}(${p.issue})` : p.volume) : `(${p.issue})`)
-              + (p.pages ? `: ${p.pages}` : '')
+          ? (p.volume ? (p.issue ? `${p.volume}(${p.issue})` : p.volume) : `(${p.issue})`) + (p.pages ? `: ${p.pages}` : '')
           : (p.pages || '');
         const journalPart = p.journal ? `<span class="cv-detail-inline"><em>${p.journal}</em></span>` : '';
         const volPart2 = vol ? `<span class="cv-detail-vol">${vol}.</span>` : '';
         const prize = p.prize ? `<span class="cv-prize">${p.prize}</span>` : '';
-        return `<div class="cv-item">
-          <span class="cv-year">${p.year || ''}</span>
-          <span class="cv-detail">
-            <span class="cv-pub-title">${p.coauthors ? `(with ${p.coauthors}) ` : ''}${p.title}${/[.?!]$/.test(p.title) ? '' : '.'}</span>${journalPart ? ` ${journalPart}` : ''}${volPart2 ? ` ${volPart2}` : ''}${prize}
-          </span>
-        </div>`;
+        return `<div class="cv-item"><span class="cv-year">${p.year || ''}</span><span class="cv-detail"><span class="cv-pub-title">${p.coauthors ? `(with ${p.coauthors}) ` : ''}${p.title}${/[.?!]$/.test(p.title) ? '' : '.'}</span>${journalPart ? ` ${journalPart}` : ''}${volPart2 ? ` ${volPart2}` : ''}${prize}</span></div>`;
       }).join('');
       html += `<div class="cv-subsection-label">${label}</div>${rendered}`;
     });
     pubEl.innerHTML = html || '<p class="empty">Nothing to show yet.</p>';
   }
-
   _renderCVWIP('cv-wip', WIP || []);
   _renderCVTalks('cv-talks', TALKS || []);
   _renderCVTeaching('cv-teaching', TEACHING || []);
   _renderCVAwards('cv-awards', cv.awards || []);
-
-  _renderCVSection('cv-events', (cv.events || []).map(e => ({
-    year: e.year, detail: e.title, sub: `${e.institution}${e.note ? ' · ' + e.note : ''}`,
-  })));
-
+  _renderCVSection('cv-events', (cv.events || []).map(e => ({ year: e.year, detail: e.title, sub: `${e.institution}${e.note ? ' · ' + e.note : ''}` })));
   const serviceItems = (cv.service || []).map(s => ({ year: s.year, detail: s.description }));
-  if (cv.reviewer) {
-    serviceItems.push({ year: 'Reviewer', detail: `<em>${cv.reviewer}</em>` });
-  }
+  if (cv.reviewer) serviceItems.push({ year: 'Reviewer', detail: `<em>${cv.reviewer}</em>` });
   _renderCVSection('cv-service', serviceItems);
-
   _renderCVReferences(cv.references || []);
   _reorderCVSections(window.CV_ORDER || []);
 }
@@ -369,19 +347,14 @@ function _renderCVTeaching(id, teaching) {
   const all = [];
   teaching.forEach(inst => (inst.entries || []).forEach(e => all.push(e)));
   if (!all.length) { el.innerHTML = '<p class="empty">Nothing to show yet.</p>'; return; }
-
   const roleOrder = ['Lecturer', 'Seminar Convenor', 'Teaching Assistant', 'Supervisor'];
   const groups = {};
   all.forEach(e => { (groups[e.role] = groups[e.role] || []).push(e); });
   const roles = roleOrder.filter(r => groups[r]).concat(Object.keys(groups).filter(r => roleOrder.indexOf(r) === -1));
-
   el.innerHTML = roles.map(role => {
     const rows = groups[role].map(e => {
       const note = e.note ? ` <span class="cv-detail-sub" style="display:inline">${e.note}</span>` : '';
-      return `<div class="cv-item">
-        <span class="cv-year">${e.year || ''}</span>
-        <span class="cv-detail">${e.course}${note}</span>
-      </div>`;
+      return `<div class="cv-item"><span class="cv-year">${e.year || ''}</span><span class="cv-detail">${e.course}${note}</span></div>`;
     }).join('');
     return `<div class="cv-subsection-label">${role}</div>${rows}`;
   }).join('');
@@ -392,20 +365,14 @@ function _renderCVWIP(id, wip) {
   if (!el) return;
   const items = wip.filter(p => _isPublished(p) && _isOnCV(p));
   if (!items.length) { el.innerHTML = ''; return; }
-
-  const groups = {};
-  const order = [];
+  const groups = {}; const order = [];
   items.forEach(p => {
     const key = p.status || 'In preparation';
     if (!groups[key]) { groups[key] = []; order.push(key); }
     groups[key].push(p);
   });
-
   el.innerHTML = order.map(status => {
-    const rows = groups[status].map(p => `<div class="cv-item">
-      <span class="cv-year"></span>
-      <span class="cv-detail">${p.title}.</span>
-    </div>`).join('');
+    const rows = groups[status].map(p => `<div class="cv-item"><span class="cv-year"></span><span class="cv-detail">${p.title}.</span></div>`).join('');
     return `<div class="cv-subsection-label">${status}</div>${rows}`;
   }).join('');
 }
@@ -414,11 +381,7 @@ function _renderCVAwards(id, awards) {
   const el = document.getElementById(id);
   if (!el) return;
   if (!awards.length) { el.innerHTML = '<p class="empty">Nothing to show yet.</p>'; return; }
-  el.innerHTML = awards.map(a => `
-    <div class="cv-item">
-      <span class="cv-year">${a.year || ''}</span>
-      <span class="cv-detail">${a.description}${a.amount ? ` <span class="cv-award-amount">${a.amount}</span>` : ''}</span>
-    </div>`).join('');
+  el.innerHTML = awards.map(a => `<div class="cv-item"><span class="cv-year">${a.year || ''}</span><span class="cv-detail">${a.description}${a.amount ? ` <span class="cv-award-amount">${a.amount}</span>` : ''}</span></div>`).join('');
 }
 
 function _renderCVAreas(cv) {
@@ -434,27 +397,14 @@ function _renderCVAreas(cv) {
 function _renderCVReferences(refs) {
   const el = document.getElementById('cv-references');
   if (!el || !refs.length) return;
-  el.innerHTML = refs.map(r => `
-    <div class="cv-ref">
-      <div class="cv-ref-name">${r.name}</div>
-      <div class="cv-ref-detail">${r.title}</div>
-      <div class="cv-ref-detail">${r.institution}</div>
-      ${r.email ? `<div class="cv-ref-detail"><a href="mailto:${r.email}">${r.email}</a></div>` : ''}
-    </div>`).join('');
+  el.innerHTML = refs.map(r => `<div class="cv-ref"><div class="cv-ref-name">${r.name}</div><div class="cv-ref-detail">${r.title}</div><div class="cv-ref-detail">${r.institution}</div>${r.email ? `<div class="cv-ref-detail"><a href="mailto:${r.email}">${r.email}</a></div>` : ''}</div>`).join('');
 }
 
 function _renderCVSection(id, items) {
   const el = document.getElementById(id);
   if (!el) return;
   if (!items || !items.length) { el.innerHTML = '<p class="empty">Nothing to show yet.</p>'; return; }
-  el.innerHTML = items.map(item => `
-    <div class="cv-item">
-      <span class="cv-year">${item.year || ''}</span>
-      <span class="cv-detail">
-        ${item.link ? `<a href="${item.link}" target="_blank" rel="noopener">${item.detail}</a>` : item.detail}
-        ${item.sub ? `<span class="cv-detail-sub">${item.sub}</span>` : ''}
-      </span>
-    </div>`).join('');
+  el.innerHTML = items.map(item => `<div class="cv-item"><span class="cv-year">${item.year || ''}</span><span class="cv-detail">${item.link ? `<a href="${item.link}" target="_blank" rel="noopener">${item.detail}</a>` : item.detail}${item.sub ? `<span class="cv-detail-sub">${item.sub}</span>` : ''}</span></div>`).join('');
 }
 
 function renderTeachingResources(id) {
@@ -462,32 +412,16 @@ function renderTeachingResources(id) {
   if (!el) return;
   const data = window.TEACHING_RESOURCES || {};
   const groups = data.groups || [];
-
   const intro = data.intro ? `<div class="resource-intro">${_prepHtml(data.intro)}</div>` : '';
-
-  if (!groups.length) {
-    el.innerHTML = intro || '<p style="color:var(--fg-3)">Resources coming soon.</p>';
-    return;
-  }
-
+  if (!groups.length) { el.innerHTML = intro || '<p style="color:var(--fg-3)">Resources coming soon.</p>'; return; }
   const html = groups.map(g => {
     const items = (g.items || []).map(it => {
-      const label = it.url
-        ? `<a href="${it.url}" target="_blank" rel="noopener">${it.title}</a>`
-        : it.title;
+      const label = it.url ? `<a href="${it.url}" target="_blank" rel="noopener">${it.title}</a>` : it.title;
       const by = it.author ? ` <span class="resource-author">by ${it.author}</span>` : '';
       const note = it.note ? `<p class="resource-author">${it.note}</p>` : '';
-      return `<li class="pub resource-item">
-        <div class="yr"></div>
-        <div>
-          <p class="resource-item-title">${label}${by}</p>
-          ${note}
-        </div>
-      </li>`;
+      return `<li class="pub resource-item"><div class="yr"></div><div><p class="resource-item-title">${label}${by}</p>${note}</div></li>`;
     }).join('');
-    return `<h3 class="resource-group-heading">${g.heading}</h3>
-      <ul class="pub-list">${items}</ul>`;
+    return `<h3 class="resource-group-heading">${g.heading}</h3><ul class="pub-list">${items}</ul>`;
   }).join('');
-
   el.innerHTML = intro + html;
 }

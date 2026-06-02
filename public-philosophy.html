@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Public Philosophy — Romy Eskens</title>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body data-page="public-philosophy">
+
+  <header>
+    <div class="header-inner">
+      <a href="index.html" class="site-title">Romy Eskens<b>.</b></a>
+      <nav></nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="narrow">
+      <span class="eyebrow">Public Philosophy</span>
+      <div id="pp-content"></div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="foot-inner">
+      <div class="foot-fine">Romy Eskens &copy; <span id="year"></span></div>
+    </div>
+  </footer>
+
+  <script src="nav.js"></script>
+  <script src="render.js"></script>
+  <script>
+    window.PAGE_NEEDS = ['public_philosophy'];
+    window.initPage = function () { renderPublicPhilosophy('pp-content'); };
+  </script>
+  <script src="boot.js"></script>
+</body>
+</html>
