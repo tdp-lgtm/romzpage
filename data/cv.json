@@ -1,0 +1,55 @@
+{
+  "contact": {
+    "website": "romyeskens.com",
+    "email": "r.s.eskens@uu.nl",
+    "address": "Ethics Institute, Utrecht University"
+  },
+  "aos": "Normative Ethics, Social and Political Philosophy, Moral Psychology",
+  "aoc": "Emotion Theory, Just War Theory, Rights Theory, Feminist Philosophy",
+  "employment": [
+    {
+      "year": "2023–",
+      "title": "Assistant Professor",
+      "institution": "Ethics Institute, Utrecht University"
+    },
+    {
+      "year": "2022–23",
+      "title": "Postdoctoral Researcher",
+      "institution": "Stockholm University"
+    }
+  ],
+  "education": [
+    {
+      "year": "2018–22",
+      "degree": "PhD in Philosophy",
+      "institution": "Stockholm University",
+      "note": "Based at the Stockholm Centre for the Ethics of War and Peace",
+      "supervisors": "Helen Frowe, Gunnar Björnsson"
+    },
+    {
+      "year": "",
+      "degree": "BPhil in Philosophy",
+      "institution": "University of Oxford (Balliol College)"
+    },
+    {
+      "year": "",
+      "degree": "BA in Philosophy; BA in History",
+      "institution": "Utrecht University"
+    }
+  ],
+  "awards": [
+    {
+      "year": "2026–28",
+      "description": "NWO Veni Talent Programme, for 'The Guilty Mind'",
+      "amount": "€320,000"
+    },
+    {
+      "year": "2017",
+      "description": "Oxford Uehiro Prize in Practical Ethics (3rd Annual), for 'Is Sex with Robots Rape?'"
+    }
+  ],
+  "events": [],
+  "service": [],
+  "reviewer": "",
+  "references": []
+}

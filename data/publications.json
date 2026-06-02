@@ -1,0 +1,168 @@
+{
+  "items": [
+    {
+      "title": "On Discounting Wrongdoers",
+      "type": "Article",
+      "year": "Forthcoming",
+      "journal": "Analysis",
+      "coauthors": "Gunnar Björnsson",
+      "published": true,
+      "cv": true
+    },
+    {
+      "title": "Gratitude and Rights",
+      "type": "Article",
+      "year": "2025",
+      "journal": "Australasian Journal of Philosophy",
+      "volume": "103",
+      "issue": "4",
+      "pages": "1024–1038",
+      "doi": "https://doi.org/10.1080/00048402.2025.2488449",
+      "published": true,
+      "cv": true
+    },
+    {
+      "title": "Moral Gratitude",
+      "type": "Article",
+      "year": "2025",
+      "journal": "Journal of Applied Philosophy",
+      "volume": "42",
+      "issue": "1",
+      "pages": "115–130",
+      "doi": "https://doi.org/10.1111/japp.12733",
+      "published": true,
+      "cv": true
+    },
+    {
+      "title": "Reciprocity, Inequality, and Unsuccessful Rescues",
+      "type": "Article",
+      "year": "2024",
+      "journal": "Utilitas",
+      "volume": "36",
+      "issue": "1",
+      "pages": "64–82",
+      "doi": "https://doi.org/10.1017/S0953820823000298",
+      "published": true,
+      "cv": true
+    },
+    {
+      "title": "Other-Sacrificing Options: Reply to Lange",
+      "type": "Article",
+      "year": "2022",
+      "journal": "Journal of Ethics and Social Philosophy",
+      "volume": "21",
+      "issue": "2",
+      "pages": "290–297",
+      "doi": "http://dx.doi.org/10.26556/jesp.v21i2.1727",
+      "published": true,
+      "cv": true
+    },
+    {
+      "title": "Is Sex with Robots Rape?",
+      "type": "Article",
+      "year": "2017",
+      "journal": "Journal of Practical Ethics",
+      "volume": "5",
+      "issue": "2",
+      "pages": "62–76",
+      "doi": "https://www.jpe.ox.ac.uk/papers/is-sex-with-robots-rape/",
+      "prize": "Oxford Uehiro Prize in Practical Ethics (3rd Annual)",
+      "published": true,
+      "cv": true
+    },
+    {
+      "title": "Morele Gelijkheid",
+      "type": "Chapter",
+      "year": "Forthcoming",
+      "journal": "Basisboek Ethiek, ed. Eskens, Hopster, de Mesel & Nys (Amsterdam: Boom)",
+      "published": true,
+      "cv": true
+    },
+    {
+      "title": "Enemies and Rivals",
+      "type": "Chapter",
+      "year": "Forthcoming",
+      "journal": "Oxford Handbook of the Philosophy of Personal Relationships, ed. Betzler & Stroud (Oxford: OUP)",
+      "coauthors": "Gunnar Björnsson",
+      "published": true,
+      "cv": true
+    },
+    {
+      "title": "Expressive Duties Are Demandable and Enforceable",
+      "type": "Chapter",
+      "year": "2024",
+      "journal": "Oxford Studies in Normative Ethics, vol. 14, ed. Timmons (Oxford: OUP)",
+      "pages": "203–226",
+      "doi": "https://philpapers.org/rec/ESKEDA",
+      "published": true,
+      "cv": true
+    },
+    {
+      "title": "Symposium on Gratitude and Community",
+      "type": "Editor",
+      "year": "2025",
+      "journal": "Journal of Applied Philosophy",
+      "volume": "42",
+      "issue": "1",
+      "doi": "https://onlinelibrary.wiley.com/toc/14685930/2025/42/1",
+      "published": true,
+      "cv": true
+    },
+    {
+      "title": "George Sher: A Wild West of the Mind",
+      "type": "Review",
+      "year": "2022",
+      "journal": "Ethical Theory and Moral Practice",
+      "volume": "25",
+      "issue": "5",
+      "pages": "895–897",
+      "doi": "http://dx.doi.org/10.1007/s10677-022-10341-5",
+      "published": true,
+      "cv": true
+    }
+  ],
+  "wip": [
+    {
+      "title": "A paper on agency balancing norms (with Gunnar Björnsson)",
+      "status": "In preparation",
+      "published": true,
+      "cv": true
+    },
+    {
+      "title": "A paper on agent-regret and counterfactuals",
+      "status": "In preparation",
+      "published": true,
+      "cv": true
+    },
+    {
+      "title": "A paper on the possibility of mental wronging",
+      "status": "In preparation",
+      "published": true,
+      "cv": true
+    },
+    {
+      "title": "A paper on the nature and wrong of degradation",
+      "status": "In preparation",
+      "published": true,
+      "cv": true
+    },
+    {
+      "title": "A paper on morally offensive advice (with Jonas Haeg)",
+      "status": "In preparation",
+      "published": true,
+      "cv": true
+    },
+    {
+      "title": "A paper on the currency of distributive justice (with Gunnar Björnsson)",
+      "status": "In preparation",
+      "published": true,
+      "cv": true
+    },
+    {
+      "title": "A paper on interpersonal affecting",
+      "status": "In preparation",
+      "published": true,
+      "cv": true
+    }
+  ]
+}
