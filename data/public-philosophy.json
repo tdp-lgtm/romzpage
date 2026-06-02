@@ -1,0 +1,48 @@
+{
+  "interviews": [
+    {
+      "year": "2025",
+      "date": "23 September 2025",
+      "outlet": "Trouw",
+      "title": "Kun je je schuldig maken aan verkeerde gedachten?",
+      "subtitle": "Are There Guilty Thoughts?",
+      "url": "https://www.trouw.nl/religie-filosofie/kun-je-je-schuldig-maken-aan-verkeerde-gedachten-filosoof-romy-eskens-gaat-dat-onderzoeken~b778031c/"
+    }
+  ],
+  "talks": [
+    {
+      "year": "2025",
+      "date": "September 2025",
+      "title": "Seksueel (on)recht voorbij consent",
+      "subtitle": "(Un)just Sex Beyond Consent",
+      "venue": "Filosofisch Café"
+    },
+    {
+      "year": "2025",
+      "date": "April 2025",
+      "title": "Emotionele onrechtvaardigheid",
+      "subtitle": "Emotional Injustice",
+      "venue": "Utrechtse Nacht van de Filosofie",
+      "video": "https://www.youtube.com/watch?v=WtcH5Ixbknc&feature=youtu.be"
+    },
+    {
+      "year": "2023",
+      "date": "September 2023",
+      "title": "Mag je alles denken wat je wil?",
+      "subtitle": "Are All Thoughts Permissible?",
+      "venue": "Betweter Festival",
+      "video": "https://www.betweterfestival.nl/video/2024/mag-je-alles-denken-wat-je-wil",
+      "radio": "https://www.bnr.nl/podcast/wetenschap-vandaag/10526252/mogen-we-alles-denken-wat-we-willen-denken"
+    }
+  ],
+  "writing": [
+    {
+      "year": "2023",
+      "date": "July 2023",
+      "outlet": "Bij Nader Inzien",
+      "title": "Is militaire steun aan Oekraïne gerechtvaardigd?",
+      "subtitle": "Is Military Aid for Ukraine Justified?",
+      "url": "https://bijnaderinzien.com/2023/07/31/is-de-militaire-steun-aan-oekraine-gerechtvaardigd/"
+    }
+  ]
+}

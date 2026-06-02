@@ -3,9 +3,6 @@ media:
   output: /assets
 
 content:
-  # ------------------------------------------------------------
-  #  Front page
-  # ------------------------------------------------------------
   - name: front_page
     label: Front Page
     type: file
@@ -17,7 +14,6 @@ content:
         type: image
         options:
           path: assets
-        description: Upload or replace the photo shown on the front page.
       - name: text
         label: About text
         type: rich-text
@@ -25,15 +21,11 @@ content:
           format: html
           switcher: false
           media: false
-        description: Use the toolbar for links, bold, italics, etc.
       - name: justify
         label: Justify text
         type: boolean
         default: true
 
-  # ------------------------------------------------------------
-  #  Research (group)
-  # ------------------------------------------------------------
   - name: research
     label: Research
     type: group
@@ -83,7 +75,6 @@ content:
               - name: year
                 label: Year
                 type: string
-                description: A number, "Forthcoming", "Online first", or "Commissioned".
               - name: journal
                 label: Journal / Publisher / Venue
                 type: string
@@ -115,12 +106,10 @@ content:
                 label: Published (show on site)
                 type: boolean
                 default: true
-                description: Untick to hide this item without deleting it.
               - name: cv
                 label: Show on CV
                 type: boolean
                 default: true
-
           - name: wip
             label: Work in progress
             type: object
@@ -148,15 +137,151 @@ content:
                 label: Published (show on site)
                 type: boolean
                 default: true
-                description: Untick to hide this item without deleting it.
               - name: cv
                 label: Show on CV
                 type: boolean
                 default: true
 
-  # ------------------------------------------------------------
-  #  Talks
-  # ------------------------------------------------------------
+  - name: veni
+    label: Veni Project — The Guilty Mind
+    type: file
+    path: data/veni.json
+    format: json
+    fields:
+      - name: title
+        label: Project title
+        type: string
+      - name: subtitle
+        label: Funding programme
+        type: string
+      - name: duration
+        label: Duration
+        type: string
+      - name: amount
+        label: Grant amount
+        type: string
+      - name: description
+        label: Project description
+        type: rich-text
+        options:
+          format: html
+          switcher: false
+          media: false
+      - name: news
+        label: News items
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{title}"
+        fields:
+          - name: year
+            label: Year
+            type: string
+          - name: date
+            label: Full date
+            type: string
+          - name: outlet
+            label: Outlet
+            type: string
+          - name: title
+            label: Headline
+            type: string
+          - name: subtitle
+            label: English subtitle (optional)
+            type: string
+          - name: url
+            label: Link
+            type: string
+
+  - name: public_philosophy
+    label: Public Philosophy
+    type: file
+    path: data/public-philosophy.json
+    format: json
+    fields:
+      - name: interviews
+        label: Interviews
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{title}"
+        fields:
+          - name: year
+            label: Year
+            type: string
+          - name: date
+            label: Full date
+            type: string
+          - name: outlet
+            label: Outlet
+            type: string
+          - name: title
+            label: Headline
+            type: string
+          - name: subtitle
+            label: English subtitle (optional)
+            type: string
+          - name: url
+            label: Link
+            type: string
+      - name: talks
+        label: Public talks
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{title}"
+        fields:
+          - name: year
+            label: Year
+            type: string
+          - name: date
+            label: Date
+            type: string
+          - name: title
+            label: Title
+            type: string
+          - name: subtitle
+            label: English subtitle (optional)
+            type: string
+          - name: venue
+            label: Venue / event
+            type: string
+          - name: video
+            label: Video link (optional)
+            type: string
+          - name: radio
+            label: Radio link (optional)
+            type: string
+      - name: writing
+        label: Writing
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{title}"
+        fields:
+          - name: year
+            label: Year
+            type: string
+          - name: date
+            label: Date
+            type: string
+          - name: outlet
+            label: Outlet
+            type: string
+          - name: title
+            label: Title
+            type: string
+          - name: subtitle
+            label: English subtitle (optional)
+            type: string
+          - name: url
+            label: Link
+            type: string
+
   - name: talks
     label: Talks
     type: file
@@ -179,7 +304,6 @@ content:
             label: Published (show on site)
             type: boolean
             default: true
-            description: Untick to hide this talk without deleting it.
           - name: cv
             label: Show on CV
             type: boolean
@@ -217,9 +341,6 @@ content:
                 type: boolean
                 default: true
 
-  # ------------------------------------------------------------
-  #  Teaching (group)
-  # ------------------------------------------------------------
   - name: teaching_group
     label: Teaching
     type: group
@@ -271,138 +392,6 @@ content:
                     label: Note
                     type: string
 
-      - name: teaching_resources
-        label: Teaching resources
-        type: file
-        path: data/teaching-resources.json
-        format: json
-        fields:
-          - name: intro
-            label: Intro text (optional)
-            type: rich-text
-            options:
-              format: html
-              switcher: false
-              media: false
-            description: Optional paragraph shown above the resource groups.
-          - name: groups
-            label: Resource groups
-            type: object
-            list:
-              collapsible:
-                collapsed: true
-                summary: "{heading}"
-            fields:
-              - name: heading
-                label: Group heading
-                type: string
-                description: e.g. "How to Write Philosophy".
-              - name: items
-                label: Resources
-                type: object
-                list:
-                  collapsible:
-                    collapsed: true
-                    summary: "{title}"
-                fields:
-                  - name: title
-                    label: Title
-                    type: string
-                  - name: author
-                    label: Author / source (optional)
-                    type: string
-                  - name: url
-                    label: Link (optional)
-                    type: string
-                  - name: note
-                    label: Note (optional)
-                    type: string
-
-  # ------------------------------------------------------------
-  #  Workshops
-  # ------------------------------------------------------------
-  - name: workshops
-    label: Workshops
-    type: file
-    path: data/workshops.json
-    format: json
-    fields:
-      - name: items
-        label: false
-        type: object
-        list:
-          collapsible:
-            collapsed: true
-            summary: "{title}"
-        fields:
-          - name: id
-            label: Page id
-            type: string
-            required: true
-            description: Must match the page filename, e.g. "workshop-1".
-          - name: title
-            label: Title
-            type: string
-            required: true
-          - name: published
-            label: Published (show on site)
-            type: boolean
-            default: true
-            description: Untick to hide this workshop without deleting it.
-          - name: institution
-            label: Institution / venue
-            type: string
-          - name: month
-            label: Month / dates
-            type: string
-          - name: year
-            label: Year
-            type: string
-          - name: coorganisers
-            label: Co-organisers
-            type: string
-          - name: description
-            label: Description
-            type: rich-text
-            options:
-              format: html
-              switcher: false
-              media: false
-            description: Use the toolbar for links, bold, alignment, etc.
-          - name: justify
-            label: Justify description text
-            type: boolean
-            default: false
-          - name: registration
-            label: Registration note
-            type: string
-          - name: programme
-            label: Speakers
-            type: object
-            list:
-              collapsible:
-                collapsed: true
-                summary: "{name}"
-            fields:
-              - name: name
-                label: Name
-                type: string
-              - name: affiliation
-                label: Affiliation
-                type: string
-              - name: name2
-                label: Co-presenter name (optional)
-                type: string
-              - name: affiliation2
-                label: Co-presenter affiliation (optional)
-                type: string
-              - name: title
-                label: Talk title
-                type: string
-
-  # ------------------------------------------------------------
-  #  CV (group: content + section order)
-  # ------------------------------------------------------------
   - name: cv_group
     label: CV
     type: group
@@ -414,7 +403,7 @@ content:
         format: json
         fields:
           - name: contact
-            label: Contact (shown under your name)
+            label: Contact
             type: object
             fields:
               - name: website
@@ -426,14 +415,12 @@ content:
               - name: address
                 label: Address
                 type: string
-
           - name: aos
-            label: AOS (Areas of Specialisation)
+            label: AOS
             type: string
           - name: aoc
-            label: AOC (Areas of Competence)
+            label: AOC
             type: string
-
           - name: employment
             label: Employment
             type: object
@@ -451,7 +438,6 @@ content:
               - name: institution
                 label: Institution
                 type: string
-
           - name: education
             label: Education
             type: object
@@ -470,7 +456,7 @@ content:
                 label: Institution
                 type: string
               - name: note
-                label: Note (e.g. Distinction)
+                label: Note
                 type: string
               - name: thesis
                 label: Thesis title
@@ -478,11 +464,9 @@ content:
               - name: supervisors
                 label: Supervisors
                 type: string
-                description: Separate multiple names with commas — the label adjusts automatically.
               - name: examiners
                 label: Examiners
                 type: string
-
           - name: awards
             label: Honours, grants & awards
             type: object
@@ -498,10 +482,8 @@ content:
                 label: Description
                 type: string
               - name: amount
-                label: Monetary amount (optional)
+                label: Amount (optional)
                 type: string
-                description: Accepts symbols and text, e.g. "£4,000" or "$500".
-
           - name: events
             label: Event organising
             type: object
@@ -520,9 +502,8 @@ content:
                 label: Institution
                 type: string
               - name: note
-                label: Note (e.g. Co-organiser)
+                label: Note
                 type: string
-
           - name: service
             label: Professional service
             type: object
@@ -537,12 +518,9 @@ content:
               - name: description
                 label: Description
                 type: string
-
           - name: reviewer
             label: Reviewer for journals
             type: text
-            description: Comma-separated list of journals.
-
           - name: references
             label: References
             type: object
@@ -595,9 +573,6 @@ content:
                     - service
                     - references
 
-  # ------------------------------------------------------------
-  #  Navigation
-  # ------------------------------------------------------------
   - name: nav
     label: Navigation
     type: file

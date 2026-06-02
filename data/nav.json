@@ -1,14 +1,12 @@
 {
   "items": [
-    { "label": "Research",  "href": "research.html" },
-    { "label": "Talks",     "href": "talks.html" },
-    { "label": "Workshops", "subitems": [
-      { "label": "An Example Workshop", "href": "workshop-1.html" }
+    { "label": "Research", "subitems": [
+      { "label": "Publications", "href": "research.html" },
+      { "label": "The Guilty Mind", "href": "veni.html" }
     ]},
-    { "label": "Teaching", "subitems": [
-      { "label": "Courses",                "href": "teaching.html" },
-      { "label": "Resources for students", "href": "teaching-resources.html" }
-    ]},
+    { "label": "Talks", "href": "talks.html" },
+    { "label": "Public Philosophy", "href": "public-philosophy.html" },
+    { "label": "Teaching", "href": "teaching.html" },
     { "label": "CV", "href": "cv.html" }
   ]
 }
