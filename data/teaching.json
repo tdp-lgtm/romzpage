@@ -1,21 +1,31 @@
 {
   "items": [
     {
-      "institution": "Your University",
+      "institution": "Utrecht University",
       "entries": [
-        {
-          "course": "An Example Course",
-          "role": "Lecturer",
-          "year": "2025",
-          "levels": ["MA"],
-          "note": ""
-        },
-        {
-          "course": "Another Course",
-          "role": "Teaching Assistant",
-          "year": "2024",
-          "levels": ["Undergraduate"]
-        }
+        { "course": "Tutorial on MacKinnon's Feminist Theory of the State", "role": "Lecturer", "year": "2026", "levels": ["MA"] },
+        { "course": "Topics in Ethical Theory", "role": "Lecturer", "year": "2025", "levels": ["MA"] },
+        { "course": "Normative Ethics", "role": "Lecturer", "year": "2025", "levels": ["Undergraduate"] },
+        { "course": "Political and Social Philosophy", "role": "Lecturer", "year": "2025", "levels": ["Undergraduate"] },
+        { "course": "Topics in Moral Psychology", "role": "Lecturer", "year": "2024", "levels": ["MA"] },
+        { "course": "Normative Ethics", "role": "Lecturer", "year": "2024", "levels": ["Undergraduate"] },
+        { "course": "Emotions", "role": "Lecturer", "year": "2023", "levels": ["Undergraduate"] },
+        { "course": "Normative Ethics", "role": "Lecturer", "year": "2023", "levels": ["Undergraduate"] },
+        { "course": "Core Seminar 1: The Active Mind", "role": "Lecturer", "year": "2023", "levels": ["MA"] },
+        { "course": "Contemporary Political Philosophy", "role": "Lecturer", "year": "2023", "levels": ["Undergraduate"] },
+        { "course": "Political and Social Philosophy", "role": "Lecturer", "year": "2023", "levels": ["Undergraduate"] },
+        { "course": "Core Seminar 2: The Active Mind", "role": "Lecturer", "year": "2023", "levels": ["MA"] },
+        { "course": "Ancient Philosophy", "role": "Seminar Convenor", "year": "2015", "levels": ["Undergraduate"] },
+        { "course": "Medieval and Early Modern Philosophy", "role": "Seminar Convenor", "year": "2014", "levels": ["Undergraduate"] },
+        { "course": "Ancient Philosophy", "role": "Seminar Convenor", "year": "2014", "levels": ["Undergraduate"] }
+      ]
+    },
+    {
+      "institution": "Stockholm University",
+      "entries": [
+        { "course": "Normative Ethics", "role": "Seminar Convenor", "year": "2022", "levels": ["Undergraduate"] },
+        { "course": "Introduction to Political Philosophy", "role": "Lecturer", "year": "2020", "levels": ["Undergraduate"] },
+        { "course": "The Ethics of War", "role": "Lecturer", "year": "2019", "levels": ["MA"] }
       ]
     }
   ]
