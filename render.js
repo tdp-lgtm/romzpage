@@ -1,20 +1,14 @@
 // render.js — reads data arrays and builds page content
 // You should never need to edit this file.
 
-// An item is shown on the site unless explicitly hidden (published === false).
 function _isPublished(item) { return !item || item.published !== false; }
-// An item appears on the CV unless explicitly excluded (cv === false).
 function _isOnCV(item) { return !item || item.cv !== false; }
 
-// Accepts HTML (from the rich-text editor) or plain text; ensures external
-// links open in a new tab.
 function _prepHtml(text) {
   let html = text || '';
   if (!/<\w+/.test(html)) {
-    // Plain text — wrap paragraphs split on blank lines.
     html = html.split('\n\n').filter(Boolean).map(p => `<p>${p}</p>`).join('');
   }
-  // Add target/rel to external links that don't already have a target.
   html = html.replace(/<a (?![^>]*\btarget=)([^>]*href=["']https?:\/\/[^"']*["'][^>]*)>/g,
     '<a target="_blank" rel="noopener" $1>');
   return html;
@@ -40,7 +34,6 @@ function renderPublications(id) {
   const el = document.getElementById(id);
   if (!el) return;
 
-  // Ordered category definitions
   const categories = [
     { key: 'Article',  label: 'Articles' },
     { key: 'Book',     label: 'Books' },
@@ -181,7 +174,6 @@ function renderTeaching(id) {
   const el = document.getElementById(id);
   if (!el) return;
 
-  // Flatten all entries across institutions, group by role (like the CV).
   const roleOrder = ['Lecturer', 'Seminar Convenor', 'Teaching Assistant', 'Supervisor'];
   const groups = {};
   TEACHING.filter(_isPublished).forEach(inst => {
@@ -264,7 +256,7 @@ function renderWorkshopPage(workshopId, containerId) {
     ${descHtml}
     ${programme}
     ${regHtml}`;
-  document.title = `${w.title} — Your Name`;
+  document.title = `${w.title} — Romy Eskens`;
   const heading = document.getElementById('ws-title');
   if (heading) heading.textContent = w.title;
 }
@@ -464,7 +456,6 @@ function _renderCVSection(id, items) {
       </span>
     </div>`).join('');
 }
-
 
 function renderTeachingResources(id) {
   const el = document.getElementById(id);
