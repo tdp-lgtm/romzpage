@@ -2,54 +2,246 @@
   "contact": {
     "website": "romyeskens.com",
     "email": "r.s.eskens@uu.nl",
-    "address": "Ethics Institute, Utrecht University"
+    "address": "Department of Philosophy & Religious Studies, Utrecht University"
   },
-  "aos": "Normative Ethics, Social and Political Philosophy, Moral Psychology",
-  "aoc": "Emotion Theory, Just War Theory, Rights Theory, Feminist Philosophy",
+  "aos": "Ethics, Moral Psychology, Social Philosophy",
+  "aoc": "Feminist Philosophy, Political Philosophy, Meta-Ethics",
   "employment": [
     {
       "year": "2023–",
-      "title": "Assistant Professor",
-      "institution": "Ethics Institute, Utrecht University"
+      "title": "Assistant Professor (permanent)",
+      "institution": "Department of Philosophy & Religious Studies, Utrecht University"
     },
     {
-      "year": "2022–23",
+      "year": "Fall 2022",
       "title": "Postdoctoral Researcher",
-      "institution": "Stockholm University"
+      "institution": "Department of Philosophy, Stockholm University"
+    }
+  ],
+  "visits": [
+    {
+      "year": "Spring 2027",
+      "title": "Visiting Fellow",
+      "institution": "Harvard University",
+      "note": "Sponsor: Quinn White"
+    },
+    {
+      "year": "Spring 2020",
+      "title": "Visiting Research Scholar",
+      "institution": "University of Texas at Austin",
+      "note": "Sponsor: Julia Driver"
     }
   ],
   "education": [
     {
-      "year": "2018–22",
+      "year": "2018–2022",
       "degree": "PhD in Philosophy",
-      "institution": "Stockholm University",
-      "note": "Based at the Stockholm Centre for the Ethics of War and Peace",
-      "supervisors": "Helen Frowe, Gunnar Björnsson"
+      "institution": "Stockholm Centre for the Ethics of War and Peace (SCEWP), Stockholm University",
+      "thesis": "Payback Time: Essays on Attitudes, Partiality, and Rescuing",
+      "supervisors": "Helen Frowe (primary), Gunnar Björnsson (secondary)",
+      "examiners": "R. Jay Wallace",
+      "note": "Nominated for the 2022 Swedish Higher Education Association Thesis Award"
     },
     {
-      "year": "",
-      "degree": "BPhil in Philosophy",
-      "institution": "University of Oxford (Balliol College)"
+      "year": "2016–2018",
+      "degree": "BPhil in Philosophy (distinction in thesis)",
+      "institution": "Balliol College, University of Oxford",
+      "supervisors": "Jeff McMahan"
     },
     {
-      "year": "",
-      "degree": "BA in Philosophy; BA in History",
+      "year": "2014–2016",
+      "degree": "BA in History (cum laude)",
+      "institution": "Utrecht University"
+    },
+    {
+      "year": "2012–2015",
+      "degree": "BA in Philosophy (cum laude)",
       "institution": "Utrecht University"
     }
   ],
   "awards": [
     {
-      "year": "2026–28",
-      "description": "NWO Veni Talent Programme, for 'The Guilty Mind'",
+      "year": "2025",
+      "description": "Veni Research Grant, NWO Talent Programme, for 'The Guilty Mind'",
       "amount": "€320,000"
     },
     {
+      "year": "2022",
+      "description": "Society for Applied Philosophy Further Funding, for travel to the 2023 Arizona Workshop in Normative Ethics and a visit to UC Berkeley",
+      "amount": "£1,100"
+    },
+    {
+      "year": "2019",
+      "description": "Cultuurfonds, for research visit at UT Austin",
+      "amount": "€10,000"
+    },
+    {
       "year": "2017",
-      "description": "Oxford Uehiro Prize in Practical Ethics (3rd Annual), for 'Is Sex with Robots Rape?'"
+      "description": "Oxford Uehiro Prize in Practical Ethics (3rd Annual), for 'Is Sex with Robots Rape?'",
+      "amount": "£300"
+    },
+    {
+      "year": "2017",
+      "description": "Balliol College Travel Grant, for the 9th European Society for Analytic Philosophy Congress",
+      "amount": "£250"
+    },
+    {
+      "year": "2016",
+      "description": "VSB Foundation, for BPhil tuition fees and living expenses",
+      "amount": "€10,000"
+    },
+    {
+      "year": "2016",
+      "description": "Vreedefond Foundation, for BPhil tuition fees and living expenses",
+      "amount": "€6,000"
+    },
+    {
+      "year": "2016",
+      "description": "Vrijevrouwe van Renswoude Foundation, for BPhil tuition fees and living expenses",
+      "amount": "€4,000"
+    },
+    {
+      "year": "2016",
+      "description": "Hendrik Müller Foundation, for BPhil tuition fees and living expenses",
+      "amount": "€4,000"
     }
   ],
-  "events": [],
-  "service": [],
-  "reviewer": "",
+  "commentaries": [
+    {
+      "year": "2026",
+      "title": "Katie Ebner-Landy, Character Sketch as Philosophy",
+      "institution": "Utrecht Philosophical Café"
+    },
+    {
+      "year": "2025",
+      "title": "Julia Driver, Blame, Praise, and Normative Expectations",
+      "institution": "Book Manuscript Workshop"
+    },
+    {
+      "year": "2024",
+      "title": "Samuel Reis-Dennis, \"Blame's Topography: Standing on Uneven Ground\"",
+      "institution": "VU Normative Philosophy Workshop"
+    },
+    {
+      "year": "2023",
+      "title": "Philip Södermark, \"Lucrepaths at War: The Ethics of Profit in the Context of Warfare\"",
+      "institution": "SCEWP Graduate/Early Career Reading Retreat"
+    },
+    {
+      "year": "2021",
+      "title": "Dan Khokhar, \"Why Is It Bad to Beg?\"",
+      "institution": "KCL Graduate Conference in Politics, Philosophy & Law"
+    },
+    {
+      "year": "2021",
+      "title": "Helen Frowe and Derek Matravers, The Ethics of Protecting Heritage in War",
+      "institution": "Book Manuscript Workshop"
+    },
+    {
+      "year": "2021",
+      "title": "Nicolas Cornell, \"Third Parties\"",
+      "institution": "Second Annual Rights Workshop: Rights and Harm"
+    },
+    {
+      "year": "2020",
+      "title": "Lisa Hecht, \"Benevolent Risk-Taking\"",
+      "institution": "Stockholm Higher Seminar in Practical Philosophy"
+    },
+    {
+      "year": "2019",
+      "title": "Robert J. Hartman and Benjamin Matheson, \"Acting Out of Character and Moral Responsibility\"",
+      "institution": "Stockholm Higher Seminar in Practical Philosophy"
+    }
+  ],
+  "qualifications": [
+    {
+      "year": "2024",
+      "description": "BKO University Teaching Qualification (full-year course), Centre for Academic Teaching and Learning, Utrecht"
+    },
+    {
+      "year": "2024",
+      "description": "Professional Development Workshop: Communicating with Journalists and the Public, Utrecht"
+    },
+    {
+      "year": "2023",
+      "description": "Professional Development Workshop: Active Bystander in the Workplace, Utrecht"
+    },
+    {
+      "year": "2023",
+      "description": "Teaching Workshop: Feedback and Assessment, Utrecht"
+    },
+    {
+      "year": "2022",
+      "description": "University Teaching Qualification (one-semester course), Centre for the Advancement of University Teaching, Stockholm"
+    },
+    {
+      "year": "2022",
+      "description": "Teaching Workshop: Digital Learning and Teaching Essentials, Stockholm"
+    },
+    {
+      "year": "2022",
+      "description": "Teaching Workshop: Internationalisation of Higher Education, Stockholm"
+    },
+    {
+      "year": "2021",
+      "description": "Teaching Workshop: Discussion and Argumentation in Teaching, Stockholm"
+    }
+  ],
+  "events": [
+    {
+      "year": "2025",
+      "title": "Co-organiser, Utrecht Workshop on Degradation and Dehumanisation",
+      "institution": ""
+    },
+    {
+      "year": "2024",
+      "title": "Co-organiser and reviewer, MANCEPT Workshop: Setting Things Right",
+      "institution": ""
+    },
+    {
+      "year": "2023",
+      "title": "Reviewer, 2024 Workshop Oxford Studies in Normative Ethics",
+      "institution": ""
+    }
+  ],
+  "service": [
+    {
+      "year": "2026–",
+      "description": "Chair of a working group on transforming the professional and personal development learning line in the BA Language and Culture Studies, Utrecht University"
+    },
+    {
+      "year": "2025–",
+      "description": "'Core teacher' in the BA Language and Culture Studies, Utrecht University"
+    },
+    {
+      "year": "2024–",
+      "description": "Member of the examination board for the BA Language and Culture Studies and BA Liberal Arts and Sciences, Utrecht University"
+    },
+    {
+      "year": "2024–",
+      "description": "Personal tutor for the BA Philosophy and BA Language and Culture Studies, Utrecht University"
+    },
+    {
+      "year": "2023–",
+      "description": "Thesis coordinator for the BA Philosophy, Utrecht University"
+    },
+    {
+      "year": "2023–2025",
+      "description": "Coordinator and chair of the Utrecht Ethics Institute Colloquium"
+    },
+    {
+      "year": "2018–2022",
+      "description": "Co-founder and co-chair of Stockholm's chapter of Minorities and Philosophy"
+    },
+    {
+      "year": "2018–2022",
+      "description": "Member of the Stockholm Philosophy PhD Council"
+    },
+    {
+      "year": "2018–2022",
+      "description": "Administrative assistance for the Stockholm Centre for the Ethics of War and Peace"
+    }
+  ],
+  "reviewer": "Noûs (3×), Oxford Studies in Normative Ethics (entire volume), Philosophy, Journal of the American Philosophical Association, Journal of Ethics and Social Philosophy, Philosophia, Journal of Moral Philosophy",
   "references": []
 }
