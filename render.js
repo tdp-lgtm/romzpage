@@ -266,6 +266,7 @@ function renderCV() {
   _renderCVContact(cv.contact || {});
   _renderCVAreas(cv);
   _renderCVSection('cv-employment', (cv.employment || []).map(e => ({ year: e.year, detail: e.title, sub: e.institution })));
+  _renderCVSection('cv-visits', (cv.visits || []).map(v => ({ year: v.year, detail: `${v.title}, ${v.institution}`, sub: v.note || '' })));
   _renderCVSection('cv-education', (cv.education || []).map(e => {
     const supLabel = e.supervisors && e.supervisors.split(',').filter(s => s.trim()).length > 1 ? 'Supervisors' : 'Supervisor';
     const exLabel  = e.examiners  && e.examiners.split(',').filter(s => s.trim()).length > 1  ? 'Examiners'  : 'Examiner';
@@ -301,7 +302,9 @@ function renderCV() {
   }
   _renderCVWIP('cv-wip', WIP || []);
   _renderCVTalks('cv-talks', TALKS || []);
+  _renderCVSection('cv-commentaries', (cv.commentaries || []).map(c => ({ year: c.year, detail: c.title, sub: c.institution || '' })));
   _renderCVTeaching('cv-teaching', TEACHING || []);
+  _renderCVSection('cv-qualifications', (cv.qualifications || []).map(q => ({ year: q.year, detail: q.description })));
   _renderCVAwards('cv-awards', cv.awards || []);
   _renderCVSection('cv-events', (cv.events || []).map(e => ({ year: e.year, detail: e.title, sub: `${e.institution}${e.note ? ' · ' + e.note : ''}` })));
   const serviceItems = (cv.service || []).map(s => ({ year: s.year, detail: s.description }));
