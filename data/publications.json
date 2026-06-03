@@ -7,7 +7,7 @@
       "journal": "Analysis",
       "volume": "Online First",
       "coauthors": "Gunnar Björnsson",
-      "abstract": "We are sometimes permitted to discount the interests of culpable\nwrongdoers relative to other people’s interests. What explains this? One answer is\nthat culpable wrongdoers deserve less consideration than others because of their\nculpable wrongdoing (the Desert View). Another is that we may be negatively partial\ntowards wrongdoers because of our negative relationship with them (the Negative\nPartiality View). We reject both answers. The Desert View fails because it cannot\nexplain how permissions to discount can be sensitive to relational facts. The\nNegative Partiality View fails because it cannot explain how permissions to\ndiscount can be agent-neutral, or independent of an existing relationship with the\nwrongdoer. We close by outlining a theory of permissible discounting that\naccounts for both its relationality and its agent-neutrality.",
+      "abstract": "We are sometimes permitted to discount the interests of culpable\nwrongdoers relative to other people's interests. What explains this? One answer is\nthat culpable wrongdoers deserve less consideration than others because of their\nculpable wrongdoing (the Desert View). Another is that we may be negatively partial\ntowards wrongdoers because of our negative relationship with them (the Negative\nPartiality View). We reject both answers. The Desert View fails because it cannot\nexplain how permissions to discount can be sensitive to relational facts. The\nNegative Partiality View fails because it cannot explain how permissions to\ndiscount can be agent-neutral, or independent of an existing relationship with the\nwrongdoer. We close by outlining a theory of permissible discounting that\naccounts for both its relationality and its agent-neutrality.",
       "pdf": "https://philarchive.org/archive/BJRODW",
       "doi": "https://doi-org.ezp.sub.su.se/10.1093/analys/anaf038",
       "published": true,
@@ -34,7 +34,7 @@
       "volume": "42",
       "issue": "1",
       "pages": "115–130",
-      "abstract": "There are many examples of persons who appear to be grateful to other people's benefactors. In at least some of these examples, such third-party gratitude also seems fitting. However, these observations conflict with a widespread assumption in the philosophical literature about gratitude: that only beneficiaries can be fittingly grateful to benefactors. In this article, I argue that third-party gratitude exists and can be fitting, and that the assumption is therefore mistaken. More specifically, I defend two claims: (i) that there exists a kind of gratitude to benefactors that is experienced by third parties in their capacities as moral agents (‘moral gratitude’); and (ii) that what makes this kind of gratitude fitting is the fact that, in benefitting the beneficiaries, the benefactors are responding to values that we, as moral agents, each have reason to care about and to want to see promoted.",
+      "abstract": "There are many examples of persons who appear to be grateful to other people's benefactors. In at least some of these examples, such third-party gratitude also seems fitting. However, these observations conflict with a widespread assumption in the philosophical literature about gratitude: that only beneficiaries can be fittingly grateful to benefactors. In this article, I argue that third-party gratitude exists and can be fitting, and that the assumption is therefore mistaken. More specifically, I defend two claims: (i) that there exists a kind of gratitude to benefactors that is experienced by third parties in their capacities as moral agents ('moral gratitude'); and (ii) that what makes this kind of gratitude fitting is the fact that, in benefitting the beneficiaries, the benefactors are responding to values that we, as moral agents, each have reason to care about and to want to see promoted.",
       "doi": "https://doi.org/10.1111/japp.12733",
       "published": true,
       "cv": true
@@ -60,7 +60,7 @@
       "volume": "21",
       "issue": "2",
       "pages": "290–297",
-      "abstract": "In “Other-Sacrificing Options,” Benjamin Lange argues that, when distributing benefits and burdens, we may discount the interests of the people to whom we stand in morally negative relationships relative to the interests of other people. Lange’s case for negative partiality proceeds in two steps. First, he presents a hypothetical example that commonly elicits intuitions favourable to negative partiality. Second, he invokes symmetry considerations to reason from permissible positive partiality towards intimates to permissible negative partiality towards adversaries. In this paper, I argue that neither the intuition elicited by Lange’s example nor the invoked symmetry considerations support a permission for negative partiality. This does not mean that negative partiality is unjustified. It means only that the justification, if there is one, must take a different form. I end by suggesting an alternative justification of negative partiality, one that mirrors gratitude-based justifications of positive partiality rather than justifications based on intimacy.",
+      "abstract": "In \"Other-Sacrificing Options,\" Benjamin Lange argues that, when distributing benefits and burdens, we may discount the interests of the people to whom we stand in morally negative relationships relative to the interests of other people. Lange's case for negative partiality proceeds in two steps. First, he presents a hypothetical example that commonly elicits intuitions favourable to negative partiality. Second, he invokes symmetry considerations to reason from permissible positive partiality towards intimates to permissible negative partiality towards adversaries. In this paper, I argue that neither the intuition elicited by Lange's example nor the invoked symmetry considerations support a permission for negative partiality. This does not mean that negative partiality is unjustified. It means only that the justification, if there is one, must take a different form. I end by suggesting an alternative justification of negative partiality, one that mirrors gratitude-based justifications of positive partiality rather than justifications based on intimacy.",
       "doi": "https://www.jesp.org/api/pdf/36346f73-90e0-81ca-b923-fc838db1db31",
       "published": true,
       "cv": true
@@ -80,7 +80,7 @@
       "cv": true
     },
     {
-      "title": "Morele Gelijkheid (\"Moral Equality\")",
+      "title": "Gelijkheid (\"Equality\")",
       "type": "Chapter",
       "year": "Forthcoming",
       "journal": "Basisboek Ethiek, ed. Eskens, Hopster, de Mesel & Nys (Amsterdam: Boom)",
@@ -105,6 +105,14 @@
       "abstract": "According to an influential view about directed expressive duties (e.g., duties to express gratitude to benefactors, remorse to victims, forgiveness to wrongdoers), these duties do not have rights as their correlates, because they are not demandable and enforceable. The chapter argues that this view is mistaken. Like other directed duties, directed expressive duties are demandable and enforceable. While this does not entail that these duties have rights as their correlates, it does create a strong presumption of this being the case. This shifts the burden of proof from those who hold that expressive duties correlate with rights to those who deny it.",
       "pdf": "https://philpapers.org/archive/ESKEDA.pdf",
       "doi": "https://doi-org.ezp.sub.su.se/10.1093/oso/9780198930785.003.0011",
+      "published": true,
+      "cv": true
+    },
+    {
+      "title": "Co-editor, Basisboek Ethiek",
+      "type": "Editor",
+      "year": "2026",
+      "journal": "Textbook ethics for university-level education, with Jeroen Hopster, Benjamin de Mesel, and Thomas Nys. Amsterdam: Boom.",
       "published": true,
       "cv": true
     },
@@ -134,6 +142,12 @@
   ],
   "wip": [
     {
+      "title": "Good Advice, Bad Values (with Jonas Haeg)",
+      "status": "R&R at Noûs",
+      "published": true,
+      "cv": true
+    },
+    {
       "title": "A paper on agency balancing norms (with Gunnar Björnsson)",
       "status": "In preparation",
       "published": true,
@@ -153,12 +167,6 @@
     },
     {
       "title": "A paper on the nature and wrong of degradation",
-      "status": "In preparation",
-      "published": true,
-      "cv": true
-    },
-    {
-      "title": "A paper on morally offensive advice (with Jonas Haeg)",
       "status": "In preparation",
       "published": true,
       "cv": true
