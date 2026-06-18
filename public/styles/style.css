@@ -312,6 +312,7 @@ h2 {
 .pub-abstract-inner {
   overflow: hidden;
   min-height: 0;
+  font-family: var(--serif);
   font-size: 0.9375rem;
   color: var(--fg-2);
   line-height: 1.75;
@@ -319,6 +320,7 @@ h2 {
 }
 
 .research-bio {
+  font-family: var(--serif);
   margin-bottom: 2rem;
 }
 .research-bio p {
@@ -452,6 +454,7 @@ h2 {
   margin-bottom: 1rem;
 }
 .workshop-description {
+  font-family: var(--serif);
   color: var(--fg-2);
   line-height: 1.75;
 }
@@ -519,6 +522,7 @@ h2 {
 
 /* ---- About ---- */
 .about-body {
+  font-family: var(--serif);
   line-height: 1.8;
 }
 .about-body p {
