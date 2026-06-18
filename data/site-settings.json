@@ -1,0 +1,21 @@
+{
+  "title": "Romy Eskens",
+  "description": "Romy Eskens is an Assistant Professor of Philosophy at the Ethics Institute, Utrecht University, working on normative ethics, moral psychology, social and political philosophy, and the ethics of mind.",
+  "og_image": "/assets/portrait.jpeg",
+  "footer_text": "Romy Eskens",
+  "quick_links": [
+    {
+      "label": "Email",
+      "href": "mailto:r.s.eskens@uu.nl"
+    },
+    {
+      "label": "CV",
+      "href": "/cv"
+    },
+    {
+      "label": "PhilPeople",
+      "href": "https://philpeople.org/profiles/romy-eskens"
+    }
+  ],
+  "analytics_id": ""
+}

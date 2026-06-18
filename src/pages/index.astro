@@ -1,0 +1,33 @@
+---
+import Base from '../layouts/Base.astro';
+import { prepHtml } from '../lib/prepHtml';
+import frontPage from '../../data/front-page.json';
+import settings from '../../data/site-settings.json';
+
+const bodyHtml = prepHtml(frontPage.text);
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const portraitSrc = base + (frontPage.portrait || '/assets/portrait.jpg');
+---
+
+<Base title={settings.title} page="about">
+  <link slot="head" rel="preload" as="image" href={portraitSrc} fetchpriority="high" />
+  <div class="about-body">
+    <div class="about-portrait">
+      <img src={portraitSrc} alt={settings.title} width="600" height="600" fetchpriority="high" decoding="async" />
+      <nav class="about-links" aria-label="Quick links">
+        {settings.quick_links.map((link: any) => {
+          const href = link.href.startsWith('/') ? `${base}${link.href}` : link.href;
+          const external = !link.href.startsWith('/') && !link.href.startsWith('mailto:');
+          return (
+            <a href={href} {...(external ? { target: '_blank', rel: 'noopener' } : {})}>{link.label}</a>
+          );
+        })}
+      </nav>
+    </div>
+    <div
+      id="about-text"
+      set:html={bodyHtml}
+      style={frontPage.justify ? 'text-align:justify' : undefined}
+    />
+  </div>
+</Base>

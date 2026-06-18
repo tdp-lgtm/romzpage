@@ -1,12 +1,12 @@
 {
   "items": [
     { "label": "Research", "subitems": [
-      { "label": "Publications", "href": "research.html" },
-      { "label": "The Guilty Mind", "href": "veni.html" }
+      { "label": "Publications", "href": "research" },
+      { "label": "The Guilty Mind", "href": "veni" }
     ]},
-    { "label": "Talks", "href": "talks.html" },
-    { "label": "Public Philosophy", "href": "public-philosophy.html" },
-    { "label": "Teaching", "href": "teaching.html" },
-    { "label": "CV", "href": "cv.html" }
+    { "label": "Talks", "href": "talks" },
+    { "label": "Public Philosophy", "href": "public-philosophy" },
+    { "label": "Teaching", "href": "teaching" },
+    { "label": "CV", "href": "cv" }
   ]
 }

@@ -1,31 +1,43 @@
-# Academic website template
+# romyeskens.com
 
-A clean, fast, data-driven personal website for academics — built as plain
-HTML/CSS/JS and hosted free on GitHub Pages. All content is edited through a
-visual CMS (no coding), and the design is print-ready so your CV doubles as a
-downloadable PDF.
+Personal academic website for Romy Eskens. Built with [Astro](https://astro.build),
+content edited through the [Pages CMS](https://pagescms.org) (no coding), and
+deployed free to GitHub Pages. The design is print-ready, so the CV page doubles
+as an automatically generated, downloadable PDF.
 
 ## What's here
 
-- `*.html` — the pages (home, research, talks, teaching, workshops, CV). Generic; you rarely need to touch these.
-- `style.css`, `boot.js`, `render.js`, `nav.js` — the design and logic. You never need to edit these.
-- `data/*.json` — **all your content lives here.** Edit these (directly, or via the CMS).
+- `src/pages/*.astro` — the pages (home, research, The Guilty Mind, talks, public
+  philosophy, teaching, CV). You rarely need to touch these.
+- `src/layouts/`, `src/components/`, `src/lib/` — the shared layout, nav, and theme logic.
+- `public/styles/style.css` — the stylesheet (includes the print styles used for the CV PDF).
+- `data/*.json` — **all the content lives here.** Edit directly or via the CMS.
 - `.pages.yml` — config for the Pages CMS editing interface.
 - `assets/` — images (favicon, portrait, etc.).
+- `scripts/` — build helpers: image optimisation and CV-PDF generation.
+- `.github/workflows/deploy.yml` — builds and deploys to GitHub Pages on every push to `main`.
 
-## Setup (about 15 minutes)
+## Editing content (the easy way)
 
-1. **Enable GitHub Pages.** Repo → Settings → Pages → Source: `main` branch, `/root`. Your site goes live at `https://<username>.github.io/<repo>`.
-2. **Personalise.**
-   - Replace `Your Name` in the `.html` files (site title, footer, page `<title>`s).
-   - Replace `assets/portrait.svg` with your own photo.
-   - Edit the `data/*.json` files — each currently holds one example entry showing the structure.
-3. **(Optional) Set up the CMS.** Go to [app.pagescms.org](https://app.pagescms.org), sign in with GitHub, and point it at this repo. You then edit all content through forms — no JSON, no code.
-4. **(Optional) Custom domain.** Buy a domain, add a `CNAME` file with your domain, and point DNS at GitHub Pages.
+Go to [app.pagescms.org](https://app.pagescms.org), sign in with GitHub, and open
+this repository. Every section becomes a friendly form — change text, add a
+publication, reorder CV sections, swap the photo, or restyle the site under
+**Appearance**. Saving commits the change and the site rebuilds automatically
+(~1–2 minutes). No JSON, no code.
 
-## Editing content
+Most list items (publications, talks, etc.) have **Published** (show on site) and
+**Show on CV** toggles, so things can be hidden without deleting them.
 
-Each section is one JSON file in `data/`. Lists (publications, talks, etc.)
-are arrays — copy an entry to add more. Most items have `published` (show on
-site) and `cv` (show on CV) toggles so you can hide things without deleting
-them. The CMS exposes all of this as friendly forms.
+## Developing locally
+
+```bash
+npm install
+npm run dev      # local preview at http://localhost:4321
+npm run build    # production build into dist/
+```
+
+## Deployment
+
+Pushing to `main` triggers the GitHub Actions workflow, which optimises images,
+builds the site, regenerates the CV PDF from the live `/cv` page, and publishes
+to GitHub Pages. The custom domain is set via the `CNAME` file (`romyeskens.com`).

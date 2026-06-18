@@ -1,4 +1,4 @@
-name: Deploy to GitHub Pages
+name: Build and Deploy to GitHub Pages
 
 on:
   push:
@@ -15,16 +15,44 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/configure-pages@v5
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+
+      # Make assets available to Astro's public dir so they're served at /assets/*
+      # Pages CMS writes images to the root assets/ folder; this bridges them for the build.
+      - run: mkdir -p public && cp -r assets public/assets
+
+      # Resize/recompress CMS-uploaded images so mobile isn't served 600 KB photos
+      - run: node scripts/optimize-images.mjs
+
+      - run: npm run build
+
+      # Generate the CV PDF from the built /cv page so it always matches the site
+      - run: npx playwright install --with-deps chromium
+      - run: node scripts/generate-cv-pdf.mjs
+
+      # CNAME must be in the dist root for GitHub Pages to respect the custom domain
+      - run: cp CNAME dist/CNAME
+
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: .
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
       - uses: actions/deploy-pages@v4
         id: deployment

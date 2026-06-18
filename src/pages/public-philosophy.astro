@@ -1,0 +1,85 @@
+---
+import Base from '../layouts/Base.astro';
+import ppData from '../../data/public-philosophy.json';
+
+const data = ppData as any;
+const interviews = (data.interviews || []) as any[];
+const talks = (data.talks || []) as any[];
+const writing = (data.writing || []) as any[];
+const hasContent = interviews.length || talks.length || writing.length;
+---
+
+<Base title="Public Philosophy — Romy Eskens" description="Public philosophy by Romy Eskens — interviews, public talks, and writing for a general audience." page="public-philosophy">
+  <span class="eyebrow">Public Philosophy</span>
+
+  {interviews.length > 0 && (
+    <>
+      <span class="section-label section-label--first">Interviews</span>
+      <ul class="pub-list">
+        {interviews.map((n: any) => {
+          const venue = [n.outlet, n.date].filter(Boolean).join(', ');
+          return (
+            <li class="pub">
+              <div class="yr">{n.year || ''}</div>
+              <div>
+                <h3><a href={n.url} target="_blank" rel="noopener">{n.title}</a></h3>
+                {n.subtitle && <p class="venue"><em>{n.subtitle}</em></p>}
+                {venue && <p class="venue">{venue}</p>}
+              </div>
+            </li>
+          );
+        })}
+      </ul>
+    </>
+  )}
+
+  {talks.length > 0 && (
+    <>
+      <span class="section-label">Public talks</span>
+      <ul class="pub-list">
+        {talks.map((t: any) => {
+          const venue = [t.venue, t.date].filter(Boolean).join(', ');
+          return (
+            <li class="pub">
+              <div class="yr">{t.year || ''}</div>
+              <div>
+                <h3>{t.title}</h3>
+                {t.subtitle && <p class="venue"><em>{t.subtitle}</em></p>}
+                {venue && <p class="venue">{venue}</p>}
+                {(t.video || t.radio) && (
+                  <div class="pub-links">
+                    {t.video && <a href={t.video} target="_blank" rel="noopener">&#9654; Video</a>}
+                    {t.radio && <a href={t.radio} target="_blank" rel="noopener">&#9655; Radio interview</a>}
+                  </div>
+                )}
+              </div>
+            </li>
+          );
+        })}
+      </ul>
+    </>
+  )}
+
+  {writing.length > 0 && (
+    <>
+      <span class="section-label">Writing</span>
+      <ul class="pub-list">
+        {writing.map((w: any) => {
+          const venue = [w.outlet, w.date].filter(Boolean).join(', ');
+          return (
+            <li class="pub">
+              <div class="yr">{w.year || ''}</div>
+              <div>
+                <h3><a href={w.url} target="_blank" rel="noopener">{w.title}</a></h3>
+                {w.subtitle && <p class="venue"><em>{w.subtitle}</em></p>}
+                {venue && <p class="venue">{venue}</p>}
+              </div>
+            </li>
+          );
+        })}
+      </ul>
+    </>
+  )}
+
+  {!hasContent && <p style="color:var(--fg-3)">Nothing to show yet.</p>}
+</Base>

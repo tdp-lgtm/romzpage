@@ -1,0 +1,43 @@
+---
+import Base from '../layouts/Base.astro';
+import { prepHtml } from '../lib/prepHtml';
+import veniData from '../../data/veni.json';
+
+const v = veniData as any;
+const funding = [v.subtitle, v.duration, v.amount].filter(Boolean).join(' · ');
+const descHtml = v.description ? prepHtml(v.description) : '';
+const news = (v.news || []) as any[];
+const metaDesc = v.subtitle ? `${v.title} — ${v.subtitle}` : `${v.title} — a research project by Romy Eskens.`;
+---
+
+<Base title={`${v.title} — Romy Eskens`} description={metaDesc} page="research">
+  <span class="eyebrow">Research</span>
+  <h2>{v.title}</h2>
+
+  {funding && <p class="section-subtitle">{funding}</p>}
+
+  {descHtml && (
+    <div class="workshop-description" set:html={descHtml} />
+  )}
+
+  {news.length > 0 && (
+    <>
+      <span class="section-label">In the news</span>
+      <ul class="pub-list">
+        {news.map((n: any) => {
+          const venue = [n.outlet, n.date].filter(Boolean).join(', ');
+          return (
+            <li class="pub">
+              <div class="yr">{n.year || ''}</div>
+              <div>
+                <h3><a href={n.url} target="_blank" rel="noopener">{n.title}</a></h3>
+                {n.subtitle && <p class="venue"><em>{n.subtitle}</em></p>}
+                {venue && <p class="venue">{venue}</p>}
+              </div>
+            </li>
+          );
+        })}
+      </ul>
+    </>
+  )}
+</Base>
