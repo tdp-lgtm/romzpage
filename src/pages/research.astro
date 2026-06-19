@@ -79,8 +79,7 @@ function volStr(p: { volume?: string; issue?: string; pages?: string }) {
               <li class="pub">
                 <div class="yr">{pubYear(p.year)}</div>
                 <div>
-                  <h3>{p.title}</h3>
-                  {p.coauthors && <div class="coauthor">with {p.coauthors}</div>}
+                  <h3>{p.title}{p.coauthors && <span class="coauthor"> with {p.coauthors}</span>}</h3>
                   {citation && <p class="venue" set:html={citation + '.'} />}
                   {(p.abstract || p.pdf || p.doi || p.prize) && (
                     <div class="pub-links">

@@ -404,8 +404,8 @@ h2 {
 .coauthor {
   font-family: var(--sans);
   font-size: 0.85rem;
+  font-weight: 400;
   color: var(--fg-3);
-  margin: 0 0 0.2rem;
 }
 
 /* ---- WIP ---- */
