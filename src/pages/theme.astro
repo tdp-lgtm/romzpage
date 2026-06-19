@@ -18,13 +18,11 @@ const theme = themeData as Record<string, string>;
 const currentScheme = theme.color_scheme || 'Salon';
 ---
 
-<Base title="Theme preview — Romy Eskens" page="theme">
+<Base title="Theme preview — Romy Eskens" page="theme" heading="Theme preview" eyebrow="Appearance">
   <Fragment slot="head">
     {previewFontUrls.map(url => <link rel="stylesheet" href={url} />)}
   </Fragment>
 
-  <span class="eyebrow">Appearance</span>
-  <h2>Theme preview</h2>
   <p style="color:var(--fg-2)">
     A visual reference for the options in <strong>Pages CMS → Appearance</strong>.
     Pick the names you like here, select them in the CMS, save, and the site rebuilds

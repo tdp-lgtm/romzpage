@@ -9,8 +9,7 @@ function isPublished(item: { published?: boolean }) {
 const talks = (talksData.items || (talksData as any)).filter(isPublished);
 ---
 
-<Base title="Talks — Romy Eskens" description="Talks and conference presentations by Romy Eskens." page="talks">
-  <h2>Talks</h2>
+<Base title="Talks — Romy Eskens" description="Talks and conference presentations by Romy Eskens." page="talks" heading="Talks">
 
   <ul class="pub-list">
     {talks.map((talk: any) => {

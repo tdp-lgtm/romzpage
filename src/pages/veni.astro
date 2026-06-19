@@ -9,9 +9,7 @@ const news = (v.news || []) as any[];
 const metaDesc = v.subtitle ? `${v.title} — ${v.subtitle}` : `${v.title} — a research project by Romy Eskens.`;
 ---
 
-<Base title={`${v.title} — Romy Eskens`} description={metaDesc} page="research">
-  <h2>{v.title}</h2>
-
+<Base title={`${v.title} — Romy Eskens`} description={metaDesc} page="research" heading={v.title}>
   <div class="veni-meta-row">
     {v.subtitle && (
       <div class="veni-meta-item"><span class="veni-meta-label">Programme</span><span class="veni-meta-val">{v.subtitle}</span></div>

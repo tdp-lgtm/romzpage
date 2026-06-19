@@ -235,12 +235,10 @@ const orderedSections = sectionOrder
   .map(k => sectionsMap[k]);
 ---
 
-<Base title="CV — Romy Eskens" description="Curriculum vitae of Romy Eskens — positions, education, publications, and presentations." page="cv">
-  <span class="eyebrow">Curriculum Vitae</span>
-  <h2 style="display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:1rem">
-    Romy Eskens
+<Base title="CV — Romy Eskens" description="Curriculum vitae of Romy Eskens — positions, education, publications, and presentations." page="cv" heading="Romy Eskens" eyebrow="Curriculum Vitae">
+  <div class="cv-actions no-print">
     <a class="cv-download" href={`${base}/assets/cv.pdf`} target="_blank" rel="noopener">&#8595; Download PDF</a>
-  </h2>
+  </div>
 
   <p id="cv-contact" class="cv-contact">
     <span set:html={contactHtml} />

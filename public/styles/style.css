@@ -194,6 +194,23 @@ nav > a.active { color: var(--accent); border-bottom-color: var(--accent); }
 }
 .nav-dropdown-menu li a:hover { background: var(--paper-sunk); color: var(--ink); }
 
+/* ---- Masthead: page title + nav share the top line ---- */
+.masthead {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 0.6rem 2.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.8rem;
+  padding-bottom: 1.3rem;
+  border-bottom: 2px solid var(--ink);
+}
+.masthead-titles { min-width: 0; }
+.masthead .eyebrow { margin-bottom: 0.5rem; }
+.masthead-h2 { margin: 0; padding: 0; border: none; }
+.site-nav { flex-shrink: 0; padding-bottom: 0.4rem; }
+.site-nav nav { justify-content: flex-end; gap: 1.1rem 1.4rem; }
+
 /* ---- Layout ---- */
 .container,
 .narrow {
@@ -573,18 +590,17 @@ h2 {
 
 .about-portrait {
   float: right;
-  width: 280px;
-  margin: 0.2rem 0 1.5rem 3rem;
+  width: 300px;
+  margin: 0.4rem 0 1.5rem 3rem;
   shape-outside: circle();
 }
+/* Portrait is a pre-cropped circular PNG (transparent corners); drop-shadow
+   follows the alpha so the shadow stays circular. */
 .about-portrait img {
   width: 100%;
-  aspect-ratio: 1 / 1;
-  object-fit: cover;
+  height: auto;
   display: block;
-  border-radius: 50%;
-  border: 1px solid var(--rule-strong);
-  box-shadow: 0 2px 10px rgba(33,28,22,0.08);
+  filter: drop-shadow(0 4px 14px rgba(33,28,22,0.16));
 }
 .about-portrait .photo-placeholder {
   width: 100%;
@@ -668,6 +684,7 @@ h2 {
 }
 .cv-ref-name { font-family: var(--serif); font-size: 1.05rem; font-weight: 500; color: var(--ink); margin-bottom: 0.2rem; }
 .cv-ref-detail { font-size: 0.9rem; color: var(--fg-2); line-height: 1.5; }
+.cv-actions { display: flex; justify-content: flex-end; margin: 0 0 0.75rem; }
 .cv-download {
   display: inline-flex; align-items: center; gap: 0.4rem;
   font-family: var(--sans); font-size: 0.8rem; font-weight: 600;
@@ -696,12 +713,14 @@ h2 {
 /* ---- Print: clean CV as PDF ---- */
 @page { margin: 2cm 1.9cm; }
 @media print {
-  header, footer, .cv-download, .nav-dropdown-menu { display: none !important; }
+  /* The nav (and any .no-print element) must never appear in the CV PDF */
+  .no-print, .site-nav, header, footer, .cv-download, .nav-dropdown-menu { display: none !important; }
   html { font-size: 11pt; }
   body { background: #fff; color: #000; }
   main { padding: 0; }
   .narrow { max-width: 100%; padding: 0; }
   a { color: #000 !important; border: none !important; }
+  .masthead { border-bottom-color: #000; margin-bottom: 1.2rem; padding-bottom: 0.9rem; }
   h2 { border-bottom-color: #000; }
   .cv-item, .talk-item, .pub { break-inside: avoid; }
   .cv-section { margin-bottom: 1.2rem; }
@@ -749,6 +768,11 @@ footer {
   .site-title { font-size: 1.2rem; }
   nav { gap: 0.75rem; }
   nav > a, .nav-dropdown-trigger { font-size: 0.8rem; }
+
+  /* Masthead stacks: title, then nav below */
+  .masthead { flex-direction: column; align-items: flex-start; gap: 0.9rem; }
+  .site-nav { padding-bottom: 0; }
+  .site-nav nav { justify-content: flex-start; }
 
   h2 { font-size: clamp(2rem, 9vw, 2.6rem); }
   .pub h3, .talk-item h3 { font-size: 1.1rem; }
