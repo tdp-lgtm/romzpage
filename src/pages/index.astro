@@ -14,20 +14,20 @@ const portraitSrc = base + (frontPage.portrait || '/assets/portrait.jpg');
   <div class="about-body">
     <div class="about-portrait">
       <img src={portraitSrc} alt={settings.title} width="600" height="600" fetchpriority="high" decoding="async" />
-      <nav class="about-links" aria-label="Quick links">
-        {settings.quick_links.map((link: any) => {
-          const href = link.href.startsWith('/') ? `${base}${link.href}` : link.href;
-          const external = !link.href.startsWith('/') && !link.href.startsWith('mailto:');
-          return (
-            <a href={href} {...(external ? { target: '_blank', rel: 'noopener' } : {})}>{link.label}</a>
-          );
-        })}
-      </nav>
     </div>
     <div
       id="about-text"
       set:html={bodyHtml}
       style={frontPage.justify ? 'text-align:justify' : undefined}
     />
+    <nav class="about-links" aria-label="Quick links">
+      {settings.quick_links.map((link: any) => {
+        const href = link.href.startsWith('/') ? `${base}${link.href}` : link.href;
+        const external = !link.href.startsWith('/') && !link.href.startsWith('mailto:');
+        return (
+          <a href={href} {...(external ? { target: '_blank', rel: 'noopener' } : {})}>{link.label}</a>
+        );
+      })}
+    </nav>
   </div>
 </Base>

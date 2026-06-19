@@ -9,12 +9,13 @@ const previewFontUrls = [...new Set(
   Object.values(FONTS).flatMap(f => f.googleUrl ? [f.googleUrl] : [])
 )];
 
-const serifFonts = ['Spectral', 'Georgia', 'Palatino', 'Libre Baskerville'];
-const sansFonts  = ['Hanken Grotesk', 'System', 'Inter', 'Source Sans 3'];
-const monoFonts  = ['IBM Plex Mono', 'JetBrains Mono', 'System Mono'];
+const displayFonts = ['Cormorant Garamond', 'Playfair Display', 'Fraunces', 'Bodoni Moda'];
+const serifFonts = ['Newsreader', 'Spectral', 'Georgia', 'Palatino', 'Libre Baskerville'];
+const sansFonts  = ['Archivo', 'Hanken Grotesk', 'System', 'Inter', 'Source Sans 3'];
+const monoFonts  = ['Space Mono', 'IBM Plex Mono', 'JetBrains Mono', 'System Mono'];
 
 const theme = themeData as Record<string, string>;
-const currentScheme = theme.color_scheme || 'Reading Room';
+const currentScheme = theme.color_scheme || 'Salon';
 ---
 
 <Base title="Theme preview — Romy Eskens" page="theme">
@@ -57,7 +58,17 @@ const currentScheme = theme.color_scheme || 'Reading Room';
 
   <!-- ── Fonts ─────────────────────────────────────────────────── -->
   <div class="cv-section">
-    <span class="eyebrow">Serif font — body, abstracts, titles</span>
+    <span class="eyebrow">Display font — page titles &amp; name</span>
+    {displayFonts.map(name => (
+      <p class="tp-specimen" style={`font-family:${FONTS[name].stack};font-size:1.8rem`}>
+        <span class="tp-specimen-name">{name}{name === theme.font_display ? ' — current' : ''}</span>
+        Romy Eskens — Publications, Talks &amp; Teaching
+      </p>
+    ))}
+  </div>
+
+  <div class="cv-section">
+    <span class="eyebrow">Serif font — body, abstracts, item titles</span>
     {serifFonts.map(name => (
       <p class="tp-specimen" style={`font-family:${FONTS[name].stack}`}>
         <span class="tp-specimen-name">{name}{name === theme.font_serif ? ' — current' : ''}</span>
@@ -112,7 +123,7 @@ const currentScheme = theme.color_scheme || 'Reading Room';
           {w === '300' ? 'Light (300)' : w === '400' ? 'Regular (400)' : 'Medium (500)'}
           {(theme.heading_weight || '400') === w ? ' — current' : ''}
         </span>
-        <span style={`font-family:var(--serif);font-size:1.5rem;font-weight:${w}`}>Curriculum Vitae — Romy Eskens</span>
+        <span style={`font-family:var(--display);font-size:1.8rem;font-weight:${w}`}>Curriculum Vitae — Romy Eskens</span>
       </p>
     ))}
   </div>

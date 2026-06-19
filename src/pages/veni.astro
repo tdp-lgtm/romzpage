@@ -4,17 +4,25 @@ import { prepHtml } from '../lib/prepHtml';
 import veniData from '../../data/veni.json';
 
 const v = veniData as any;
-const funding = [v.subtitle, v.duration, v.amount].filter(Boolean).join(' · ');
 const descHtml = v.description ? prepHtml(v.description) : '';
 const news = (v.news || []) as any[];
 const metaDesc = v.subtitle ? `${v.title} — ${v.subtitle}` : `${v.title} — a research project by Romy Eskens.`;
 ---
 
 <Base title={`${v.title} — Romy Eskens`} description={metaDesc} page="research">
-  <span class="eyebrow">Research</span>
   <h2>{v.title}</h2>
 
-  {funding && <p class="section-subtitle">{funding}</p>}
+  <div class="veni-meta-row">
+    {v.subtitle && (
+      <div class="veni-meta-item"><span class="veni-meta-label">Programme</span><span class="veni-meta-val">{v.subtitle}</span></div>
+    )}
+    {v.duration && (
+      <div class="veni-meta-item"><span class="veni-meta-label">Duration</span><span class="veni-meta-val">{v.duration}</span></div>
+    )}
+    {v.amount && (
+      <div class="veni-meta-item"><span class="veni-meta-label">Award</span><span class="veni-meta-val">{v.amount}</span></div>
+    )}
+  </div>
 
   {descHtml && (
     <div class="workshop-description" set:html={descHtml} />

@@ -66,8 +66,8 @@ content:
         label: Colour scheme
         type: select
         options:
-          values: [Reading Room, Ivory, Porcelain, Oxford, Sage, Plain, Custom]
-        default: Reading Room
+          values: [Salon, Reading Room, Ivory, Porcelain, Oxford, Sage, Plain, Custom]
+        default: Salon
         description: "Preview every scheme with swatches and sample text at romyeskens.com/theme. Pick 'Custom' to use the six hex fields below instead."
       - name: color_paper
         label: "Custom: page background"
@@ -93,26 +93,33 @@ content:
         label: "Custom: links & highlights"
         type: string
         description: "Only used when Colour scheme is 'Custom'. Hyperlinks and accents. Default: #7B2E2E"
-      - name: font_serif
-        label: Serif font (body, abstracts, titles)
+      - name: font_display
+        label: Display font (page titles & your name)
         type: select
         options:
-          values: [Spectral, Georgia, Palatino, Libre Baskerville]
-        default: Spectral
+          values: [Cormorant Garamond, Playfair Display, Fraunces, Bodoni Moda, Spectral, Libre Baskerville]
+        default: Cormorant Garamond
+        description: Used for the big page headings and the name in the header.
+      - name: font_serif
+        label: Serif font (body, abstracts, item titles)
+        type: select
+        options:
+          values: [Newsreader, Spectral, Georgia, Palatino, Libre Baskerville]
+        default: Newsreader
         description: "See each font rendered in its own typeface at romyeskens.com/theme. Used for reading text, publication titles, and abstracts."
       - name: font_sans
         label: Sans font (nav, labels, UI)
         type: select
         options:
-          values: [Hanken Grotesk, System, Inter, Source Sans 3]
-        default: Hanken Grotesk
+          values: [Archivo, Hanken Grotesk, System, Inter, Source Sans 3]
+        default: Archivo
         description: Used for navigation, buttons, and small UI labels.
       - name: font_mono
         label: Monospace font (year labels, eyebrows)
         type: select
         options:
-          values: [IBM Plex Mono, JetBrains Mono, System Mono]
-        default: IBM Plex Mono
+          values: [Space Mono, IBM Plex Mono, JetBrains Mono, System Mono]
+        default: Space Mono
         description: Used for year columns, section eyebrows, and the footer.
       - name: link_underline
         label: Link underline style

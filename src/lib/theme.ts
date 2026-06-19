@@ -1,8 +1,12 @@
 // Curated color schemes: full palettes selectable by name in the CMS.
 // 'Custom' falls through to the individual hex fields in theme.json.
+// `second` and `link` are optional accent hues (used by the Salon scheme);
+// schemes that omit them fall back to the main accent.
 export const SCHEMES: Record<string, {
   paper: string; ink: string; fg2: string; fg3: string; rule: string; accent: string;
+  second?: string; link?: string;
 }> = {
+  'Salon':        { paper: '#EDEAE2', ink: '#211C16', fg2: '#544C42', fg3: '#897F70', rule: '#DBD6CA', accent: '#9A3B24', second: '#A9762E', link: '#2E6A66' },
   'Reading Room': { paper: '#F5F1E8', ink: '#211C16', fg2: '#574F44', fg3: '#8C8474', rule: '#E3DBCB', accent: '#7B2E2E' },
   'Ivory':        { paper: '#FAF7F0', ink: '#1F1B16', fg2: '#5A5246', fg3: '#948B7B', rule: '#E8E2D4', accent: '#8A3324' },
   'Porcelain':    { paper: '#F4F4F2', ink: '#1C1E21', fg2: '#4D5158', fg3: '#878C94', rule: '#E0E1DD', accent: '#355070' },
@@ -15,7 +19,28 @@ export const SCHEMES: Record<string, {
 // Each Google font carries its own URL; Base.astro loads only the selected
 // ones via parallel <link> tags (faster than a serial @import in the CSS).
 export const FONTS: Record<string, { stack: string; googleUrl?: string }> = {
-  // ── Serif ─────────────────────────────────────────────────────────────────
+  // ── Display / heading serifs ────────────────────────────────────────────────
+  'Cormorant Garamond': {
+    stack: "'Cormorant Garamond', Georgia, serif",
+    googleUrl: 'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap',
+  },
+  'Playfair Display': {
+    stack: "'Playfair Display', Georgia, serif",
+    googleUrl: 'https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap',
+  },
+  'Fraunces': {
+    stack: "'Fraunces', Georgia, serif",
+    googleUrl: 'https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&display=swap',
+  },
+  'Bodoni Moda': {
+    stack: "'Bodoni Moda', Georgia, serif",
+    googleUrl: 'https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;1,6..96,400&display=swap',
+  },
+  // ── Serif (body) ────────────────────────────────────────────────────────────
+  'Newsreader': {
+    stack: "'Newsreader', Georgia, serif",
+    googleUrl: 'https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&display=swap',
+  },
   'Spectral': {
     stack: "'Spectral', Georgia, serif",
     googleUrl: 'https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap',
@@ -31,6 +56,10 @@ export const FONTS: Record<string, { stack: string; googleUrl?: string }> = {
     googleUrl: 'https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap',
   },
   // ── Sans ──────────────────────────────────────────────────────────────────
+  'Archivo': {
+    stack: "'Archivo', system-ui, sans-serif",
+    googleUrl: 'https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&display=swap',
+  },
   'Hanken Grotesk': {
     stack: "'Hanken Grotesk', system-ui, sans-serif",
     googleUrl: 'https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600&display=swap',
@@ -47,6 +76,10 @@ export const FONTS: Record<string, { stack: string; googleUrl?: string }> = {
     googleUrl: 'https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,600;1,400&display=swap',
   },
   // ── Mono ──────────────────────────────────────────────────────────────────
+  'Space Mono': {
+    stack: "'Space Mono', ui-monospace, monospace",
+    googleUrl: 'https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap',
+  },
   'IBM Plex Mono': {
     stack: "'IBM Plex Mono', ui-monospace, monospace",
     googleUrl: 'https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap',
@@ -69,23 +102,26 @@ function adjust(hex: string, amount: number): string {
 }
 
 export function getThemeCss(theme: Record<string, string>): string {
-  const serif  = FONTS[theme.font_serif]?.stack  ?? FONTS['Spectral'].stack;
-  const sans   = FONTS[theme.font_sans]?.stack   ?? FONTS['Hanken Grotesk'].stack;
-  const mono   = FONTS[theme.font_mono]?.stack   ?? FONTS['IBM Plex Mono'].stack;
+  const display = FONTS[theme.font_display]?.stack ?? FONTS['Cormorant Garamond'].stack;
+  const serif  = FONTS[theme.font_serif]?.stack  ?? FONTS['Newsreader'].stack;
+  const sans   = FONTS[theme.font_sans]?.stack   ?? FONTS['Archivo'].stack;
+  const mono   = FONTS[theme.font_mono]?.stack   ?? FONTS['Space Mono'].stack;
 
   const scheme = SCHEMES[theme.color_scheme];
-  const paper  = scheme?.paper  ?? (theme.color_paper  || '#F5F1E8');
+  const paper  = scheme?.paper  ?? (theme.color_paper  || '#EDEAE2');
   const ink    = scheme?.ink    ?? (theme.color_ink    || '#211C16');
-  const fg2    = scheme?.fg2    ?? (theme.color_fg2    || '#574F44');
-  const fg3    = scheme?.fg3    ?? (theme.color_fg3    || '#8C8474');
-  const rule   = scheme?.rule   ?? (theme.color_rule   || '#E3DBCB');
-  const accent = scheme?.accent ?? (theme.color_accent || '#7B2E2E');
+  const fg2    = scheme?.fg2    ?? (theme.color_fg2    || '#544C42');
+  const fg3    = scheme?.fg3    ?? (theme.color_fg3    || '#897F70');
+  const rule   = scheme?.rule   ?? (theme.color_rule   || '#DBD6CA');
+  const accent = scheme?.accent ?? (theme.color_accent || '#9A3B24');
+  const second = scheme?.second ?? (theme.color_second || accent);
+  const link   = scheme?.link   ?? (theme.color_link   || accent);
 
   const lines = [
     ':root {',
     `  --paper: ${paper};`,
-    `  --paper-2: ${adjust(paper, 6)};`,
-    `  --paper-sunk: ${adjust(paper, -6)};`,
+    `  --paper-2: ${adjust(paper, 9)};`,
+    `  --paper-sunk: ${adjust(paper, -9)};`,
     `  --ink: ${ink};`,
     `  --fg-1: ${ink};`,
     `  --fg-2: ${fg2};`,
@@ -94,6 +130,10 @@ export function getThemeCss(theme: Record<string, string>): string {
     `  --rule-strong: ${adjust(rule, -20)};`,
     `  --accent: ${accent};`,
     `  --accent-deep: ${adjust(accent, -25)};`,
+    `  --second: ${second};`,
+    `  --link: ${link};`,
+    `  --link-deep: ${adjust(link, -25)};`,
+    `  --display: ${display};`,
     `  --serif: ${serif};`,
     `  --sans: ${sans};`,
     `  --mono: ${mono};`,
@@ -115,6 +155,6 @@ export function getThemeCss(theme: Record<string, string>): string {
 }
 
 export function getThemeFontLinks(theme: Record<string, string>): string[] {
-  const keys = [theme.font_serif, theme.font_sans, theme.font_mono];
+  const keys = [theme.font_display, theme.font_serif, theme.font_sans, theme.font_mono];
   return [...new Set(keys.flatMap(k => FONTS[k]?.googleUrl ? [FONTS[k]!.googleUrl!] : []))];
 }

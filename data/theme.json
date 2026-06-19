@@ -1,14 +1,15 @@
 {
-  "color_scheme": "Oxford",
-  "color_paper": "#F5F1E8",
+  "color_scheme": "Salon",
+  "color_paper": "#EDEAE2",
   "color_ink": "#211C16",
-  "color_fg2": "#574F44",
-  "color_fg3": "#8C8474",
-  "color_rule": "#E3DBCB",
-  "color_accent": "#7B2E2E",
-  "font_serif": "Libre Baskerville",
-  "font_sans": "Source Sans 3",
-  "font_mono": "JetBrains Mono",
+  "color_fg2": "#544C42",
+  "color_fg3": "#897F70",
+  "color_rule": "#DBD6CA",
+  "color_accent": "#9A3B24",
+  "font_display": "Cormorant Garamond",
+  "font_serif": "Newsreader",
+  "font_sans": "Archivo",
+  "font_mono": "Space Mono",
   "link_underline": "hover",
-  "heading_weight": "400"
+  "heading_weight": "600"
 }
