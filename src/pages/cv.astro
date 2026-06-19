@@ -157,7 +157,7 @@ const sectionsMap: Record<string, Section> = {
         return `<div class="cv-item">
           <span class="cv-year">${p.year || ''}</span>
           <span class="cv-detail">
-            <span class="cv-pub-title">${p.coauthors ? `(with ${p.coauthors}) ` : ''}${p.title}${/[.?!]$/.test(p.title) ? '' : '.'}</span>${journalPart ? ` ${journalPart}` : ''}${volPart ? ` ${volPart}` : ''}${prize}
+            <span class="cv-pub-title">${p.title}${/[.?!]$/.test(p.title) ? '' : '.'}</span>${p.coauthors ? ` <span class="cv-coauthor">with ${p.coauthors}.</span>` : ''}${journalPart ? ` ${journalPart}` : ''}${volPart ? ` ${volPart}` : ''}${prize}
           </span>
         </div>`;
       }).join('');
@@ -235,7 +235,7 @@ const orderedSections = sectionOrder
   .map(k => sectionsMap[k]);
 ---
 
-<Base title="CV — Romy Eskens" description="Curriculum vitae of Romy Eskens — positions, education, publications, and presentations." page="cv" heading="Romy Eskens" eyebrow="Curriculum Vitae">
+<Base title="CV — Romy Eskens" description="Curriculum vitae of Romy Eskens — positions, education, publications, and presentations." page="cv" heading="Romy Eskens">
   <div class="cv-actions no-print">
     <a class="cv-download" href={`${base}/assets/cv.pdf`} target="_blank" rel="noopener">&#8595; Download PDF</a>
   </div>

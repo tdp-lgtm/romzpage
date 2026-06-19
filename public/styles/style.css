@@ -356,7 +356,7 @@ h2 {
   border-left: 2px solid var(--rule-strong);
 }
 
-.research-bio-wrap { margin: 1.75rem 0 0.5rem; max-width: 48rem; }
+.research-bio-wrap { margin: 1.75rem 0 0.5rem; }
 .research-bio {
   font-family: var(--serif);
   font-size: 1.3rem;
@@ -658,6 +658,7 @@ h2 {
 .cv-pub-title { font-weight: 400; }
 .cv-detail-inline { font-family: var(--serif); font-size: 1.05rem; font-weight: 500; color: var(--ink); }
 .cv-detail-vol { font-family: var(--sans); font-size: 0.85rem; font-weight: 400; color: var(--fg-2); }
+.cv-coauthor { font-family: var(--sans); font-size: 0.85rem; font-weight: 400; color: var(--fg-3); }
 .cv-contact-addr { display: block; margin-top: 0.15rem; }
 .cv-prize { display: block; font-family: var(--mono); font-size: 0.72rem; color: var(--second); margin-top: 2px; }
 #cv-talks .talk-item h3 { font-size: 1.05rem; }
@@ -741,8 +742,20 @@ footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
+  gap: 0.6rem 1.5rem;
 }
 .foot-fine { font-family: var(--mono); font-size: 0.7rem; color: var(--fg-3); letter-spacing: 0.1em; }
+.foot-links { display: flex; flex-wrap: wrap; gap: 0 1.25rem; }
+.foot-links a {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--fg-3);
+  border-bottom: none;
+}
+.foot-links a:hover { color: var(--accent); border-bottom: none; }
 
 /* Courses page: course name styled like an entry title */
 #teaching .talk-row-detail {

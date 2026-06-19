@@ -20,14 +20,5 @@ const portraitSrc = base + (frontPage.portrait || '/assets/portrait.jpg');
       set:html={bodyHtml}
       style={frontPage.justify ? 'text-align:justify' : undefined}
     />
-    <nav class="about-links" aria-label="Quick links">
-      {settings.quick_links.map((link: any) => {
-        const href = link.href.startsWith('/') ? `${base}${link.href}` : link.href;
-        const external = !link.href.startsWith('/') && !link.href.startsWith('mailto:');
-        return (
-          <a href={href} {...(external ? { target: '_blank', rel: 'noopener' } : {})}>{link.label}</a>
-        );
-      })}
-    </nav>
   </div>
 </Base>

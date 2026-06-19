@@ -91,6 +91,15 @@ const ogImageURL = new URL(settings.og_image || '/assets/portrait.jpg', Astro.si
   <footer>
     <div class="foot-inner">
       <div class="foot-fine">{settings.footer_text} &copy; <span id="year"></span></div>
+      <nav class="foot-links" aria-label="Contact and links">
+        {settings.quick_links.map((link: any) => {
+          const href = link.href.startsWith('/') ? `${base}${link.href}` : link.href;
+          const external = !link.href.startsWith('/') && !link.href.startsWith('mailto:');
+          return (
+            <a href={href} {...(external ? { target: '_blank', rel: 'noopener' } : {})}>{link.label}</a>
+          );
+        })}
+      </nav>
     </div>
   </footer>
 
