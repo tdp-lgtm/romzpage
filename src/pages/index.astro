@@ -11,6 +11,7 @@ const portraitSrc = base + (frontPage.portrait || '/assets/portrait.jpg');
 
 <Base title={settings.title} page="about">
   <link slot="head" rel="preload" as="image" href={portraitSrc} fetchpriority="high" />
+  <h2>{settings.title}</h2>
   <div class="about-body">
     <div class="about-portrait">
       <img src={portraitSrc} alt={settings.title} width="600" height="600" fetchpriority="high" decoding="async" />

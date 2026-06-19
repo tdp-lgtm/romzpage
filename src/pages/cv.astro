@@ -177,11 +177,10 @@ const sectionsMap: Record<string, Section> = {
   presentations: {
     // id must stay 'cv-talks' — style.css scopes the smaller talk-title size to it
     key: 'presentations', id: 'cv-talks', label: 'Selected presentations',
-    extra: `<span class="talks-legend"><sup>*</sup> invited &ensp; <sup>&#8224;</sup> peer-reviewed</span>`,
     content: cvTalks.length === 0 ? '<p class="empty">Nothing to show yet.</p>' : `<ul class="pub-list">${cvTalks.map((talk: any) => {
       const rows = (talk.presentations || []).filter(isPublished).map((p: any) => {
-        const tag = p.type === 'Invited' ? '<sup class="talk-tag">*</sup>'
-                  : p.type === 'Peer-Review' ? '<sup class="talk-tag">†</sup>' : '';
+        const tag = p.type === 'Invited' ? '<span class="talk-tag">Invited</span>'
+                  : p.type === 'Peer-Review' ? '<span class="talk-tag">Peer-reviewed</span>' : '';
         const date = p.month ? `${p.month} ${p.year}` : String(p.year || '');
         const where = [p.venue, p.institution].filter(Boolean).join(', ');
         const comment = p.comment ? ` <em class="talk-comment">${p.comment}</em>` : '';

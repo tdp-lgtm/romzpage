@@ -27,6 +27,7 @@ function makeHref(slug: string): string {
 
 function isActive(href: string): boolean {
   const clean = href.replace(/\.html$/, '');
+  if (clean === '' || clean === 'index') return path === '/';
   return path === '/' + clean || path === '/' + clean + '/';
 }
 

@@ -73,7 +73,6 @@ const ogImageURL = new URL(settings.og_image || '/assets/portrait.jpg', Astro.si
 
   <header>
     <div class="header-inner">
-      <a href={base || '/'} class="site-title">{settings.title}<b>.</b></a>
       <Nav items={navItems} currentPath={currentPath} />
     </div>
   </header>
@@ -92,6 +91,13 @@ const ogImageURL = new URL(settings.og_image || '/assets/portrait.jpg', Astro.si
 
   <!-- _toggleAbstract must be global since it's called via onclick attributes in static HTML -->
   <script is:inline>
+    function _toggleBio(btn) {
+      var el = btn.previousElementSibling;
+      if (!el) return;
+      var open = el.classList.toggle('open');
+      btn.textContent = open ? 'Read less' : 'Read more';
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    }
     function _toggleAbstract(id, btn) {
       var el = document.getElementById(id);
       var inner = el.firstElementChild;

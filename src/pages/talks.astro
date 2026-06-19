@@ -11,7 +11,6 @@ const talks = (talksData.items || (talksData as any)).filter(isPublished);
 
 <Base title="Talks — Romy Eskens" description="Talks and conference presentations by Romy Eskens." page="talks">
   <h2>Talks</h2>
-  <p class="talks-legend"><sup>*</sup> invited &ensp; <sup>&dagger;</sup> peer-reviewed</p>
 
   <ul class="pub-list">
     {talks.map((talk: any) => {
@@ -24,18 +23,15 @@ const talks = (talksData.items || (talksData as any)).filter(isPublished);
           </div>
           <div class="talk-pres-list">
             {pres.map((p: any) => {
-              const tag = p.type === 'Invited'
-                ? <sup class="talk-tag">*</sup>
-                : p.type === 'Peer-Review'
-                ? <sup class="talk-tag">&dagger;</sup>
-                : null;
+              const tag = p.type === 'Invited' ? 'Invited'
+                : p.type === 'Peer-Review' ? 'Peer-reviewed' : '';
               const date = p.month ? `${p.month} ${p.year}` : String(p.year || '');
               const where = [p.venue, p.institution].filter(Boolean).join(', ');
               return (
                 <div class="talk-row">
                   <div class="talk-yr">{date}</div>
                   <div class="talk-row-detail">
-                    {where}{tag}
+                    {where}{tag && <span class="talk-tag">{tag}</span>}
                     {p.comment && <em class="talk-comment"> {p.comment}</em>}
                   </div>
                 </div>

@@ -23,6 +23,14 @@ const roles = [
   ...roleOrder.filter(r => groups[r]),
   ...Object.keys(groups).filter(r => !roleOrder.includes(r)),
 ];
+
+// Collapse any specific study level to just "Undergraduate" or "Graduate"
+function levelLabel(levels?: string[]): string {
+  const arr = (Array.isArray(levels) ? levels : levels ? [levels] : []).filter(Boolean);
+  if (!arr.length) return '';
+  const isUg = (l: string) => /undergrad|^ba\b|bachelor|1st year|first year/i.test(l) || l === 'Undergraduate';
+  return arr.some(l => !isUg(l)) ? 'Graduate' : 'Undergraduate';
+}
 ---
 
 <Base title="Teaching — Romy Eskens" description="Teaching by Romy Eskens at Utrecht University and Stockholm University." page="teaching">
@@ -34,9 +42,7 @@ const roles = [
         <span class={`section-label${i === 0 ? ' section-label--first' : ''}`}>{role}</span>
         <div class="talk-pres-list">
           {groups[role].map(e => {
-            const levels = e.levels && e.levels.length
-              ? [e.levels].flat().join(', ')
-              : '';
+            const levels = levelLabel(e.levels);
             return (
               <div class="talk-row">
                 <div class="talk-yr">{e.year || ''}</div>

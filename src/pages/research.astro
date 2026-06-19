@@ -54,11 +54,14 @@ function volStr(p: { volume?: string; issue?: string; pages?: string }) {
   <h2>Publications</h2>
 
   {bio.text && (
-    <div
-      class="research-bio"
-      style={bio.justify ? 'text-align:justify' : undefined}
-      set:html={bioHtml}
-    />
+    <div class="research-bio-wrap">
+      <div
+        class="research-bio bio-clamp"
+        style={bio.justify ? 'text-align:justify' : undefined}
+        set:html={bioHtml}
+      />
+      <button class="bio-toggle" onclick="_toggleBio(this)" aria-expanded="false">Read more</button>
+    </div>
   )}
 
   {pubCategories.map(({ key, label }) => {
@@ -77,7 +80,8 @@ function volStr(p: { volume?: string; issue?: string; pages?: string }) {
               <li class="pub">
                 <div class="yr">{pubYear(p.year)}</div>
                 <div>
-                  <h3>{p.coauthors ? `(with ${p.coauthors}) ` : ''}{p.title}</h3>
+                  <h3>{p.title}</h3>
+                  {p.coauthors && <div class="coauthor">with {p.coauthors}</div>}
                   {citation && <p class="venue" set:html={citation + '.'} />}
                   {(p.abstract || p.pdf || p.doi || p.prize) && (
                     <div class="pub-links">

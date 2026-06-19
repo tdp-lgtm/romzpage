@@ -1,5 +1,6 @@
 {
   "items": [
+    { "label": "Home", "href": "index" },
     { "label": "Research", "subitems": [
       { "label": "Publications", "href": "research" },
       { "label": "The Guilty Mind", "href": "veni" }

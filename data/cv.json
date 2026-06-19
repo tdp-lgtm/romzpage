@@ -71,6 +71,16 @@
       "amount": "£1,100"
     },
     {
+      "year": "2020",
+      "description": "APA Pacific Graduate Travel Award (cancelled — event moved online)",
+      "amount": "$400"
+    },
+    {
+      "year": "2020",
+      "description": "Society for Applied Philosophy Event Funding, for the SCEWP Workshop on Gratitude (cancelled — event moved online)",
+      "amount": "£3,000"
+    },
+    {
       "year": "2019",
       "description": "Cultuurfonds, for research visit at UT Austin",
       "amount": "€10,000"
@@ -188,21 +198,17 @@
     }
   ],
   "events": [
-    {
-      "year": "2025",
-      "title": "Co-organiser, Utrecht Workshop on Degradation and Dehumanisation",
-      "institution": ""
-    },
-    {
-      "year": "2024",
-      "title": "Co-organiser and reviewer, MANCEPT Workshop: Setting Things Right",
-      "institution": ""
-    },
-    {
-      "year": "2023",
-      "title": "Reviewer, 2024 Workshop Oxford Studies in Normative Ethics",
-      "institution": ""
-    }
+    { "year": "2025", "title": "Co-organiser, Utrecht Workshop on Degradation and Dehumanisation", "institution": "" },
+    { "year": "2024", "title": "Co-organiser and reviewer, MANCEPT Workshop: Setting Things Right", "institution": "" },
+    { "year": "2023", "title": "Reviewer, 2024 Workshop Oxford Studies in Normative Ethics", "institution": "" },
+    { "year": "2022", "title": "Co-organiser and reviewer, 7th SCEWP Graduate and Early Career Reading Retreat", "institution": "" },
+    { "year": "2021", "title": "Reviewer, NordPhil Conference", "institution": "" },
+    { "year": "2021", "title": "Co-organiser and reviewer, 6th SCEWP Graduate and Early Career Reading Retreat", "institution": "" },
+    { "year": "2021", "title": "Co-organiser and reviewer, 7th Stockholm Graduate Philosophy Conference", "institution": "" },
+    { "year": "2021", "title": "Sole organiser, SCEWP Workshop on Gratitude", "institution": "" },
+    { "year": "2020", "title": "Invited chair, Arizona Workshop in Normative Ethics", "institution": "" },
+    { "year": "2019", "title": "Reviewer, 6th Stockholm Graduate Philosophy Conference", "institution": "" },
+    { "year": "2017", "title": "Reviewer, 21st Oxford Graduate Philosophy Conference", "institution": "" }
   ],
   "service": [
     {
@@ -219,7 +225,11 @@
     },
     {
       "year": "2024–",
-      "description": "Personal tutor for the BA Philosophy and BA Language and Culture Studies, Utrecht University"
+      "description": "Personal tutor for the BA Philosophy, Utrecht University"
+    },
+    {
+      "year": "2024–",
+      "description": "Personal tutor for the BA Language and Culture Studies, Utrecht University"
     },
     {
       "year": "2023–",
@@ -243,5 +253,22 @@
     }
   ],
   "reviewer": "Noûs (3×), Oxford Studies in Normative Ethics (entire volume), Philosophy, Journal of the American Philosophical Association, Journal of Ethics and Social Philosophy, Philosophia, Journal of Moral Philosophy",
+  "custom_sections": [
+    {
+      "slot": "custom-1",
+      "title": "Supervision",
+      "items": [
+        { "detail": "BA Philosophy theses (×12)" },
+        { "detail": "MA Applied Ethics theses (×10)" },
+        { "detail": "BA Liberal Arts & Sciences thesis (×1)" },
+        { "detail": "RMA Philosophy thesis (×1)" },
+        { "detail": "BA Philosophy internships (×6)" },
+        { "detail": "BA Language and Culture Studies internships (×2)" },
+        { "detail": "MA Applied Ethics internships (×10)" },
+        { "detail": "RMA research internships — degradation (×1), mental wronging (×1)" },
+        { "detail": "RMA teaching internship — Normative Ethics (×1)" }
+      ]
+    }
+  ],
   "references": []
 }

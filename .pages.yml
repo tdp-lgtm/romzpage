@@ -540,7 +540,7 @@ content:
                 label: Level of study
                 type: select
                 options:
-                  values: [Undergraduate, MA, MPhil, PhD]
+                  values: [Undergraduate, Graduate]
                   multiple: true
               - name: note
                 label: Note
