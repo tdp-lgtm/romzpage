@@ -500,6 +500,22 @@ h2 {
   font-size: 0.875rem;
 }
 
+/* Talks page: flat chronological event list (year + event) */
+.event-row {
+  display: grid;
+  grid-template-columns: 4.5rem 1fr;
+  gap: 1.5rem;
+  align-items: baseline;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid var(--rule);
+}
+.event-detail {
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  color: var(--ink);
+  line-height: 1.45;
+}
+
 /* ---- Veni meta row ---- */
 .veni-meta-row {
   display: flex;
@@ -801,7 +817,7 @@ footer {
   .about-links { justify-content: flex-start; }
 
   /* Publications & CV: collapse to single column (year above content) */
-  .pub, .cv-item { grid-template-columns: 1fr; gap: 0.15rem; align-items: start; }
+  .pub, .cv-item, .event-row { grid-template-columns: 1fr; gap: 0.15rem; align-items: start; }
   .yr, .cv-year { font-size: 0.72rem; opacity: 0.8; padding-top: 0; }
   .pub { padding: 0.95rem 0; }
 
