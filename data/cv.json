@@ -164,51 +164,27 @@
     }
   ],
   "qualifications": [
-    {
-      "year": "2024",
-      "description": "BKO University Teaching Qualification (full-year course), Centre for Academic Teaching and Learning, Utrecht"
-    },
-    {
-      "year": "2024",
-      "description": "Professional Development Workshop: Communicating with Journalists and the Public, Utrecht"
-    },
-    {
-      "year": "2023",
-      "description": "Professional Development Workshop: Active Bystander in the Workplace, Utrecht"
-    },
-    {
-      "year": "2023",
-      "description": "Teaching Workshop: Feedback and Assessment, Utrecht"
-    },
-    {
-      "year": "2022",
-      "description": "University Teaching Qualification (one-semester course), Centre for the Advancement of University Teaching, Stockholm"
-    },
-    {
-      "year": "2022",
-      "description": "Teaching Workshop: Digital Learning and Teaching Essentials, Stockholm"
-    },
-    {
-      "year": "2022",
-      "description": "Teaching Workshop: Internationalisation of Higher Education, Stockholm"
-    },
-    {
-      "year": "2021",
-      "description": "Teaching Workshop: Discussion and Argumentation in Teaching, Stockholm"
-    }
+    { "year": "2024", "title": "BKO University Teaching Qualification (full-year course)", "institution": "Centre for Academic Teaching and Learning, Utrecht" },
+    { "year": "2024", "title": "Professional Development Workshop: Communicating with Journalists and the Public", "institution": "Utrecht" },
+    { "year": "2023", "title": "Professional Development Workshop: Active Bystander in the Workplace", "institution": "Utrecht" },
+    { "year": "2023", "title": "Teaching Workshop: Feedback and Assessment", "institution": "Utrecht" },
+    { "year": "2022", "title": "University Teaching Qualification (one-semester course)", "institution": "Centre for the Advancement of University Teaching, Stockholm" },
+    { "year": "2022", "title": "Teaching Workshop: Digital Learning and Teaching Essentials", "institution": "Stockholm" },
+    { "year": "2022", "title": "Teaching Workshop: Internationalisation of Higher Education", "institution": "Stockholm" },
+    { "year": "2021", "title": "Teaching Workshop: Discussion and Argumentation in Teaching", "institution": "Stockholm" }
   ],
   "events": [
-    { "year": "2025", "title": "Co-organiser, Utrecht Workshop on Degradation and Dehumanisation", "institution": "" },
-    { "year": "2024", "title": "Co-organiser and reviewer, MANCEPT Workshop: Setting Things Right", "institution": "" },
-    { "year": "2023", "title": "Reviewer, 2024 Workshop Oxford Studies in Normative Ethics", "institution": "" },
-    { "year": "2022", "title": "Co-organiser and reviewer, 7th SCEWP Graduate and Early Career Reading Retreat", "institution": "" },
-    { "year": "2021", "title": "Reviewer, NordPhil Conference", "institution": "" },
-    { "year": "2021", "title": "Co-organiser and reviewer, 6th SCEWP Graduate and Early Career Reading Retreat", "institution": "" },
-    { "year": "2021", "title": "Co-organiser and reviewer, 7th Stockholm Graduate Philosophy Conference", "institution": "" },
-    { "year": "2021", "title": "Sole organiser, SCEWP Workshop on Gratitude", "institution": "" },
-    { "year": "2020", "title": "Invited chair, Arizona Workshop in Normative Ethics", "institution": "" },
-    { "year": "2019", "title": "Reviewer, 6th Stockholm Graduate Philosophy Conference", "institution": "" },
-    { "year": "2017", "title": "Reviewer, 21st Oxford Graduate Philosophy Conference", "institution": "" }
+    { "year": "2025", "event": "Utrecht Workshop on Degradation and Dehumanisation", "role": "Co-organiser" },
+    { "year": "2024", "event": "MANCEPT Workshop: Setting Things Right", "role": "Co-organiser and reviewer" },
+    { "year": "2023", "event": "2024 Workshop, Oxford Studies in Normative Ethics", "role": "Reviewer" },
+    { "year": "2022", "event": "7th SCEWP Graduate and Early Career Reading Retreat", "role": "Co-organiser and reviewer" },
+    { "year": "2021", "event": "NordPhil Conference", "role": "Reviewer" },
+    { "year": "2021", "event": "6th SCEWP Graduate and Early Career Reading Retreat", "role": "Co-organiser and reviewer" },
+    { "year": "2021", "event": "7th Stockholm Graduate Philosophy Conference", "role": "Co-organiser and reviewer" },
+    { "year": "2021", "event": "SCEWP Workshop on Gratitude", "role": "Sole organiser" },
+    { "year": "2020", "event": "Arizona Workshop in Normative Ethics", "role": "Invited chair" },
+    { "year": "2019", "event": "6th Stockholm Graduate Philosophy Conference", "role": "Reviewer" },
+    { "year": "2017", "event": "21st Oxford Graduate Philosophy Conference", "role": "Reviewer" }
   ],
   "service": [
     {
@@ -253,22 +229,16 @@
     }
   ],
   "reviewer": "Noûs (3×), Oxford Studies in Normative Ethics (entire volume), Philosophy, Journal of the American Philosophical Association, Journal of Ethics and Social Philosophy, Philosophia, Journal of Moral Philosophy",
-  "custom_sections": [
-    {
-      "slot": "custom-1",
-      "title": "Supervision",
-      "items": [
-        { "detail": "BA Philosophy theses (×12)" },
-        { "detail": "MA Applied Ethics theses (×10)" },
-        { "detail": "BA Liberal Arts & Sciences thesis (×1)" },
-        { "detail": "RMA Philosophy thesis (×1)" },
-        { "detail": "BA Philosophy internships (×6)" },
-        { "detail": "BA Language and Culture Studies internships (×2)" },
-        { "detail": "MA Applied Ethics internships (×10)" },
-        { "detail": "RMA research internships — degradation (×1), mental wronging (×1)" },
-        { "detail": "RMA teaching internship — Normative Ethics (×1)" }
-      ]
-    }
+  "supervision": [
+    "BA Philosophy theses (×12)",
+    "MA Applied Ethics theses (×10)",
+    "BA Liberal Arts & Sciences thesis (×1)",
+    "RMA Philosophy thesis (×1)",
+    "BA Philosophy internships (×6)",
+    "BA Language and Culture Studies internships (×2)",
+    "MA Applied Ethics internships (×10)",
+    "RMA research internships — degradation (×1), mental wronging (×1)",
+    "RMA teaching internship — Normative Ethics (×1)"
   ],
   "references": []
 }

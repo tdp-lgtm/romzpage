@@ -12,7 +12,8 @@ import { join, extname, normalize, resolve, relative, isAbsolute } from 'node:pa
 import { chromium } from 'playwright';
 
 const DIST = resolve(new URL('../dist', import.meta.url).pathname);
-const OUT = join(DIST, 'assets', 'cv.pdf');
+// Each route is rendered with print styles to its own PDF.
+const TARGETS = [['/cv', 'cv.pdf'], ['/cv-short', 'cv-short.pdf']];
 
 const MIME = {
   '.html': 'text/html',
@@ -57,15 +58,18 @@ const browser = await chromium.launch({
 });
 try {
   const page = await browser.newPage();
-  await page.goto(`http://127.0.0.1:${port}/cv`, { waitUntil: 'networkidle' });
   await page.emulateMedia({ media: 'print' });
-  await page.pdf({
-    path: OUT,
-    format: 'A4',
-    printBackground: true,
-    preferCSSPageSize: true, // respect the @page margins in style.css
-  });
-  console.log(`CV PDF written to ${OUT}`);
+  for (const [route, file] of TARGETS) {
+    const out = join(DIST, 'assets', file);
+    await page.goto(`http://127.0.0.1:${port}${route}`, { waitUntil: 'networkidle' });
+    await page.pdf({
+      path: out,
+      format: 'A4',
+      printBackground: true,
+      preferCSSPageSize: true, // respect the @page margins in style.css
+    });
+    console.log(`CV PDF written to ${out}`);
+  }
 } finally {
   await browser.close();
   server.close();

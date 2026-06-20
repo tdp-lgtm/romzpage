@@ -693,35 +693,36 @@ content:
             list:
               collapsible:
                 collapsed: true
-                summary: "{description}"
-            fields:
-              - name: year
-                label: Year
-                type: string
-              - name: description
-                label: Description
-                type: string
-
-          - name: events
-            label: Event organising & refereeing
-            type: object
-            list:
-              collapsible:
-                collapsed: true
                 summary: "{title}"
             fields:
               - name: year
                 label: Year
                 type: string
               - name: title
-                label: Event name / role
+                label: Qualification / workshop
                 type: string
               - name: institution
-                label: Institution (optional)
+                label: Institution / place
                 type: string
-              - name: note
-                label: Note
+
+          - name: events
+            label: Event organising
+            type: object
+            list:
+              collapsible:
+                collapsed: true
+                summary: "{event}"
+            fields:
+              - name: year
+                label: Year
                 type: string
+              - name: event
+                label: Event name
+                type: string
+              - name: role
+                label: Role
+                type: string
+                description: "e.g. Organiser, Co-organiser, Reviewer, Chair."
 
           - name: service
             label: Professional service
@@ -742,6 +743,12 @@ content:
             label: Reviewer for journals
             type: text
             description: Comma-separated list of journals.
+
+          - name: supervision
+            label: Supervision (shown under Teaching)
+            type: string
+            list: true
+            description: 'One line per category, e.g. "BA Philosophy theses (×12)".'
 
           - name: references
             label: References

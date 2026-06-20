@@ -15,12 +15,10 @@ const publications = (pubData.items || []).filter(isPublished);
 const wip = (pubData.wip || []).filter(isPublished);
 
 const pubCategories = [
-  { key: 'Article',  label: 'Articles' },
-  { key: 'Book',     label: 'Books' },
-  { key: 'Chapter',  label: 'Book chapters' },
-  { key: 'Editor',   label: 'As editor' },
-  { key: 'Review',   label: 'Reviews' },
-  { key: 'Public',   label: 'Public writing' },
+  { types: ['Book'],              label: 'Books' },
+  { types: ['Article', 'Chapter'], label: 'Journal and Chapters' },
+  { types: ['Editor'],           label: 'Guest Editor' },
+  { types: ['Review'],           label: 'Reviews' },
 ] as const;
 
 // Build WIP groups preserving insertion order
@@ -63,15 +61,15 @@ function volStr(p: { volume?: string; issue?: string; pages?: string }) {
     </div>
   )}
 
-  {pubCategories.map(({ key, label }) => {
-    const items = publications.filter(p => (p.type || 'Article') === key);
+  {pubCategories.map(({ types, label }) => {
+    const items = publications.filter(p => (types as readonly string[]).includes(p.type || 'Article'));
     if (!items.length) return null;
     return (
       <>
         <span class="section-label">{label}</span>
         <ul class="pub-list">
           {items.map((p, i) => {
-            const absId = `abs-${key.toLowerCase()}-${i}`;
+            const absId = `abs-${label.replace(/\s+/g, '-').toLowerCase()}-${i}`;
             const vol = volStr(p);
             const citationParts = [p.journal ? `<em>${p.journal}</em>` : '', vol].filter(Boolean);
             const citation = citationParts.join(' ');

@@ -1,0 +1,30 @@
+---
+import Base from '../layouts/Base.astro';
+import { buildSections, contactHtml, contactAddr, SHORT_ORDER } from '../lib/cv';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const sectionsMap = buildSections(true);
+const orderedSections = SHORT_ORDER.filter(k => sectionsMap[k]).map(k => sectionsMap[k]);
+---
+
+<Base title="Short CV — Romy Eskens" description="Short curriculum vitae of Romy Eskens." page="cv" heading="Romy Eskens">
+  <div class="cv-actions no-print">
+    <a class="cv-download" href={`${base}/assets/cv.pdf`} target="_blank" rel="noopener">&#8595; Full CV</a>
+    <a class="cv-download" href={`${base}/assets/cv-short.pdf`} target="_blank" rel="noopener">&#8595; Short CV</a>
+  </div>
+
+  <p id="cv-contact" class="cv-contact">
+    <span set:html={contactHtml} />
+    {contactAddr && <span class="cv-contact-addr">{contactAddr}</span>}
+  </p>
+
+  {orderedSections.map(sec => {
+    if (!sec) return null;
+    return (
+      <div class="cv-section" data-cv-section={sec.key}>
+        <span class="eyebrow">{sec.label}</span>
+        <div id={sec.id || `cv-${sec.key}`} set:html={sec.content} />
+      </div>
+    );
+  })}
+</Base>
