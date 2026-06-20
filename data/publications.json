@@ -109,10 +109,12 @@
       "cv": true
     },
     {
-      "title": "Co-editor, Basisboek Ethiek",
-      "type": "Editor",
+      "title": "Basisboek Ethiek",
+      "type": "Book",
       "year": "2026",
-      "journal": "Textbook ethics for university-level education, with Jeroen Hopster, Benjamin de Mesel, and Thomas Nys. Amsterdam: Boom.",
+      "journal": "Amsterdam: Boom",
+      "coauthors": "Jeroen Hopster, Benjamin de Mesel, and Thomas Nys",
+      "abstract": "Textbook ethics for university-level education.",
       "published": true,
       "cv": true
     },
