@@ -1,6 +1,14 @@
 {
   "items": [
     {
+      "title": "Gelijkheid (\"Equality\")",
+      "type": "Chapter",
+      "year": "Forthcoming",
+      "journal": "Basisboek Ethiek, ed. Eskens, Hopster, de Mesel & Nys (Amsterdam: Boom)",
+      "published": true,
+      "cv": true
+    },
+    {
       "title": "Enemies and Rivals",
       "type": "Chapter",
       "year": "Forthcoming",
@@ -99,14 +107,6 @@
       "abstract": "It is widely accepted that valid consent is a necessary condition for permissible sexual activity. Since non-human animals, children, and individuals who are severely cognitively disabled, heavily intoxicated or unconscious, lack the cognitive capacity to give valid consent, this condition explains why it is impermissible to have sex with them. However, contrary to common intuitions, the same condition seems to render it impermissible to have sex with robots, for they too are incapable of consenting to sex due to insufficient cognitive capacitation. This paper explores whether the intuition that non-consensual sex with robots is permissible can be vindicated, whilst preserving valid consent as a general requirement for permissible sexual activity. I develop and evaluate four possible ways to argue that there is a morally significant difference between robots on the one hand, and insufficiently cognitively capacitated humans and non-human animals on the other hand, to substantiate and justify the intuition that it is permissible to have non-consensual sex with the former but not with the latter.",
       "doi": "https://www.jpe.ox.ac.uk/papers/is-sex-with-robots-rape/",
       "prize": "Winner of the 3rd Annual Oxford Uehiro Prize in Practical Ethics",
-      "published": true,
-      "cv": true
-    },
-    {
-      "title": "Gelijkheid (\"Equality\")",
-      "type": "Chapter",
-      "year": "Forthcoming",
-      "journal": "Basisboek Ethiek, ed. Eskens, Hopster, de Mesel & Nys (Amsterdam: Boom)",
       "published": true,
       "cv": true
     },
