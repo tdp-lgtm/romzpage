@@ -12,14 +12,10 @@ const hasContent = interviews.length || talks.length || writing.length;
 
 <Base title="Public Philosophy — Romy Eskens" description="Public philosophy by Romy Eskens — interviews, public talks, and writing for a general audience." page="public-philosophy" heading="Public Philosophy">
 
-  <div class="pp-photos">
-    <img src={`${base}/assets/pp-1.webp`} alt="Romy Eskens at a public philosophy event" loading="lazy" />
-    <img src={`${base}/assets/pp-2.webp`} alt="Romy Eskens at a public philosophy event" loading="lazy" />
-  </div>
-
   {interviews.length > 0 && (
     <>
       <span class="section-label section-label--first">Interviews</span>
+      <img class="pp-photo pp-photo--right" src={`${base}/assets/pp-1.webp`} alt="Romy Eskens at a public philosophy event" loading="lazy" />
       <ul class="pub-list">
         {interviews.map((n: any) => {
           const venue = [n.outlet, n.date].filter(Boolean).join(', ');
@@ -41,6 +37,7 @@ const hasContent = interviews.length || talks.length || writing.length;
   {talks.length > 0 && (
     <>
       <span class="section-label">Public talks</span>
+      <img class="pp-photo pp-photo--left" src={`${base}/assets/pp-2.webp`} alt="Romy Eskens at a public philosophy event" loading="lazy" />
       <ul class="pub-list">
         {talks.map((t: any) => {
           const venue = [t.venue, t.date].filter(Boolean).join(', ');

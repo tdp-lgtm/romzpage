@@ -72,7 +72,10 @@ export function buildSections(short = false): Record<string, Section> {
   const visitsHtml = renderCVSection((cv.visits || []).map((v: any) => ({ year: v.year, detail: `${v.title}, ${v.institution}`, sub: v.note || '' })));
   const commentariesHtml = renderCVSection((cv.commentaries || []).map((c: any) => ({ year: c.year, detail: c.title, sub: c.institution || '' })));
   const qualificationsHtml = renderCVSection((cv.qualifications || []).map((q: any) => ({ year: q.year, detail: q.title || q.description, sub: q.institution || '' })));
-  const eventsHtml = renderCVSection((cv.events || []).map((e: any) => ({ year: e.year, detail: e.event || e.title, sub: e.role || '' })));
+  const eventsHtml = renderCVSection((cv.events || []).map((e: any) => ({
+    year: e.year,
+    detail: `${e.event || e.title}${e.role ? ` <span class="cv-meta-sans">${e.role}</span>` : ''}`,
+  })));
 
   const serviceHtml = renderCVSection([
     ...(cv.service || []).map((s: any) => ({ year: s.year, detail: s.description })),
@@ -128,13 +131,20 @@ export function buildSections(short = false): Record<string, Section> {
   const roleGroups = teachingByRole();
   let teachingContent = roleGroups.length === 0 ? '<p class="empty">Nothing to show yet.</p>' : roleGroups.map(g => {
     const rows = g.courses.map(c => {
-      const sub = [c.years, c.level, c.note].filter(Boolean).join(' · ');
-      return `<div class="cv-item"><span class="cv-year"></span><span class="cv-detail">${c.course}${sub ? `<span class="cv-detail-sub">${sub}</span>` : ''}</span></div>`;
+      const meta = [
+        c.years ? `<span class="cv-meta-mono">${c.years}</span>` : '',
+        c.level ? `<span class="cv-meta-sans">${c.level}</span>` : '',
+        c.note ? `<span class="cv-meta-sans">${c.note}</span>` : '',
+      ].join('');
+      return `<div class="cv-item"><span class="cv-year"></span><span class="cv-detail">${c.course}${meta}</span></div>`;
     }).join('');
     return `<div class="cv-subsection-label">${g.role}</div>${rows}`;
   }).join('');
   if (!short && (cv.supervision || []).length) {
-    const rows = (cv.supervision as any[]).map((s: any) => `<div class="cv-item"><span class="cv-year"></span><span class="cv-detail">${typeof s === 'string' ? s : s.detail}</span></div>`).join('');
+    const rows = (cv.supervision as any[]).map((s: any) => {
+      const txt = (typeof s === 'string' ? s : s.detail || '').replace(/\((×\d+)\)/g, '<span class="cv-count">($1)</span>');
+      return `<div class="cv-item"><span class="cv-year"></span><span class="cv-detail">${txt}</span></div>`;
+    }).join('');
     teachingContent += `<div class="cv-subsection-label">Supervision</div>${rows}`;
   }
 

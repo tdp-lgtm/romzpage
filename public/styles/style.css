@@ -254,6 +254,7 @@ h2 {
   letter-spacing: 0.2em;
   color: var(--second);
   display: block;
+  clear: both;
   margin: 3rem 0 0.9rem;
   padding-bottom: 0.55rem;
   border-bottom: 1px solid var(--rule);
@@ -264,14 +265,16 @@ h2 {
 /* ---- Publication / entry list ---- */
 .pub-list { list-style: none; }
 
+/* Title on the left, year on the right (matches the Teaching layout) */
 .pub {
-  display: grid;
-  grid-template-columns: 4.5rem 1fr;
+  display: flex;
   gap: 1.5rem;
   padding: 1rem 0;
   align-items: baseline;
   border-bottom: 1px solid var(--rule);
 }
+.pub > .yr { order: 2; flex-shrink: 0; text-align: right; white-space: nowrap; }
+.pub > :not(.yr) { order: 1; flex: 1; min-width: 0; }
 
 .yr {
   font-family: var(--mono);
@@ -502,13 +505,14 @@ h2 {
 
 /* Talks page: flat chronological event list (year + event) */
 .event-row {
-  display: grid;
-  grid-template-columns: 4.5rem 1fr;
+  display: flex;
   gap: 1.5rem;
   align-items: baseline;
   padding: 0.6rem 0;
   border-bottom: 1px solid var(--rule);
 }
+.event-row > .yr { order: 2; flex-shrink: 0; text-align: right; white-space: nowrap; }
+.event-row > .event-detail { order: 1; flex: 1; min-width: 0; }
 .event-detail {
   font-family: var(--serif);
   font-size: 1.05rem;
@@ -675,6 +679,9 @@ h2 {
 .cv-detail-inline { font-family: var(--serif); font-size: 1.05rem; font-weight: 500; color: var(--ink); }
 .cv-detail-vol { font-family: var(--sans); font-size: 0.85rem; font-weight: 400; color: var(--fg-2); }
 .cv-coauthor { font-family: var(--sans); font-size: 0.85rem; font-weight: 400; color: var(--fg-3); }
+.cv-meta-mono { font-family: var(--mono); font-size: 0.78rem; color: var(--fg-3); margin-left: 0.55rem; white-space: nowrap; }
+.cv-meta-sans { font-family: var(--sans); font-size: 0.82rem; color: var(--fg-2); margin-left: 0.55rem; }
+.cv-count { font-family: var(--mono); font-size: 0.85em; color: var(--fg-3); }
 .cv-contact-addr { display: block; margin-top: 0.15rem; }
 .cv-prize { display: block; font-family: var(--mono); font-size: 0.72rem; color: var(--second); margin-top: 2px; }
 #cv-talks .talk-item h3 { font-size: 1.05rem; }
@@ -750,20 +757,16 @@ h2 {
   white-space: nowrap;
 }
 
-/* ---- Public Philosophy photos ---- */
-.pp-photos {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem;
-  margin: 0.5rem 0 2.4rem;
-}
-.pp-photos img {
-  width: 100%;
+/* ---- Public Philosophy photos: small, floated into the text ---- */
+.pp-photo {
+  width: 190px;
   aspect-ratio: 1 / 1;
   object-fit: cover;
   border-radius: 4px;
   border: 1px solid var(--rule);
 }
+.pp-photo--right { float: right; margin: 0.3rem 0 0.9rem 1.6rem; shape-outside: margin-box; }
+.pp-photo--left { float: left; margin: 0.3rem 1.6rem 0.9rem 0; shape-outside: margin-box; }
 
 /* ---- Print: clean CV as PDF ---- */
 @page { margin: 2cm 1.9cm; }
@@ -855,9 +858,12 @@ footer {
   .about-links { justify-content: flex-start; }
 
   /* Publications & CV: collapse to single column (year above content) */
-  .pub, .cv-item, .event-row { grid-template-columns: 1fr; gap: 0.15rem; align-items: start; }
+  .cv-item { grid-template-columns: 1fr; gap: 0.15rem; align-items: start; }
+  .pub, .event-row { flex-direction: column; gap: 0.15rem; align-items: stretch; }
+  .pub > .yr, .event-row > .yr { order: -1; text-align: left; }
   .yr, .cv-year { font-size: 0.72rem; opacity: 0.8; padding-top: 0; }
   .pub { padding: 0.95rem 0; }
+  .pp-photo { width: 130px; }
 
   /* Talks */
   .talk-row { grid-template-columns: 3.5rem 1fr; gap: 0.75rem; align-items: start; }
