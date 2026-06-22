@@ -1,13 +1,37 @@
 {
   "items": [
-    { "label": "Home", "href": "index" },
-    { "label": "Research", "subitems": [
-      { "label": "Publications", "href": "research" },
-      { "label": "The Guilty Mind", "href": "veni" }
-    ]},
-    { "label": "Talks", "href": "talks" },
-    { "label": "Public Philosophy", "href": "public-philosophy" },
-    { "label": "Teaching", "href": "teaching" },
-    { "label": "CV", "href": "cv" }
+    {
+      "label": "Home",
+      "href": "index"
+    },
+    {
+      "label": "Research",
+      "subitems": [
+        {
+          "label": "Publications",
+          "href": "research"
+        },
+        {
+          "label": "The Guilty Mind",
+          "href": "veni"
+        }
+      ]
+    },
+    {
+      "label": "Talks",
+      "href": "talks"
+    },
+    {
+      "label": "Teaching",
+      "href": "teaching"
+    },
+    {
+      "label": "Public Philosophy",
+      "href": "public-philosophy"
+    },
+    {
+      "label": "CV",
+      "href": "cv"
+    }
   ]
 }
