@@ -727,6 +727,44 @@ h2 {
   color: var(--fg-3);
 }
 
+/* ---- Teaching: grouped courses (course + years taught) ---- */
+.teach-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.4rem 1.5rem;
+  flex-wrap: wrap;
+  padding: 0.55rem 0;
+  border-bottom: 1px solid var(--rule);
+}
+.teach-course {
+  font-family: var(--serif);
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--ink);
+}
+.teach-years {
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  color: var(--fg-3);
+  white-space: nowrap;
+}
+
+/* ---- Public Philosophy photos ---- */
+.pp-photos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin: 0.5rem 0 2.4rem;
+}
+.pp-photos img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 4px;
+  border: 1px solid var(--rule);
+}
+
 /* ---- Print: clean CV as PDF ---- */
 @page { margin: 2cm 1.9cm; }
 @media print {

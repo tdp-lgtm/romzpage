@@ -443,58 +443,36 @@ content:
     format: json
     fields:
       - name: items
-        label: false
+        label: One row per talk/event (no paper titles)
         type: object
         list:
           collapsible:
             collapsed: true
-            summary: "{title}"
+            summary: "{venue}"
         fields:
-          - name: title
-            label: Paper title
+          - name: year
+            label: Year
+            type: string
+            description: 'A year, or "Scheduled" for upcoming talks.'
+          - name: venue
+            label: Event & location
             type: string
             required: true
+            description: e.g. "LSE Moral and Political Philosophy Seminar".
+          - name: type
+            label: Type
+            type: select
+            options:
+              values: [Invited, Peer-Review]
           - name: published
             label: Published (show on site)
             type: boolean
             default: true
-            description: Untick to hide this talk without deleting it.
+            description: Untick to hide without deleting.
           - name: cv
             label: Show on CV
             type: boolean
             default: true
-          - name: presentations
-            label: Presentations
-            type: object
-            list:
-              collapsible:
-                collapsed: true
-                summary: "{venue}"
-            fields:
-              - name: venue
-                label: Venue / event
-                type: string
-              - name: type
-                label: Type
-                type: select
-                options:
-                  values: [Invited, Peer-Review]
-              - name: year
-                label: Year
-                type: string
-              - name: month
-                label: Month
-                type: string
-              - name: institution
-                label: Institution
-                type: string
-              - name: comment
-                label: Comment
-                type: string
-              - name: published
-                label: Published (show on site)
-                type: boolean
-                default: true
 
   # ------------------------------------------------------------
   #  Teaching
@@ -651,7 +629,7 @@ content:
                 type: string
 
           - name: awards
-            label: Honours, grants & awards
+            label: Funding and Awards
             type: object
             list:
               collapsible:
@@ -668,6 +646,11 @@ content:
                 label: Monetary amount (optional)
                 type: string
                 description: Accepts symbols and text, e.g. "£4,000" or "€10,000".
+              - name: major
+                label: Major research grant?
+                type: boolean
+                default: false
+                description: Tick to list under "Major research grants" (e.g. the Veni); untick for "Other funding and awards".
 
           - name: commentaries
             label: Invited commentaries
@@ -706,7 +689,7 @@ content:
                 type: string
 
           - name: events
-            label: Event organising
+            label: Event organising and service
             type: object
             list:
               collapsible:

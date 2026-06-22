@@ -2,6 +2,7 @@
 import Base from '../layouts/Base.astro';
 import ppData from '../../data/public-philosophy.json';
 
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const data = ppData as any;
 const interviews = (data.interviews || []) as any[];
 const talks = (data.talks || []) as any[];
@@ -10,6 +11,11 @@ const hasContent = interviews.length || talks.length || writing.length;
 ---
 
 <Base title="Public Philosophy — Romy Eskens" description="Public philosophy by Romy Eskens — interviews, public talks, and writing for a general audience." page="public-philosophy" heading="Public Philosophy">
+
+  <div class="pp-photos">
+    <img src={`${base}/assets/pp-1.webp`} alt="Romy Eskens at a public philosophy event" loading="lazy" />
+    <img src={`${base}/assets/pp-2.webp`} alt="Romy Eskens at a public philosophy event" loading="lazy" />
+  </div>
 
   {interviews.length > 0 && (
     <>

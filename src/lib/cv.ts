@@ -2,16 +2,15 @@
 // (/cv-short). Pass { short: true } for the condensed variant.
 import pubData from '../../data/publications.json';
 import talksData from '../../data/talks.json';
-import teachingData from '../../data/teaching.json';
 import cvJson from '../../data/cv.json';
+import { teachingByRole } from './teaching';
 
 export type Section = { key: string; label: string; content: string; id?: string };
 
 const cv = cvJson as any;
 const publications = (pubData.items || []) as any[];
 const wip = (pubData.wip || []) as any[];
-const talks = ((talksData as any).items || talksData) as any[];
-const institutions = ((teachingData as any).items || teachingData) as any[];
+const talkEvents = ((talksData as any).items || talksData) as any[];
 
 const isPublished = (i: any) => !i || i.published !== false;
 const isOnCV = (i: any) => !i || i.cv !== false;
@@ -26,8 +25,8 @@ export const contactAddr = contact.address || '';
 // Publication grouping (shared with the Publications page)
 export const PUB_GROUPS = [
   { types: ['Book'], label: 'Books' },
-  { types: ['Article', 'Chapter', undefined, null, ''], label: 'Journal and Chapters' },
-  { types: ['Editor'], label: 'Guest Editor' },
+  { types: ['Article', 'Chapter', undefined, null, ''], label: 'Articles and Chapters' },
+  { types: ['Editor'], label: 'Editor' },
   { types: ['Review'], label: 'Reviews' },
 ] as const;
 
@@ -50,6 +49,8 @@ function renderCVSection(items: { year?: string; detail: string; sub?: string; l
       </span>
     </div>`).join('');
 }
+
+const yearVal = (y: any) => { const n = parseInt(String(y)); return isNaN(n) ? Infinity : n; };
 
 export function buildSections(short = false): Record<string, Section> {
   // Education — short keeps just degree + institution; full lists thesis (first),
@@ -112,42 +113,41 @@ export function buildSections(short = false): Record<string, Section> {
     return `<div class="cv-subsection-label">${status}</div>${rows}`;
   }).join('');
 
-  // Presentations — short shows one (most recent) per paper title
-  const cvTalks = talks.filter(t => isPublished(t) && isOnCV(t) && (t.presentations || []).filter(isPublished).length);
-  const presContent = cvTalks.length === 0 ? '<p class="empty">Nothing to show yet.</p>' : `<ul class="pub-list">${cvTalks.map((talk: any) => {
-    let pres = (talk.presentations || []).filter(isPublished);
-    if (short) pres = [pres.slice().sort((a: any, b: any) => (parseInt(b.year) || 0) - (parseInt(a.year) || 0))[0]];
-    const rows = pres.map((p: any) => {
-      const tag = p.type === 'Invited' ? '<span class="talk-tag">Invited</span>' : p.type === 'Peer-Review' ? '<span class="talk-tag">Peer-reviewed</span>' : '';
-      const date = p.month ? `${p.month} ${p.year}` : String(p.year || '');
-      const where = [p.venue, p.institution].filter(Boolean).join(', ');
-      return `<div class="talk-row"><div class="talk-yr">${date}</div><div class="talk-row-detail">${where}${tag}</div></div>`;
-    }).join('');
-    return `<li class="talk-item"><div class="talk-row"><div class="talk-yr"></div><h3>${talk.title}</h3></div><div class="talk-pres-list">${rows}</div></li>`;
-  }).join('')}</ul>`;
+  // Presentations — flat list of events (no paper titles). Short shows the
+  // most recent eight; full shows all.
+  let events = talkEvents.filter(p => isPublished(p) && isOnCV(p)).slice();
+  events.sort((a, b) => yearVal(b.year) - yearVal(a.year));
+  if (short) events = events.slice(0, 8);
+  const presContent = events.length === 0 ? '<p class="empty">Nothing to show yet.</p>' : events.map((p: any) => {
+    const tag = p.type === 'Invited' ? '<span class="talk-tag">Invited</span>' : p.type === 'Peer-Review' ? '<span class="talk-tag">Peer-reviewed</span>' : '';
+    const where = [p.venue, p.institution].filter(Boolean).join(', ');
+    return `<div class="cv-item"><span class="cv-year">${p.year || ''}</span><span class="cv-detail">${where}${tag}</span></div>`;
+  }).join('');
 
-  // Teaching (Supervision is now a subsection of Teaching; omitted from short)
-  const roleOrder = ['Lecturer', 'Seminar Convenor', 'Teaching Assistant', 'Supervisor', 'Guest Lecture'];
-  const teachGroups: Record<string, any[]> = {};
-  institutions.forEach((inst: any) => (inst.entries || []).forEach((e: any) => {
-    (teachGroups[e.role] = teachGroups[e.role] || []).push(e);
-  }));
-  const teachRoles = [...roleOrder.filter(r => teachGroups[r]), ...Object.keys(teachGroups).filter(r => !roleOrder.includes(r))];
-  let teachingContent = teachRoles.length === 0 ? '<p class="empty">Nothing to show yet.</p>' : teachRoles.map(role => {
-    const rows = teachGroups[role].map((e: any) => {
-      const note = e.note ? ` <span class="cv-detail-sub" style="display:inline">${e.note}</span>` : '';
-      return `<div class="cv-item"><span class="cv-year">${e.year || ''}</span><span class="cv-detail">${e.course}${note}</span></div>`;
+  // Teaching (repeats collapsed; Supervision is a subsection, full CV only)
+  const roleGroups = teachingByRole();
+  let teachingContent = roleGroups.length === 0 ? '<p class="empty">Nothing to show yet.</p>' : roleGroups.map(g => {
+    const rows = g.courses.map(c => {
+      const sub = [c.years, c.level, c.note].filter(Boolean).join(' · ');
+      return `<div class="cv-item"><span class="cv-year"></span><span class="cv-detail">${c.course}${sub ? `<span class="cv-detail-sub">${sub}</span>` : ''}</span></div>`;
     }).join('');
-    return `<div class="cv-subsection-label">${role}</div>${rows}`;
+    return `<div class="cv-subsection-label">${g.role}</div>${rows}`;
   }).join('');
   if (!short && (cv.supervision || []).length) {
     const rows = (cv.supervision as any[]).map((s: any) => `<div class="cv-item"><span class="cv-year"></span><span class="cv-detail">${typeof s === 'string' ? s : s.detail}</span></div>`).join('');
     teachingContent += `<div class="cv-subsection-label">Supervision</div>${rows}`;
   }
 
-  const awardsContent = (cv.awards || []).length === 0 ? '<p class="empty">Nothing to show yet.</p>' : (cv.awards || []).map((a: any) =>
+  // Funding & awards — split into major research grants and other funding/awards
+  const renderAwards = (list: any[]) => list.map((a: any) =>
     `<div class="cv-item"><span class="cv-year">${a.year || ''}</span><span class="cv-detail">${a.description}${a.amount ? ` <span class="cv-award-amount">${a.amount}</span>` : ''}</span></div>`
   ).join('');
+  const allAwards = (cv.awards || []) as any[];
+  const majorAwards = allAwards.filter(a => a.major);
+  const otherAwards = allAwards.filter(a => !a.major);
+  const awardsContent = allAwards.length === 0 ? '<p class="empty">Nothing to show yet.</p>'
+    : (majorAwards.length ? `<div class="cv-subsection-label">Major research grants</div>${renderAwards(majorAwards)}` : '')
+    + (otherAwards.length ? `<div class="cv-subsection-label">Other funding and awards</div>${renderAwards(otherAwards)}` : '');
 
   const referencesContent = (cv.references || []).length === 0 ? '' : (cv.references || []).map((r: any) =>
     `<div class="cv-ref"><div class="cv-ref-name">${r.name}</div><div class="cv-ref-detail">${r.title}</div><div class="cv-ref-detail">${r.institution}</div>${r.email ? `<div class="cv-ref-detail"><a href="mailto:${r.email}">${r.email}</a></div>` : ''}</div>`
@@ -169,8 +169,8 @@ export function buildSections(short = false): Record<string, Section> {
     commentaries: { key: 'commentaries', label: 'Invited commentaries', content: commentariesHtml },
     teaching: { key: 'teaching', label: 'Teaching', content: teachingContent },
     qualifications: { key: 'qualifications', label: 'Qualifications & training', content: qualificationsHtml },
-    awards: { key: 'awards', label: 'Honours, grants & awards', content: awardsContent },
-    events: { key: 'events', label: 'Event organising', content: eventsHtml },
+    awards: { key: 'awards', label: 'Funding and Awards', content: awardsContent },
+    events: { key: 'events', label: 'Event organising and service', content: eventsHtml },
     service: { key: 'service', label: 'Professional service', content: serviceHtml },
     references: { key: 'references', label: 'References', content: referencesContent },
   };

@@ -1,58 +1,27 @@
 ---
 import Base from '../layouts/Base.astro';
-import teachingData from '../../data/teaching.json';
+import { teachingByRole } from '../lib/teaching';
 
-function isPublished(item: { published?: boolean }) {
-  return !item || item.published !== false;
-}
-
-const institutions = ((teachingData as any).items || teachingData).filter(isPublished);
-
-// Flatten all entries across institutions and group by role
-const roleOrder = ['Lecturer', 'Seminar Convenor', 'Teaching Assistant', 'Supervisor'];
-const groups: Record<string, { course: string; year?: string; levels?: string[]; note?: string; institution: string }[]> = {};
-
-institutions.forEach((inst: any) => {
-  (inst.entries || []).forEach((e: any) => {
-    if (!groups[e.role]) groups[e.role] = [];
-    groups[e.role].push({ ...e, institution: inst.institution });
-  });
-});
-
-const roles = [
-  ...roleOrder.filter(r => groups[r]),
-  ...Object.keys(groups).filter(r => !roleOrder.includes(r)),
-];
-
-// Collapse any specific study level to just "Undergraduate" or "Graduate"
-function levelLabel(levels?: string[]): string {
-  const arr = (Array.isArray(levels) ? levels : levels ? [levels] : []).filter(Boolean);
-  if (!arr.length) return '';
-  const isUg = (l: string) => /undergrad|^ba\b|bachelor|1st year|first year/i.test(l) || l === 'Undergraduate';
-  return arr.some(l => !isUg(l)) ? 'Graduate' : 'Undergraduate';
-}
+const roles = teachingByRole();
 ---
 
 <Base title="Teaching — Romy Eskens" description="Teaching by Romy Eskens at Utrecht University and Stockholm University." page="teaching" heading="Teaching">
 
   <div id="teaching">
-    {roles.map((role, i) => (
+    {roles.map((g, i) => (
       <>
-        <span class={`section-label${i === 0 ? ' section-label--first' : ''}`}>{role}</span>
-        <div class="talk-pres-list">
-          {groups[role].map(e => {
-            const levels = levelLabel(e.levels);
-            return (
-              <div class="talk-row">
-                <div class="talk-yr">{e.year || ''}</div>
-                <div class="talk-row-detail">
-                  {e.course}
-                  {levels && <span class="teaching-levels">{levels}</span>}
-                  {e.note && <span class="talk-comment"> {e.note}</span>}
-                </div>
+        <span class={`section-label${i === 0 ? ' section-label--first' : ''}`}>{g.role}</span>
+        <div class="teach-list">
+          {g.courses.map(c => (
+            <div class="teach-row">
+              <div class="teach-main">
+                <span class="teach-course">{c.course}</span>
+                {c.level && <span class="teaching-levels">{c.level}</span>}
+                {c.note && <span class="talk-comment"> {c.note}</span>}
               </div>
-            );
-          })}
+              {c.years && <div class="teach-years">{c.years}</div>}
+            </div>
+          ))}
         </div>
       </>
     ))}

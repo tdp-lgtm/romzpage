@@ -6,30 +6,25 @@ function isPublished(item: { published?: boolean }) {
   return !item || item.published !== false;
 }
 
-const talks = ((talksData as any).items || talksData).filter(isPublished);
-
-// Flatten every presentation into a single chronological list of events
-// (no paper titles) — newest first.
-type Ev = { year?: string; month?: string; venue?: string; institution?: string; type?: string; comment?: string };
-const events: Ev[] = [];
-talks.forEach((t: any) => (t.presentations || []).filter(isPublished).forEach((p: Ev) => events.push(p)));
-events.sort((a, b) => (parseInt(String(b.year)) || 0) - (parseInt(String(a.year)) || 0));
+const yearVal = (y: any) => { const n = parseInt(String(y)); return isNaN(n) ? Infinity : n; };
+const events = ((talksData as any).items || talksData)
+  .filter(isPublished)
+  .slice()
+  .sort((a: any, b: any) => yearVal(b.year) - yearVal(a.year));
 ---
 
 <Base title="Talks — Romy Eskens" description="Talks and conference presentations by Romy Eskens." page="talks" heading="Talks">
 
   <ul class="pub-list">
-    {events.map((p) => {
-      const date = p.month ? `${p.month} ${p.year}` : String(p.year || '');
-      const where = [p.venue, p.institution].filter(Boolean).join(', ');
+    {events.map((p: any) => {
       const tag = p.type === 'Invited' ? 'Invited'
         : p.type === 'Peer-Review' ? 'Peer-reviewed' : '';
+      const where = [p.venue, p.institution].filter(Boolean).join(', ');
       return (
         <li class="event-row">
-          <div class="yr">{date}</div>
+          <div class="yr">{p.year}</div>
           <div class="event-detail">
             {where}{tag && <span class="talk-tag">{tag}</span>}
-            {p.comment && <em class="talk-comment"> {p.comment}</em>}
           </div>
         </li>
       );

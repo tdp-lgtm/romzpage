@@ -62,7 +62,8 @@
     {
       "year": "2025",
       "description": "Veni Research Grant, NWO Talent Programme, for 'The Guilty Mind'",
-      "amount": "€320,000"
+      "amount": "€320,000",
+      "major": true
     },
     {
       "year": "2022",

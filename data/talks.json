@@ -1,436 +1,365 @@
 {
   "items": [
     {
-      "title": "Wronging and Affecting",
+      "year": "Scheduled",
+      "venue": "LSE Moral and Political Philosophy Seminar",
+      "type": "Invited",
       "published": true,
-      "cv": true,
-      "presentations": [
-        {
-          "venue": "LSE Moral and Political Philosophy Seminar",
-          "type": "Invited",
-          "year": "Scheduled",
-          "published": true
-        }
-      ]
+      "cv": true
     },
     {
-      "title": "Degradation First",
+      "year": "Scheduled",
+      "venue": "Linköping Workshop on Dehumanisation",
+      "type": "Invited",
       "published": true,
-      "cv": true,
-      "presentations": [
-        {
-          "venue": "Linköping Workshop on Dehumanisation",
-          "type": "Invited",
-          "year": "Scheduled",
-          "published": true
-        }
-      ]
+      "cv": true
     },
     {
-      "title": "Oversharing and Relationship Control (with Jonas Haeg)",
+      "year": "Scheduled",
+      "venue": "Stockholm Higher Seminar in Practical Philosophy",
       "published": true,
-      "cv": true,
-      "presentations": [
-        {
-          "venue": "Swedish Congress of Philosophy",
-          "type": "Peer-Review",
-          "year": "2026",
-          "published": true
-        },
-        {
-          "venue": "Stockholm Higher Seminar in Practical Philosophy",
-          "year": "Scheduled",
-          "published": true
-        }
-      ]
+      "cv": true
     },
     {
-      "title": "Degradation",
+      "year": "Scheduled",
+      "venue": "Oxford Studies in Agency & Responsibility",
+      "type": "Peer-Review",
       "published": true,
-      "cv": true,
-      "presentations": [
-        {
-          "venue": "VU Moral and Political Philosophy Colloquium",
-          "type": "Invited",
-          "year": "2026",
-          "published": true
-        },
-        {
-          "venue": "Bern Moral Philosophy Seminar",
-          "type": "Invited",
-          "year": "2026",
-          "published": true
-        },
-        {
-          "venue": "Utrecht Ethics Institute Colloquium",
-          "year": "2026",
-          "published": true
-        },
-        {
-          "venue": "Philosophy, Ethics and Killing Workshop",
-          "type": "Invited",
-          "year": "2025",
-          "published": true
-        },
-        {
-          "venue": "Utrecht Workshop on Degradation and Dehumanisation",
-          "year": "2025",
-          "published": true
-        }
-      ]
+      "cv": true
     },
     {
-      "title": "Distributing State Agency (with Gunnar Björnsson)",
+      "year": "2026",
+      "venue": "Swedish Congress of Philosophy",
+      "type": "Peer-Review",
       "published": true,
-      "cv": true,
-      "presentations": [
-        {
-          "venue": "Central APA, Symposium Session",
-          "type": "Peer-Review",
-          "year": "2026",
-          "published": true
-        }
-      ]
+      "cv": true
     },
     {
-      "title": "Balancing Acts (with Gunnar Björnsson)",
+      "year": "2026",
+      "venue": "VU Moral and Political Philosophy Colloquium",
+      "type": "Invited",
       "published": true,
-      "cv": true,
-      "presentations": [
-        {
-          "venue": "Lund Workshop on Praise",
-          "type": "Invited",
-          "year": "2025",
-          "published": true
-        },
-        {
-          "venue": "MANCEPT: Setting Things Right",
-          "year": "2024",
-          "published": true
-        },
-        {
-          "venue": "Oxford Studies in Agency & Responsibility",
-          "type": "Peer-Review",
-          "year": "Scheduled",
-          "published": true
-        }
-      ]
+      "cv": true
     },
     {
-      "title": "Good Advice, Bad Values (with Jonas Haeg)",
+      "year": "2026",
+      "venue": "Bern Moral Philosophy Seminar",
+      "type": "Invited",
       "published": true,
-      "cv": true,
-      "presentations": [
-        {
-          "venue": "Society for Applied Philosophy Annual Conference",
-          "type": "Peer-Review",
-          "year": "2025",
-          "published": true
-        },
-        {
-          "venue": "Dutch Research School in Philosophy Annual Conference",
-          "type": "Peer-Review",
-          "year": "2024",
-          "published": true
-        },
-        {
-          "venue": "UvA Philosophy & Public Affairs Colloquium",
-          "type": "Invited",
-          "year": "2024",
-          "published": true
-        },
-        {
-          "venue": "KCL Moral and Political Philosophy Research Seminar",
-          "type": "Invited",
-          "year": "2024",
-          "published": true
-        }
-      ]
+      "cv": true
     },
     {
-      "title": "Mental Wronging",
+      "year": "2026",
+      "venue": "Utrecht Ethics Institute Colloquium",
       "published": true,
-      "cv": true,
-      "presentations": [
-        {
-          "venue": "Mannheim Workshop: New Ideas on Normativity",
-          "type": "Peer-Review",
-          "year": "2026",
-          "published": true
-        },
-        {
-          "venue": "BSET Annual Conference",
-          "type": "Peer-Review",
-          "year": "2025",
-          "published": true
-        },
-        {
-          "venue": "SWIP Panel, Joint Session of the Aristotelian Society and Mind Association",
-          "type": "Peer-Review",
-          "year": "2025",
-          "published": true
-        },
-        {
-          "venue": "Erasmus Institute for Philosophy & Economics Seminar",
-          "type": "Invited",
-          "year": "2024",
-          "published": true
-        },
-        {
-          "venue": "Leeds Centre for Aesthetic, Moral, and Political Philosophy Seminar",
-          "type": "Invited",
-          "year": "2024",
-          "published": true
-        },
-        {
-          "venue": "Utrecht Philosophy Lunch Lecture",
-          "year": "2023",
-          "published": true
-        },
-        {
-          "venue": "Tilburg Practical Philosophy Seminar",
-          "type": "Invited",
-          "year": "2023",
-          "published": true
-        },
-        {
-          "venue": "Society for Applied Philosophy Annual Conference",
-          "type": "Peer-Review",
-          "year": "2023",
-          "published": true
-        },
-        {
-          "venue": "Stockholm Higher Seminar in Practical Philosophy",
-          "type": "Invited",
-          "year": "2022",
-          "published": true
-        },
-        {
-          "venue": "Lund-Gothenburg Responsibility Project Seminar",
-          "type": "Invited",
-          "year": "2022",
-          "published": true
-        }
-      ]
+      "cv": true
     },
     {
-      "title": "Distributing Risk in Humanitarian Intervention",
+      "year": "2026",
+      "venue": "Central APA, Symposium Session",
+      "type": "Peer-Review",
       "published": true,
-      "cv": true,
-      "presentations": [
-        {
-          "venue": "The Political Role of the Moral Emotions Conference",
-          "type": "Peer-Review",
-          "year": "2022",
-          "published": true
-        }
-      ]
+      "cv": true
     },
     {
-      "title": "Expressive Duties are Demandable and Enforceable",
+      "year": "2026",
+      "venue": "Mannheim Workshop: New Ideas on Normativity",
+      "type": "Peer-Review",
       "published": true,
-      "cv": true,
-      "presentations": [
-        {
-          "venue": "Arizona Workshop in Normative Ethics / Oxford Studies in Normative Ethics",
-          "type": "Peer-Review",
-          "year": "2022",
-          "published": true
-        },
-        {
-          "venue": "Gothenburg Research Seminar in Practical Philosophy",
-          "type": "Invited",
-          "year": "2022",
-          "published": true
-        },
-        {
-          "venue": "LMU Munich Research Colloquium in Practical Philosophy",
-          "type": "Invited",
-          "year": "2022",
-          "published": true
-        },
-        {
-          "venue": "KCL Graduate Conference in Politics, Philosophy & Law",
-          "type": "Peer-Review",
-          "year": "2021",
-          "published": true
-        },
-        {
-          "venue": "SCEWP Workshop on Gratitude",
-          "year": "2021",
-          "published": true
-        },
-        {
-          "venue": "Philosophy, Ethics and Killing Workshop",
-          "type": "Invited",
-          "year": "2021",
-          "published": true
-        }
-      ]
+      "cv": true
     },
     {
-      "title": "Gratitude and Rights",
+      "year": "2025",
+      "venue": "Philosophy, Ethics and Killing Workshop",
+      "type": "Invited",
       "published": true,
-      "cv": true,
-      "presentations": [
-        {
-          "venue": "Utrecht Ethics Institute Colloquium",
-          "year": "2022",
-          "published": true
-        },
-        {
-          "venue": "Philosophy, Ethics and Killing Workshop",
-          "type": "Invited",
-          "year": "2022",
-          "published": true
-        },
-        {
-          "venue": "Postgraduate Session, Joint Session of the Aristotelian Society and Mind Association",
-          "type": "Peer-Review",
-          "year": "2021",
-          "published": true
-        }
-      ]
+      "cv": true
     },
     {
-      "title": "On Discounting Perpetrators (with Gunnar Björnsson)",
+      "year": "2025",
+      "venue": "Utrecht Workshop on Degradation and Dehumanisation",
       "published": true,
-      "cv": true,
-      "presentations": [
-        {
-          "venue": "Uppsala Higher Seminar in Practical Philosophy",
-          "type": "Invited",
-          "year": "2021",
-          "published": true
-        },
-        {
-          "venue": "Lund Higher Seminar in Practical Philosophy",
-          "type": "Invited",
-          "year": "2021",
-          "published": true
-        },
-        {
-          "venue": "Umeå Research Seminar in Practical Philosophy",
-          "type": "Invited",
-          "year": "2021",
-          "published": true
-        },
-        {
-          "venue": "Stockholm Higher Seminar in Practical Philosophy",
-          "type": "Invited",
-          "year": "2021",
-          "published": true
-        }
-      ]
+      "cv": true
     },
     {
-      "title": "Moral Gratitude",
+      "year": "2025",
+      "venue": "Lund Workshop on Praise",
+      "type": "Invited",
       "published": true,
-      "cv": true,
-      "presentations": [
-        {
-          "venue": "Varieties of Moral Address Workshop: Agency, Authority and Responsibility",
-          "type": "Peer-Review",
-          "year": "2021",
-          "published": true
-        },
-        {
-          "venue": "APA Pacific Division Meeting",
-          "type": "Peer-Review",
-          "year": "2021",
-          "published": true
-        },
-        {
-          "venue": "Philosophy, Ethics and Killing Workshop",
-          "type": "Invited",
-          "year": "2021",
-          "published": true
-        },
-        {
-          "venue": "Lund-Gothenburg Responsibility Project Seminar",
-          "type": "Invited",
-          "year": "2020",
-          "published": true
-        }
-      ]
+      "cv": true
     },
     {
-      "title": "Reciprocity, Inequality, and Unsuccessful Rescues",
+      "year": "2025",
+      "venue": "Society for Applied Philosophy Annual Conference",
+      "type": "Peer-Review",
       "published": true,
-      "cv": true,
-      "presentations": [
-        {
-          "venue": "Pavia Graduate Conference in Political Philosophy",
-          "type": "Peer-Review",
-          "year": "2019",
-          "published": true
-        },
-        {
-          "venue": "SCEWP Annual Graduate and Early Career Reading Retreat",
-          "year": "2019",
-          "published": true
-        },
-        {
-          "venue": "Society for Applied Philosophy Annual Conference",
-          "type": "Peer-Review",
-          "year": "2019",
-          "published": true
-        },
-        {
-          "venue": "Swedish Congress of Philosophy",
-          "type": "Peer-Review",
-          "year": "2019",
-          "published": true
-        },
-        {
-          "venue": "REAPP Graduate/Early Career Conference",
-          "type": "Peer-Review",
-          "year": "2019",
-          "published": true
-        }
-      ]
+      "cv": true
     },
     {
-      "title": "Defensive Harming and Aggregation: The Problem with Numbers",
+      "year": "2025",
+      "venue": "BSET Annual Conference",
+      "type": "Peer-Review",
       "published": true,
-      "cv": true,
-      "presentations": [
-        {
-          "venue": "LSE Political Theory Graduate Conference",
-          "type": "Peer-Review",
-          "year": "2018",
-          "published": true
-        }
-      ]
+      "cv": true
     },
     {
-      "title": "Are Unjust Non-Combatants Liable to Attack?",
+      "year": "2025",
+      "venue": "SWIP Panel, Joint Session of the Aristotelian Society and Mind Association",
+      "type": "Peer-Review",
       "published": true,
-      "cv": true,
-      "presentations": [
-        {
-          "venue": "St. Andrews CEPPA Graduate Conference",
-          "type": "Peer-Review",
-          "year": "2018",
-          "published": true
-        }
-      ]
+      "cv": true
     },
     {
-      "title": "Is Sex with Robots Rape?",
+      "year": "2024",
+      "venue": "MANCEPT: Setting Things Right",
       "published": true,
-      "cv": true,
-      "presentations": [
-        {
-          "venue": "Oxford Uehiro Prize in Practical Ethics finalist presentation",
-          "type": "Peer-Review",
-          "year": "2017",
-          "published": true
-        }
-      ]
+      "cv": true
     },
     {
-      "title": "Oversharing and Relationship Control",
+      "year": "2024",
+      "venue": "Dutch Research School in Philosophy Annual Conference",
+      "type": "Peer-Review",
+      "published": true,
+      "cv": true
+    },
+    {
+      "year": "2024",
+      "venue": "UvA Philosophy & Public Affairs Colloquium",
+      "type": "Invited",
+      "published": true,
+      "cv": true
+    },
+    {
+      "year": "2024",
+      "venue": "KCL Moral and Political Philosophy Research Seminar",
+      "type": "Invited",
+      "published": true,
+      "cv": true
+    },
+    {
+      "year": "2024",
+      "venue": "Erasmus Institute for Philosophy & Economics Seminar",
+      "type": "Invited",
+      "published": true,
+      "cv": true
+    },
+    {
+      "year": "2024",
+      "venue": "Leeds Centre for Aesthetic, Moral, and Political Philosophy Seminar",
+      "type": "Invited",
+      "published": true,
+      "cv": true
+    },
+    {
+      "year": "2023",
+      "venue": "Utrecht Philosophy Lunch Lecture",
+      "published": true,
+      "cv": true
+    },
+    {
+      "year": "2023",
+      "venue": "Tilburg Practical Philosophy Seminar",
+      "type": "Invited",
+      "published": true,
+      "cv": true
+    },
+    {
+      "year": "2023",
+      "venue": "Society for Applied Philosophy Annual Conference",
+      "type": "Peer-Review",
+      "published": true,
+      "cv": true
+    },
+    {
+      "year": "2022",
+      "venue": "Stockholm Higher Seminar in Practical Philosophy",
+      "type": "Invited",
+      "published": true,
+      "cv": true
+    },
+    {
+      "year": "2022",
+      "venue": "Lund-Gothenburg Responsibility Project Seminar",
+      "type": "Invited",
+      "published": true,
+      "cv": true
+    },
+    {
+      "year": "2022",
+      "venue": "The Political Role of the Moral Emotions Conference",
+      "type": "Peer-Review",
+      "published": true,
+      "cv": true
+    },
+    {
+      "year": "2022",
+      "venue": "Arizona Workshop in Normative Ethics / Oxford Studies in Normative Ethics",
+      "type": "Peer-Review",
+      "published": true,
+      "cv": true
+    },
+    {
+      "year": "2022",
+      "venue": "Gothenburg Research Seminar in Practical Philosophy",
+      "type": "Invited",
+      "published": true,
+      "cv": true
+    },
+    {
+      "year": "2022",
+      "venue": "LMU Munich Research Colloquium in Practical Philosophy",
+      "type": "Invited",
+      "published": true,
+      "cv": true
+    },
+    {
+      "year": "2022",
+      "venue": "Utrecht Ethics Institute Colloquium",
+      "published": true,
+      "cv": true
+    },
+    {
+      "year": "2022",
+      "venue": "Philosophy, Ethics and Killing Workshop",
+      "type": "Invited",
+      "published": true,
+      "cv": true
+    },
+    {
+      "year": "2021",
+      "venue": "KCL Graduate Conference in Politics, Philosophy & Law",
+      "type": "Peer-Review",
+      "published": true,
+      "cv": true
+    },
+    {
+      "year": "2021",
+      "venue": "SCEWP Workshop on Gratitude",
+      "published": true,
+      "cv": true
+    },
+    {
+      "year": "2021",
+      "venue": "Philosophy, Ethics and Killing Workshop",
+      "type": "Invited",
+      "published": true,
+      "cv": true
+    },
+    {
+      "year": "2021",
+      "venue": "Postgraduate Session, Joint Session of the Aristotelian Society and Mind Association",
+      "type": "Peer-Review",
+      "published": true,
+      "cv": true
+    },
+    {
+      "year": "2021",
+      "venue": "Uppsala Higher Seminar in Practical Philosophy",
+      "type": "Invited",
+      "published": true,
+      "cv": true
+    },
+    {
+      "year": "2021",
+      "venue": "Lund Higher Seminar in Practical Philosophy",
+      "type": "Invited",
+      "published": true,
+      "cv": true
+    },
+    {
+      "year": "2021",
+      "venue": "Umeå Research Seminar in Practical Philosophy",
+      "type": "Invited",
+      "published": true,
+      "cv": true
+    },
+    {
+      "year": "2021",
+      "venue": "Stockholm Higher Seminar in Practical Philosophy",
+      "type": "Invited",
+      "published": true,
+      "cv": true
+    },
+    {
+      "year": "2021",
+      "venue": "Varieties of Moral Address Workshop: Agency, Authority and Responsibility",
+      "type": "Peer-Review",
+      "published": true,
+      "cv": true
+    },
+    {
+      "year": "2021",
+      "venue": "APA Pacific Division Meeting",
+      "type": "Peer-Review",
+      "published": true,
+      "cv": true
+    },
+    {
+      "year": "2021",
+      "venue": "Philosophy, Ethics and Killing Workshop",
+      "type": "Invited",
+      "published": true,
+      "cv": true
+    },
+    {
+      "year": "2020",
+      "venue": "Lund-Gothenburg Responsibility Project Seminar",
+      "type": "Invited",
+      "published": true,
+      "cv": true
+    },
+    {
+      "year": "2019",
+      "venue": "Pavia Graduate Conference in Political Philosophy",
+      "type": "Peer-Review",
+      "published": true,
+      "cv": true
+    },
+    {
+      "year": "2019",
+      "venue": "SCEWP Annual Graduate and Early Career Reading Retreat",
+      "published": true,
+      "cv": true
+    },
+    {
+      "year": "2019",
+      "venue": "Society for Applied Philosophy Annual Conference",
+      "type": "Peer-Review",
+      "published": true,
+      "cv": true
+    },
+    {
+      "year": "2019",
+      "venue": "Swedish Congress of Philosophy",
+      "type": "Peer-Review",
+      "published": true,
+      "cv": true
+    },
+    {
+      "year": "2019",
+      "venue": "REAPP Graduate/Early Career Conference",
+      "type": "Peer-Review",
+      "published": true,
+      "cv": true
+    },
+    {
+      "year": "2018",
+      "venue": "LSE Political Theory Graduate Conference",
+      "type": "Peer-Review",
+      "published": true,
+      "cv": true
+    },
+    {
+      "year": "2018",
+      "venue": "St. Andrews CEPPA Graduate Conference",
+      "type": "Peer-Review",
+      "published": true,
+      "cv": true
+    },
+    {
+      "year": "2017",
+      "venue": "Oxford Uehiro Prize in Practical Ethics finalist presentation",
+      "type": "Peer-Review",
       "published": true,
       "cv": true
     }
