@@ -27,13 +27,19 @@
       ]
     },
     {
-      "title": "Oversharing (with Jonas Haeg)",
+      "title": "Oversharing and Relationship Control (with Jonas Haeg)",
       "published": true,
       "cv": true,
       "presentations": [
         {
           "venue": "Swedish Congress of Philosophy",
           "type": "Peer-Review",
+          "year": "2026",
+          "published": true
+        },
+        {
+          "venue": "Stockholm Higher Seminar in Practical Philosophy",
+          "type": "Invited",
           "year": "2026",
           "published": true
         }
@@ -423,6 +429,11 @@
           "published": true
         }
       ]
+    },
+    {
+      "title": "Oversharing and Relationship Control",
+      "published": true,
+      "cv": true
     }
   ]
 }
