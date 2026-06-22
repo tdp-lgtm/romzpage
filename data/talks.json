@@ -80,12 +80,6 @@
       "cv": true,
       "presentations": [
         {
-          "venue": "American Association for Political Theory",
-          "type": "Peer-Review",
-          "year": "2026",
-          "published": true
-        },
-        {
           "venue": "Central APA, Symposium Session",
           "type": "Peer-Review",
           "year": "2026",
@@ -107,6 +101,12 @@
         {
           "venue": "MANCEPT: Setting Things Right",
           "year": "2024",
+          "published": true
+        },
+        {
+          "venue": "Oxford Studies in Agency & Responsibility",
+          "type": "Peer-Review",
+          "year": "2026",
           "published": true
         }
       ]
