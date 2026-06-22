@@ -15,7 +15,6 @@ const hasContent = interviews.length || talks.length || writing.length;
   {interviews.length > 0 && (
     <>
       <span class="section-label section-label--first">Interviews</span>
-      <img class="pp-photo pp-photo--right" src={`${base}/assets/pp-1.webp`} alt="Romy Eskens at a public philosophy event" loading="lazy" />
       <ul class="pub-list">
         {interviews.map((n: any) => {
           const venue = [n.outlet, n.date].filter(Boolean).join(', ');
@@ -37,7 +36,6 @@ const hasContent = interviews.length || talks.length || writing.length;
   {talks.length > 0 && (
     <>
       <span class="section-label">Public talks</span>
-      <img class="pp-photo pp-photo--left" src={`${base}/assets/pp-2.webp`} alt="Romy Eskens at a public philosophy event" loading="lazy" />
       <ul class="pub-list">
         {talks.map((t: any) => {
           const venue = [t.venue, t.date].filter(Boolean).join(', ');
@@ -59,6 +57,15 @@ const hasContent = interviews.length || talks.length || writing.length;
           );
         })}
       </ul>
+      <div class="pp-photo-row">
+        <figure class="pp-figure">
+          <img class="pp-photo" src={`${base}/assets/pp-1.webp`} alt="Romy Eskens giving a public talk" loading="lazy" />
+          <figcaption class="pp-credit">Photo by Ward Mevis</figcaption>
+        </figure>
+        <figure class="pp-figure">
+          <img class="pp-photo" src={`${base}/assets/pp-2.webp`} alt="Romy Eskens at a public philosophy event" loading="lazy" />
+        </figure>
+      </div>
     </>
   )}
 

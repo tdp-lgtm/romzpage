@@ -757,16 +757,26 @@ h2 {
   white-space: nowrap;
 }
 
-/* ---- Public Philosophy photos: small, floated into the text ---- */
+/* ---- Public Philosophy photos (bottom of Public talks) ---- */
+.pp-photo-row { display: flex; flex-wrap: wrap; gap: 1.25rem; margin: 1.5rem 0 0.5rem; }
+.pp-figure { margin: 0; }
 .pp-photo {
-  width: 190px;
+  width: 200px;
+  max-width: 100%;
   aspect-ratio: 1 / 1;
   object-fit: cover;
   border-radius: 4px;
   border: 1px solid var(--rule);
+  display: block;
 }
-.pp-photo--right { float: right; margin: 0.3rem 0 0.9rem 1.6rem; shape-outside: margin-box; }
-.pp-photo--left { float: left; margin: 0.3rem 1.6rem 0.9rem 0; shape-outside: margin-box; }
+.pp-credit {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--fg-3);
+  margin-top: 0.4rem;
+}
 
 /* ---- Print: clean CV as PDF ---- */
 @page { margin: 2cm 1.9cm; }
@@ -863,7 +873,7 @@ footer {
   .pub > .yr, .event-row > .yr { order: -1; text-align: left; }
   .yr, .cv-year { font-size: 0.72rem; opacity: 0.8; padding-top: 0; }
   .pub { padding: 0.95rem 0; }
-  .pp-photo { width: 130px; }
+  .pp-photo { width: 46%; }
 
   /* Talks */
   .talk-row { grid-template-columns: 3.5rem 1fr; gap: 0.75rem; align-items: start; }
