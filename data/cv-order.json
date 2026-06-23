@@ -1,18 +1,60 @@
 {
   "sections": [
-    { "section": "interests" },
-    { "section": "positions" },
-    { "section": "visits" },
-    { "section": "education" },
-    { "section": "publications" },
-    { "section": "wip" },
-    { "section": "presentations" },
-    { "section": "commentaries" },
-    { "section": "teaching" },
-    { "section": "qualifications" },
-    { "section": "awards" },
-    { "section": "events" },
-    { "section": "service" },
-    { "section": "references" }
+    {
+      "section": "interests",
+      "hidden": false
+    },
+    {
+      "section": "positions",
+      "hidden": false
+    },
+    {
+      "section": "visits",
+      "hidden": false
+    },
+    {
+      "section": "education",
+      "hidden": false
+    },
+    {
+      "section": "publications",
+      "hidden": false
+    },
+    {
+      "section": "wip",
+      "hidden": false
+    },
+    {
+      "section": "presentations",
+      "hidden": false
+    },
+    {
+      "section": "commentaries",
+      "hidden": false
+    },
+    {
+      "section": "awards",
+      "hidden": false
+    },
+    {
+      "section": "teaching",
+      "hidden": false
+    },
+    {
+      "section": "qualifications",
+      "hidden": false
+    },
+    {
+      "section": "events",
+      "hidden": false
+    },
+    {
+      "section": "service",
+      "hidden": false
+    },
+    {
+      "section": "references",
+      "hidden": false
+    }
   ]
 }
