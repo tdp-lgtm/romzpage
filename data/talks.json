@@ -362,6 +362,13 @@
       "type": "Peer-Review",
       "published": true,
       "cv": true
+    },
+    {
+      "year": "Scheduled",
+      "venue": "EmotioNL Autumn Workshop 2026",
+      "type": "Invited",
+      "published": true,
+      "cv": true
     }
   ]
 }
