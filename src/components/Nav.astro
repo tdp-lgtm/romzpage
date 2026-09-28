@@ -89,8 +89,23 @@ function isDropdownActive(item: NavItem): boolean {
       };
     });
   }
+  // Phone menu: the hamburger opens and closes the whole nav
+  const sidebar = document.querySelector('.sidebar');
+  const toggle = document.querySelector<HTMLButtonElement>('.menu-toggle');
+  function setMenu(open: boolean) {
+    sidebar?.classList.toggle('nav-open', open);
+    toggle?.setAttribute('aria-expanded', String(open));
+    toggle?.setAttribute('aria-label', open ? 'Close menu' : 'Menu');
+  }
+  if (toggle) toggle.onclick = (e) => {
+    e.stopPropagation();
+    setMenu(!sidebar?.classList.contains('nav-open'));
+  };
   // Close on outside click or Escape
-  document.addEventListener('click', () => closeAll());
-  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeAll(); });
+  document.addEventListener('click', (e) => {
+    closeAll();
+    if (sidebar && !sidebar.contains(e.target as Node)) setMenu(false);
+  });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { closeAll(); setMenu(false); } });
   initNav();
 </script>

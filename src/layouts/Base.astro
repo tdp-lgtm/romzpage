@@ -75,8 +75,13 @@ const ogImageURL = new URL(settings.og_image || '/assets/portrait.jpg', Astro.si
 <body data-page={page}>
 
   <aside class="sidebar no-print">
-    <a class="side-name" href={base || '/'}>{settings.title}</a>
-    <div class="site-nav">
+    <div class="side-head">
+      <a class="side-name" href={base || '/'}>{settings.title}</a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Menu">
+        <span class="menu-icon" aria-hidden="true"></span>
+      </button>
+    </div>
+    <div class="site-nav" id="site-nav">
       <Nav items={navItems} currentPath={currentPath} />
     </div>
   </aside>
