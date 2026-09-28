@@ -66,7 +66,7 @@ content:
         label: Colour scheme
         type: select
         options:
-          values: [Graphite, Offprint, Loeb, Delft, Porcelain, Oxford, Plain, Custom]
+          values: [Graphite, Graphite Crimson, Offprint, Loeb, Delft, Porcelain, Oxford, Plain, Custom]
         default: Graphite
         description: "Preview every scheme with swatches and sample text at romyeskens.com/theme. Pick 'Custom' to use the six hex fields below instead."
       - name: color_paper
@@ -92,7 +92,7 @@ content:
       - name: color_accent
         label: "Custom: links & highlights"
         type: string
-        description: "Only used when Colour scheme is 'Custom'. Hyperlinks and the current-page marker in the menu. Default: #A4162B"
+        description: "Only used when Colour scheme is 'Custom'. Hyperlink colour. Default: #111418 (ink); #A4162B for crimson"
       - name: font_display
         label: Headings
         type: select

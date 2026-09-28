@@ -86,7 +86,7 @@ a:hover { color: var(--ink); }
   text-decoration: underline;
   text-decoration-thickness: 1px;
   text-underline-offset: .18em;
-  text-decoration-color: color-mix(in srgb, currentColor 45%, transparent);
+  text-decoration-color: color-mix(in srgb, currentColor 30%, var(--rule-strong));
   text-decoration-skip-ink: auto;
 }
 .about-body a:hover,
@@ -556,13 +556,13 @@ footer { padding: 0 var(--gutter); }
   background: none;
   border: 0;
   padding: 0;
-  text-decoration: none;
-}
-.pub-links a:hover,
-.pub-links button:hover {
+  cursor: pointer;
   text-decoration: underline 1px;
   text-underline-offset: .2em;
+  text-decoration-color: var(--rule-strong);
 }
+.pub-links a:hover,
+.pub-links button:hover { text-decoration-color: currentColor; }
 .award-inline { font-style: italic; font-size: .9375rem; color: var(--fg-2); }
 
 .pub-abstract { margin: .6rem 0 .3rem; padding-left: 1rem; max-width: 38rem; }

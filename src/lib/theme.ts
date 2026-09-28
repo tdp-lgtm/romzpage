@@ -6,7 +6,8 @@ export const SCHEMES: Record<string, {
   paper: string; ink: string; fg2: string; fg3: string; rule: string; accent: string;
   link?: string;
 }> = {
-  'Graphite':  { paper: '#F6F7F9', ink: '#111418', fg2: '#434A55', fg3: '#646B77', rule: '#DCE0E6', accent: '#A4162B' },
+  'Graphite':  { paper: '#F6F7F9', ink: '#111418', fg2: '#434A55', fg3: '#646B77', rule: '#DCE0E6', accent: '#434A55', link: '#111418' },
+  'Graphite Crimson': { paper: '#F6F7F9', ink: '#111418', fg2: '#434A55', fg3: '#646B77', rule: '#DCE0E6', accent: '#A4162B' },
   'Offprint':  { paper: '#FFFFFF', ink: '#161616', fg2: '#474747', fg3: '#6B6B6B', rule: '#E3E3E3', accent: '#1F3F77' },
   'Loeb':      { paper: '#FFFFFF', ink: '#1E1F1D', fg2: '#4A4C48', fg3: '#6A6D68', rule: '#DCDFDA', accent: '#2F5D4A' },
   'Delft':     { paper: '#EAF0F6', ink: '#14213D', fg2: '#34466B', fg3: '#52617F', rule: '#C5D0DE', accent: '#1F4FA3' },
