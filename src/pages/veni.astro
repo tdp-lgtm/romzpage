@@ -6,21 +6,15 @@ import veniData from '../../data/veni.json';
 const v = veniData as any;
 const descHtml = v.description ? prepHtml(v.description) : '';
 const news = (v.news || []) as any[];
-const metaDesc = v.subtitle ? `${v.title} — ${v.subtitle}` : `${v.title} — a research project by Romy Eskens.`;
+const metaDesc = v.subtitle ? `${v.title}: ${v.subtitle}` : `${v.title}, a research project by Romy Eskens.`;
 ---
 
-<Base title={`${v.title} — Romy Eskens`} description={metaDesc} page="research" heading={v.title}>
-  <div class="veni-meta-row">
-    {v.subtitle && (
-      <div class="veni-meta-item"><span class="veni-meta-label">Programme</span><span class="veni-meta-val">{v.subtitle}</span></div>
-    )}
-    {v.duration && (
-      <div class="veni-meta-item"><span class="veni-meta-label">Duration</span><span class="veni-meta-val">{v.duration}</span></div>
-    )}
-    {v.amount && (
-      <div class="veni-meta-item"><span class="veni-meta-label">Award</span><span class="veni-meta-val">{v.amount}</span></div>
-    )}
-  </div>
+<Base title={`${v.title} | Romy Eskens`} description={metaDesc} page="research" heading={v.title}>
+  <dl class="veni-facts">
+    {v.subtitle && <><dt>Programme</dt><dd>{v.subtitle}</dd></>}
+    {v.duration && <><dt>Duration</dt><dd>{v.duration}</dd></>}
+    {v.amount && <><dt>Award</dt><dd>{v.amount}</dd></>}
+  </dl>
 
   {descHtml && (
     <div class="workshop-description" set:html={descHtml} />
@@ -28,16 +22,16 @@ const metaDesc = v.subtitle ? `${v.title} — ${v.subtitle}` : `${v.title} — a
 
   {news.length > 0 && (
     <>
-      <span class="section-label">In the news</span>
-      <ul class="pub-list">
+      <h2 class="section-label">In the news</h2>
+      <ul class="pub-list pp-list">
         {news.map((n: any) => {
           const venue = [n.outlet, n.date].filter(Boolean).join(', ');
           return (
             <li class="pub">
               <div class="yr">{n.year || ''}</div>
               <div>
-                <h3><a href={n.url} target="_blank" rel="noopener">{n.title}</a></h3>
-                {n.subtitle && <p class="venue"><em>{n.subtitle}</em></p>}
+                <h3 lang="nl"><a href={n.url} target="_blank" rel="noopener">{n.title}</a></h3>
+                {n.subtitle && <p class="translation">{n.subtitle}</p>}
                 {venue && <p class="venue">{venue}</p>}
               </div>
             </li>

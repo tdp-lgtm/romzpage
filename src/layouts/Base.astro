@@ -1,5 +1,4 @@
 ---
-import { ViewTransitions } from 'astro:transitions';
 import Nav from '../components/Nav.astro';
 import navData from '../../data/nav.json';
 import projectsData from '../../data/projects.json';
@@ -16,16 +15,19 @@ interface Props {
   page?: string;
   wideLayout?: boolean;
   heading?: string;
-  eyebrow?: string;
 }
 
-const { title, description, page, wideLayout = false, heading, eyebrow } = Astro.props;
+const { title, description, page, wideLayout = false, heading } = Astro.props;
 const currentPath = Astro.url.pathname;
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
+// On the home page and the CV the h1 is the name itself; the sidebar already
+// shows it on screen, so the h1 is visually hidden there (it still prints).
+const isNamePage = heading === settings.title;
+
 // Published research projects each get a page at /research/<id>. When any
-// exist, the flat "Research" nav link becomes a dropdown (Publications +
-// each project) so new projects show up automatically without editing nav.json.
+// exist, the flat "Research" nav link becomes a group (Publications + each
+// project) so new projects show up automatically without editing nav.json.
 const projects = (((projectsData as any).items) || []).filter((p: any) => p && p.published !== false);
 const navItems = (navData.items as any[]).map(item => {
   if ((item.label || '').toLowerCase() === 'research' && projects.length > 0) {
@@ -69,20 +71,20 @@ const ogImageURL = new URL(settings.og_image || '/assets/portrait.jpg', Astro.si
   {fontLinks.map(url => <link rel="stylesheet" href={url} />)}
   <Fragment set:html={`<style>${themeCss}</style>`} />
   <slot name="head" />
-  <ViewTransitions />
 </head>
 <body data-page={page}>
 
+  <aside class="sidebar no-print">
+    <a class="side-name" href={base || '/'}>{settings.title}</a>
+    <div class="site-nav">
+      <Nav items={navItems} currentPath={currentPath} />
+    </div>
+  </aside>
+
   <main>
     <div class={wideLayout ? 'container' : 'narrow'}>
-      <div class="masthead">
-        <div class="masthead-titles">
-          {eyebrow && <span class="eyebrow">{eyebrow}</span>}
-          {heading && <h2 class="masthead-h2">{heading}</h2>}
-        </div>
-        <div class="site-nav no-print">
-          <Nav items={navItems} currentPath={currentPath} />
-        </div>
+      <div class={`masthead${isNamePage ? ' masthead--name' : ''}`}>
+        {heading && <h1 class:list={['page-title', { 'is-name': isNamePage }]}>{heading}</h1>}
       </div>
       <slot />
     </div>
@@ -90,64 +92,36 @@ const ogImageURL = new URL(settings.og_image || '/assets/portrait.jpg', Astro.si
 
   <footer>
     <div class="foot-inner">
-      <div class="foot-fine">{settings.footer_text} &copy; <span id="year"></span></div>
       <nav class="foot-links" aria-label="Contact and links">
         {settings.quick_links.map((link: any) => {
+          const isMail = link.href.startsWith('mailto:');
           const href = link.href.startsWith('/') ? `${base}${link.href}` : link.href;
-          const external = !link.href.startsWith('/') && !link.href.startsWith('mailto:');
+          const external = !link.href.startsWith('/') && !isMail;
           return (
-            <a href={href} {...(external ? { target: '_blank', rel: 'noopener' } : {})}>{link.label}</a>
+            <a href={href} {...(external ? { target: '_blank', rel: 'noopener' } : {})}>{isMail ? link.href.replace('mailto:', '') : link.label}</a>
           );
         })}
       </nav>
     </div>
   </footer>
 
-  <!-- _toggleAbstract must be global since it's called via onclick attributes in static HTML -->
+  <!-- Called via onclick attributes in static HTML, so these must be global -->
   <script is:inline>
+    function _toggleAbstract(id, btn) {
+      var el = document.getElementById(id);
+      if (!el) return;
+      var opening = el.hasAttribute('hidden');
+      el.toggleAttribute('hidden', !opening);
+      btn.setAttribute('aria-expanded', String(opening));
+      btn.textContent = opening ? btn.dataset.close : btn.dataset.open;
+    }
     function _toggleBio(btn) {
       var el = btn.previousElementSibling;
       if (!el) return;
       var open = el.classList.toggle('open');
-      btn.textContent = open ? 'Read less' : 'Read more';
-      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      btn.textContent = open ? (btn.dataset.close || 'Read less') : (btn.dataset.open || 'Read more');
+      btn.setAttribute('aria-expanded', String(open));
     }
-    function _toggleAbstract(id, btn) {
-      var el = document.getElementById(id);
-      var inner = el.firstElementChild;
-      var isOpen = el.classList.contains('open');
-      if (isOpen) {
-        // Pin to current pixel height so the browser has a defined start point
-        el.style.gridTemplateRows = inner.scrollHeight + 'px';
-        // Double RAF: ensures the browser paints the start state before animating
-        requestAnimationFrame(function () {
-          requestAnimationFrame(function () {
-            el.style.gridTemplateRows = '0px';
-            el.classList.remove('open');
-            // After transition, clear inline style so CSS takes back control
-            el.addEventListener('transitionend', function cleanup(e) {
-              if (e.propertyName === 'grid-template-rows') {
-                el.style.gridTemplateRows = '';
-                el.removeEventListener('transitionend', cleanup);
-              }
-            });
-          });
-        });
-      } else {
-        el.style.gridTemplateRows = inner.scrollHeight + 'px';
-        el.classList.add('open');
-      }
-      btn.textContent = isOpen ? '≡ Abstract' : '≡ Hide';
-    }
-  </script>
-
-  <script>
-    function setYear() {
-      const el = document.getElementById('year');
-      if (el) el.textContent = String(new Date().getFullYear());
-    }
-    setYear();
-    document.addEventListener('astro:page-load', setYear);
   </script>
 
   {settings.analytics_id && (

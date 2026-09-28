@@ -1,6 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import ppData from '../../data/public-philosophy.json';
+import { smarten } from '../lib/prepHtml';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const data = ppData as any;
@@ -10,20 +11,20 @@ const writing = (data.writing || []) as any[];
 const hasContent = interviews.length || talks.length || writing.length;
 ---
 
-<Base title="Public Philosophy — Romy Eskens" description="Public philosophy by Romy Eskens — interviews, public talks, and writing for a general audience." page="public-philosophy" heading="Public Philosophy">
+<Base title="Public Philosophy | Romy Eskens" description="Public philosophy by Romy Eskens: interviews, public talks and writing for a general audience." page="public-philosophy" heading="Public Philosophy">
 
   {interviews.length > 0 && (
     <>
-      <span class="section-label section-label--first">Interviews</span>
-      <ul class="pub-list">
+      <h2 class="section-label section-label--first">Interviews</h2>
+      <ul class="pub-list pp-list">
         {interviews.map((n: any) => {
           const venue = [n.outlet, n.date].filter(Boolean).join(', ');
           return (
             <li class="pub">
               <div class="yr">{n.year || ''}</div>
               <div>
-                <h3><a href={n.url} target="_blank" rel="noopener">{n.title}</a></h3>
-                {n.subtitle && <p class="venue"><em>{n.subtitle}</em></p>}
+                <h3 lang="nl"><a href={n.url} target="_blank" rel="noopener">{n.title}</a></h3>
+                {n.subtitle && <p class="translation">{smarten(n.subtitle)}</p>}
                 {venue && <p class="venue">{venue}</p>}
               </div>
             </li>
@@ -35,21 +36,21 @@ const hasContent = interviews.length || talks.length || writing.length;
 
   {talks.length > 0 && (
     <>
-      <span class="section-label">Public talks</span>
-      <ul class="pub-list">
+      <h2 class="section-label">Public talks</h2>
+      <ul class="pub-list pp-list">
         {talks.map((t: any) => {
           const venue = [t.venue, t.date].filter(Boolean).join(', ');
           return (
             <li class="pub">
               <div class="yr">{t.year || ''}</div>
               <div>
-                <h3>{t.title}</h3>
-                {t.subtitle && <p class="venue"><em>{t.subtitle}</em></p>}
+                <h3 lang="nl">{t.title}</h3>
+                {t.subtitle && <p class="translation">{smarten(t.subtitle)}</p>}
                 {venue && <p class="venue">{venue}</p>}
                 {(t.video || t.radio) && (
                   <div class="pub-links">
-                    {t.video && <a href={t.video} target="_blank" rel="noopener">&#9654; Video</a>}
-                    {t.radio && <a href={t.radio} target="_blank" rel="noopener">&#9655; Radio interview</a>}
+                    {t.video && <a href={t.video} target="_blank" rel="noopener">video</a>}
+                    {t.radio && <a href={t.radio} target="_blank" rel="noopener">radio interview</a>}
                   </div>
                 )}
               </div>
@@ -71,16 +72,16 @@ const hasContent = interviews.length || talks.length || writing.length;
 
   {writing.length > 0 && (
     <>
-      <span class="section-label">Writing</span>
-      <ul class="pub-list">
+      <h2 class="section-label">Writing</h2>
+      <ul class="pub-list pp-list">
         {writing.map((w: any) => {
           const venue = [w.outlet, w.date].filter(Boolean).join(', ');
           return (
             <li class="pub">
               <div class="yr">{w.year || ''}</div>
               <div>
-                <h3><a href={w.url} target="_blank" rel="noopener">{w.title}</a></h3>
-                {w.subtitle && <p class="venue"><em>{w.subtitle}</em></p>}
+                <h3 lang="nl"><a href={w.url} target="_blank" rel="noopener">{w.title}</a></h3>
+                {w.subtitle && <p class="translation">{smarten(w.subtitle)}</p>}
                 {venue && <p class="venue">{venue}</p>}
               </div>
             </li>
@@ -90,5 +91,5 @@ const hasContent = interviews.length || talks.length || writing.length;
     </>
   )}
 
-  {!hasContent && <p style="color:var(--fg-3)">Nothing to show yet.</p>}
+  {!hasContent && <p class="empty">Nothing to show yet.</p>}
 </Base>

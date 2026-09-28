@@ -1,6 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
-import { prepHtml } from '../lib/prepHtml';
+import { prepHtml, cleanTitle, smarten, venueHtml } from '../lib/prepHtml';
 import researchBio from '../../data/research-bio.json';
 import pubData from '../../data/publications.json';
 
@@ -32,8 +32,8 @@ wip.forEach(p => {
 
 function pubYear(year: string | number | undefined) {
   const raw = year ? String(year) : '';
-  if (raw === 'Forthcoming') return 'Forthc.';
-  if (raw === 'Online first') return 'Online';
+  if (raw === 'Forthcoming') return 'forthcoming';
+  if (raw === 'Online first') return 'online first';
   return raw;
 }
 
@@ -48,16 +48,16 @@ function volStr(p: { volume?: string; issue?: string; pages?: string }) {
 }
 ---
 
-<Base title="Research — Romy Eskens" description="Publications and research by Romy Eskens, philosopher at Utrecht University." page="research" heading="Publications">
+<Base title="Research | Romy Eskens" description="Publications and research by Romy Eskens, philosopher at Utrecht University." page="research" heading="Publications">
 
   {bio.text && (
     <div class="research-bio-wrap">
       <div
-        class="research-bio bio-clamp"
-        style={bio.justify ? 'text-align:justify' : undefined}
+        class:list={['research-bio', 'bio-clamp', { 'is-justified': bio.justify }]}
+        id="research-bio"
         set:html={bioHtml}
       />
-      <button class="bio-toggle" onclick="_toggleBio(this)" aria-expanded="false">Read more</button>
+      <button class="bio-toggle" type="button" onclick="_toggleBio(this)" aria-expanded="false" aria-controls="research-bio" data-open="Read more" data-close="Read less">Read more</button>
     </div>
   )}
 
@@ -66,31 +66,33 @@ function volStr(p: { volume?: string; issue?: string; pages?: string }) {
     if (!items.length) return null;
     return (
       <>
-        <span class="section-label">{label}</span>
+        <h2 class="section-label">{label}</h2>
         <ul class="pub-list">
           {items.map((p, i) => {
             const absId = `abs-${label.replace(/\s+/g, '-').toLowerCase()}-${i}`;
             const vol = volStr(p);
             const citationParts = [p.journal ? `<em>${p.journal}</em>` : '', vol].filter(Boolean);
             const citation = citationParts.join(' ');
+            const volHtml = vol ? `<span class="nobr">${vol.replace(/(\d)-(\d)/g, '$1–$2')}</span>` : '';
+            const citationHtml = [venueHtml(p.journal), volHtml].filter(Boolean).join(' ');
             return (
               <li class="pub">
-                <div class="yr">{pubYear(p.year)}</div>
+                <div class:list={['yr', { 'yr--word': !/^\d/.test(pubYear(p.year)) }]}>{pubYear(p.year)}</div>
                 <div>
-                  <h3>{p.title}{p.coauthors && <span class="coauthor"> with {p.coauthors}</span>}</h3>
-                  {citation && <p class="venue" set:html={citation + '.'} />}
+                  <h3>{cleanTitle(p.title)}{p.coauthors && <span class="coauthor"> with {p.coauthors}</span>}</h3>
+                  {citation && <p class="venue" set:html={citationHtml + '.'} />}
                   {(p.abstract || p.pdf || p.doi || p.prize) && (
                     <div class="pub-links">
                       {p.abstract && (
-                        <button onclick={`_toggleAbstract('${absId}',this)`}>&#8801; Abstract</button>
+                        <button type="button" class="abs-toggle" aria-expanded="false" aria-controls={absId} data-open="Abstract" data-close="Hide abstract" onclick={`_toggleAbstract('${absId}',this)`}>Abstract</button>
                       )}
-                      {p.pdf && <a href={p.pdf} target="_blank" rel="noopener">&#8595; PDF</a>}
-                      {p.doi && <a href={p.doi} target="_blank" rel="noopener">Publisher &#8599;</a>}
+                      {p.pdf && <a href={p.pdf} target="_blank" rel="noopener">PDF</a>}
+                      {p.doi && <a href={p.doi} target="_blank" rel="noopener">Publisher</a>}
                       {p.prize && <span class="award-inline">{p.prize}</span>}
                     </div>
                   )}
                   {p.abstract && (
-                    <div class="pub-abstract" id={absId}>
+                    <div class="pub-abstract" id={absId} hidden>
                       <div class="pub-abstract-inner">{p.abstract}</div>
                     </div>
                   )}
@@ -107,7 +109,7 @@ function volStr(p: { volume?: string; issue?: string; pages?: string }) {
     <div id="wip">
       {wipGroupOrder.map((status, gi) => (
         <>
-          <span class="section-label wip-group-label">{status}</span>
+          <h2 class="section-label wip-group-label">{status}</h2>
           <ul class="pub-list">
             {wipGroupMap[status].map((p, i) => {
               const absId = `abs-wip-${gi}-${i}`;
@@ -115,17 +117,17 @@ function volStr(p: { volume?: string; issue?: string; pages?: string }) {
                 <li class="pub pub--wip">
                   <div class="yr"></div>
                   <div>
-                    <h3 class="wip-title">{p.title}.</h3>
+                    <h3 class="wip-title">{cleanTitle(p.title)}.</h3>
                     {(p.abstract || p.pdf) && (
                       <div class="pub-links">
                         {p.abstract && (
-                          <button onclick={`_toggleAbstract('${absId}',this)`}>&#8801; Abstract</button>
+                          <button type="button" class="abs-toggle" aria-expanded="false" aria-controls={absId} data-open="Abstract" data-close="Hide abstract" onclick={`_toggleAbstract('${absId}',this)`}>Abstract</button>
                         )}
-                        {p.pdf && <a href={p.pdf} target="_blank" rel="noopener">&#8595; Draft PDF</a>}
+                        {p.pdf && <a href={p.pdf} target="_blank" rel="noopener">Draft PDF</a>}
                       </div>
                     )}
                     {p.abstract && (
-                      <div class="pub-abstract" id={absId}>
+                      <div class="pub-abstract" id={absId} hidden>
                         <div class="pub-abstract-inner">{p.abstract}</div>
                       </div>
                     )}

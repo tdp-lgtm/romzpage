@@ -20,9 +20,31 @@ export function levelLabel(levels?: string[]): string {
 export type Course = { course: string; level: string; note?: string; years: string };
 export type RoleGroup = { role: string; courses: Course[] };
 
+// Years taught, newest first. Consecutive single-offering years collapse into
+// an en-dash range ("2023–2026"); a year taught more than once stands alone
+// with its count ("2022 (×2)").
 function yearsLabel(yearCounts: Record<string, number>): string {
   const years = Object.keys(yearCounts).sort((a, b) => (parseInt(b) || 0) - (parseInt(a) || 0));
-  return years.map(y => (yearCounts[y] > 1 ? `${y} (×${yearCounts[y]})` : y)).join(', ');
+  const out: string[] = [];
+  let run: string[] = [];
+  const flush = () => {
+    if (!run.length) return;
+    out.push(run.length > 1 ? `${run[run.length - 1]}–${run[0]}` : run[0]);
+    run = [];
+  };
+  years.forEach(y => {
+    const n = parseInt(y);
+    if (yearCounts[y] > 1 || isNaN(n)) {
+      flush();
+      out.push(yearCounts[y] > 1 ? `${y} (×${yearCounts[y]})` : y);
+      return;
+    }
+    const prev = run.length ? parseInt(run[run.length - 1]) : NaN;
+    if (run.length && prev - 1 !== n) flush();
+    run.push(y);
+  });
+  flush();
+  return out.join(', ');
 }
 
 export function teachingByRole(): RoleGroup[] {

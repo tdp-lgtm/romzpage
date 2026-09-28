@@ -1,21 +1,22 @@
 ---
 import Base from '../layouts/Base.astro';
 import { teachingByRole } from '../lib/teaching';
+import { smarten } from '../lib/prepHtml';
 
 const roles = teachingByRole();
 ---
 
-<Base title="Teaching — Romy Eskens" description="Teaching by Romy Eskens at Utrecht University and Stockholm University." page="teaching" heading="Teaching">
+<Base title="Teaching | Romy Eskens" description="Teaching by Romy Eskens at Utrecht University and Stockholm University." page="teaching" heading="Teaching">
 
   <div id="teaching">
     {roles.map((g, i) => (
       <>
-        <span class={`section-label${i === 0 ? ' section-label--first' : ''}`}>{g.role}</span>
+        <h2 class={`section-label${i === 0 ? ' section-label--first' : ''}`}>{g.role}</h2>
         <div class="teach-list">
           {g.courses.map(c => (
             <div class="teach-row">
               <div class="teach-main">
-                <span class="teach-course">{c.course}</span>
+                <span class="teach-course">{smarten(c.course)}</span>
                 {c.level && <span class="teaching-levels">{c.level}</span>}
                 {c.note && <span class="talk-comment"> {c.note}</span>}
               </div>

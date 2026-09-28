@@ -15,16 +15,12 @@ const sectionOrder: string[] = ((cvOrderJson.sections || []) as any[])
 const orderedSections = sectionOrder.filter(k => sectionsMap[k]).map(k => sectionsMap[k]);
 ---
 
-<Base title="CV — Romy Eskens" description="Curriculum vitae of Romy Eskens — positions, education, publications, and presentations." page="cv" heading="Romy Eskens">
-  <div class="cv-actions no-print">
-    <a class="cv-download" href={`${base}/assets/cv.pdf`} target="_blank" rel="noopener">&#8595; Full CV</a>
-    <a class="cv-download" href={`${base}/assets/cv-short.pdf`} target="_blank" rel="noopener">&#8595; Short CV</a>
-  </div>
-
+<Base title="CV | Romy Eskens" description="Curriculum vitae of Romy Eskens: positions, education, publications and presentations." page="cv" heading="Romy Eskens">
   <p id="cv-contact" class="cv-contact">
     <span set:html={contactHtml} />
     {contactAddr && <span class="cv-contact-addr">{contactAddr}</span>}
   </p>
+  <p class="cv-pdfs no-print">PDF: <a href={`${base}/assets/cv.pdf`} target="_blank" rel="noopener">Full CV</a> · <a href={`${base}/assets/cv-short.pdf`} target="_blank" rel="noopener">Short CV</a></p>
 
   {orderedSections.map(sec => {
     if (!sec) return null;
@@ -32,7 +28,7 @@ const orderedSections = sectionOrder.filter(k => sectionsMap[k]).map(k => sectio
     if (sec.key === 'references' && !sec.content) return null;
     return (
       <div class="cv-section" data-cv-section={sec.key}>
-        <span class="eyebrow">{sec.label}</span>
+        <h2 class="section-label">{sec.label}</h2>
         {sec.key === 'references'
           ? <div id={sec.id || `cv-${sec.key}`} class="cv-references-grid" set:html={sec.content} />
           : <div id={sec.id || `cv-${sec.key}`} set:html={sec.content} />

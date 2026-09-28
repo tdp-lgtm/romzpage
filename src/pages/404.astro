@@ -2,9 +2,9 @@
 import Base from '../layouts/Base.astro';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
-<Base title="Page not found — Romy Eskens" description="Page not found." page="404" heading="Page not found" eyebrow="404">
-  <p style="color:var(--fg-2)">
-    That page doesn't exist. Try <a href={`${base}/`}>the home page</a>,
-    <a href={`${base}/research`}>Research</a>, or <a href={`${base}/cv`}>CV</a>.
+<Base title="Page not found | Romy Eskens" description="Page not found." page="404" heading="Page not found">
+  <p class="lede-muted">
+    That page doesn’t exist. Try <a href={`${base}/`}>the home page</a>,
+    <a href={`${base}/research`}>Publications</a>, or <a href={`${base}/cv`}>the CV</a>.
   </p>
 </Base>

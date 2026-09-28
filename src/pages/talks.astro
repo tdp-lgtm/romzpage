@@ -13,18 +13,19 @@ const events = ((talksData as any).items || talksData)
   .sort((a: any, b: any) => yearVal(b.year) - yearVal(a.year));
 ---
 
-<Base title="Talks — Romy Eskens" description="Talks and conference presentations by Romy Eskens." page="talks" heading="Talks">
+<Base title="Talks | Romy Eskens" description="Talks and conference presentations by Romy Eskens." page="talks" heading="Talks">
 
-  <ul class="pub-list">
-    {events.map((p: any) => {
-      const tag = p.type === 'Invited' ? 'Invited'
-        : p.type === 'Peer-Review' ? 'Peer-reviewed' : '';
-      const where = [p.venue, p.institution].filter(Boolean).join(', ');
+  <ul class="pub-list event-list">
+    {events.map((p: any, i: number) => {
+      const tag = p.type === 'Invited' ? 'invited'
+        : p.type === 'Peer-Review' ? 'peer-reviewed' : '';
+      const showYear = i === 0 || events[i - 1].year !== p.year;
+      const where = [p.venue, p.institution].map((x: any) => (x || '').trim()).filter(Boolean).join(', ');
       return (
-        <li class="event-row">
-          <div class="yr">{p.year}</div>
+        <li class={`event-row${showYear ? ' year-start' : ''}`}>
+          <div class:list={['yr', { 'yr--word': !/^\d/.test(String(p.year)) }]}>{showYear ? (/^\d/.test(String(p.year)) ? p.year : String(p.year).toLowerCase()) : ''}</div>
           <div class="event-detail">
-            {where}{tag && <span class="talk-tag">{tag}</span>}
+            {where}{tag && ' '}{tag && <span class="talk-type">{tag}</span>}
           </div>
         </li>
       );

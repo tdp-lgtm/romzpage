@@ -4,21 +4,26 @@ import { prepHtml } from '../lib/prepHtml';
 import frontPage from '../../data/front-page.json';
 import settings from '../../data/site-settings.json';
 
-const bodyHtml = prepHtml(frontPage.text);
+const fp = frontPage as any;
+const bodyHtml = prepHtml(fp.text);
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-const portraitSrc = base + (frontPage.portrait || '/assets/portrait.jpg');
+const portraitSrc = base + (fp.portrait || '/assets/portrait.jpg');
+// CSS crop: any upload (square or not) becomes a circle. Focus = the point
+// of the photo kept in view (x% y%); zoom scales the photo around that point.
+const focus = fp.portrait_focus || '50% 40%';
+const zoom = fp.portrait_zoom || 1;
 ---
 
 <Base title={settings.title} heading={settings.title} page="about">
   <link slot="head" rel="preload" as="image" href={portraitSrc} fetchpriority="high" />
   <div class="about-body">
-    <div class="about-portrait">
+    <div class="about-portrait" style={`--pf:${focus};--pz:${zoom}`}>
       <img src={portraitSrc} alt={settings.title} width="600" height="600" fetchpriority="high" decoding="async" />
     </div>
     <div
       id="about-text"
+      class:list={[{ 'is-justified': fp.justify }]}
       set:html={bodyHtml}
-      style={frontPage.justify ? 'text-align:justify' : undefined}
     />
   </div>
 </Base>

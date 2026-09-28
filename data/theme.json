@@ -1,15 +1,15 @@
 {
-  "color_scheme": "Salon",
-  "color_paper": "#EDEAE2",
-  "color_ink": "#211C16",
-  "color_fg2": "#544C42",
-  "color_fg3": "#897F70",
-  "color_rule": "#DBD6CA",
-  "color_accent": "#9A3B24",
-  "font_display": "Cormorant Garamond",
-  "font_serif": "Newsreader",
-  "font_sans": "Archivo",
-  "font_mono": "Space Mono",
-  "link_underline": "hover",
-  "heading_weight": "600"
+  "color_scheme": "Graphite",
+  "color_paper": "#F6F7F9",
+  "color_ink": "#111418",
+  "color_fg2": "#434A55",
+  "color_fg3": "#646B77",
+  "color_rule": "#DCE0E6",
+  "color_accent": "#A4162B",
+  "font_display": "Literata",
+  "font_serif": "Literata",
+  "font_sans": "Same as text",
+  "font_mono": "Ysabeau Office",
+  "link_underline": "always",
+  "heading_weight": "500"
 }

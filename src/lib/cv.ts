@@ -4,6 +4,7 @@ import pubData from '../../data/publications.json';
 import talksData from '../../data/talks.json';
 import cvJson from '../../data/cv.json';
 import { teachingByRole } from './teaching';
+import { cleanTitle, smarten, smartenHtml, venueHtml } from './prepHtml';
 
 export type Section = { key: string; label: string; content: string; id?: string };
 
@@ -44,8 +45,8 @@ function renderCVSection(items: { year?: string; detail: string; sub?: string; l
     <div class="cv-item">
       <span class="cv-year">${item.year || ''}</span>
       <span class="cv-detail">
-        ${item.link ? `<a href="${item.link}" target="_blank" rel="noopener">${item.detail}</a>` : item.detail}
-        ${item.sub ? `<span class="cv-detail-sub">${item.sub}</span>` : ''}
+        ${item.link ? `<a href="${item.link}" target="_blank" rel="noopener">${smartenHtml(item.detail || '')}</a>` : smartenHtml(item.detail || '')}
+        ${item.sub ? `<span class="cv-detail-sub">${smartenHtml(item.sub)}</span>` : ''}
       </span>
     </div>`).join('');
 }
@@ -89,14 +90,15 @@ export function buildSections(short = false): Record<string, Section> {
     if (!items.length) return '';
     const rows = items.map(p => {
       const vol = volStr(p);
-      const journalPart = p.journal ? `<span class="cv-detail-inline"><em>${p.journal}</em></span>` : '';
-      const volPart = vol ? `<span class="cv-detail-vol">${vol}.</span>` : '';
+      const journalPart = p.journal ? `<span class="cv-detail-inline">${venueHtml(p.journal)}</span>` : '';
+      const volPart = vol ? `<span class="cv-detail-vol nobr">${vol.replace(/(\d)-(\d)/g, '$1–$2')}.</span>` : '';
       const prize = p.prize ? `<span class="cv-prize">${p.prize}</span>` : '';
-      const coa = p.coauthors ? ` (with ${p.coauthors})` : '';
+      const coa = p.coauthors ? ` <span class="cv-coauthor">(with ${p.coauthors})</span>` : '';
+      const title = cleanTitle(p.title);
       return `<div class="cv-item">
         <span class="cv-year">${p.year || ''}</span>
         <span class="cv-detail">
-          <span class="cv-pub-title">${p.title}${coa}${/[.?!]$/.test(p.title) ? '' : '.'}</span>${journalPart ? ` ${journalPart}` : ''}${volPart ? ` ${volPart}` : ''}${prize}
+          <span class="cv-pub-title">${title}${coa}${/[.?!]$/.test(title) ? '' : '.'}</span>${journalPart ? ` ${journalPart}` : ''}${volPart ? ` ${volPart}` : ''}${prize}
         </span>
       </div>`;
     }).join('');
@@ -112,7 +114,7 @@ export function buildSections(short = false): Record<string, Section> {
     wipGroupMap[key].push(p);
   });
   const wipContent = wipGroupOrder.length === 0 ? '' : wipGroupOrder.map(status => {
-    const rows = wipGroupMap[status].map(p => `<div class="cv-item"><span class="cv-year"></span><span class="cv-detail">${p.title}.</span></div>`).join('');
+    const rows = wipGroupMap[status].map(p => `<div class="cv-item"><span class="cv-year"></span><span class="cv-detail">${cleanTitle(p.title)}.</span></div>`).join('');
     return `<div class="cv-subsection-label">${status}</div>${rows}`;
   }).join('');
 
@@ -121,10 +123,12 @@ export function buildSections(short = false): Record<string, Section> {
   let events = talkEvents.filter(p => isPublished(p) && isOnCV(p)).slice();
   events.sort((a, b) => yearVal(b.year) - yearVal(a.year));
   if (short) events = events.slice(0, 8);
-  const presContent = events.length === 0 ? '<p class="empty">Nothing to show yet.</p>' : events.map((p: any) => {
-    const tag = p.type === 'Invited' ? '<span class="talk-tag">Invited</span>' : p.type === 'Peer-Review' ? '<span class="talk-tag">Peer-reviewed</span>' : '';
-    const where = [p.venue, p.institution].filter(Boolean).join(', ');
-    return `<div class="cv-item"><span class="cv-year">${p.year || ''}</span><span class="cv-detail">${where}${tag}</span></div>`;
+  // Hanging years: each year is printed once, at the top of its group.
+  const presContent = events.length === 0 ? '<p class="empty">Nothing to show yet.</p>' : events.map((p: any, i: number) => {
+    const showYear = i === 0 || events[i - 1].year !== p.year;
+    const tag = p.type === 'Invited' ? '<span class="talk-type">invited</span>' : p.type === 'Peer-Review' ? '<span class="talk-type">peer-reviewed</span>' : '';
+    const where = [p.venue, p.institution].map((x: any) => (x || '').trim()).filter(Boolean).join(', ');
+    return `<div class="cv-item${showYear && i > 0 ? ' cv-item--year-start' : ''}"><span class="cv-year">${showYear ? (p.year || '') : ''}</span><span class="cv-detail">${smartenHtml(where)}${tag ? ' ' + tag : ''}</span></div>`;
   }).join('');
 
   // Teaching (repeats collapsed; Supervision is a subsection, full CV only)
@@ -132,11 +136,10 @@ export function buildSections(short = false): Record<string, Section> {
   let teachingContent = roleGroups.length === 0 ? '<p class="empty">Nothing to show yet.</p>' : roleGroups.map(g => {
     const rows = g.courses.map(c => {
       const meta = [
-        c.years ? `<span class="cv-meta-mono">${c.years}</span>` : '',
         c.level ? `<span class="cv-meta-sans">${c.level}</span>` : '',
         c.note ? `<span class="cv-meta-sans">${c.note}</span>` : '',
       ].join('');
-      return `<div class="cv-item"><span class="cv-year"></span><span class="cv-detail">${c.course}${meta}</span></div>`;
+      return `<div class="cv-item cv-item--teach"><span class="cv-year">${c.years || ''}</span><span class="cv-detail">${smarten(c.course)}${meta ? ' ' + meta : ''}</span></div>`;
     }).join('');
     return `<div class="cv-subsection-label">${g.role}</div>${rows}`;
   }).join('');
@@ -150,7 +153,7 @@ export function buildSections(short = false): Record<string, Section> {
 
   // Funding & awards — split into major research grants and other funding/awards
   const renderAwards = (list: any[]) => list.map((a: any) =>
-    `<div class="cv-item"><span class="cv-year">${a.year || ''}</span><span class="cv-detail">${a.description}${a.amount ? ` <span class="cv-award-amount">${a.amount}</span>` : ''}</span></div>`
+    `<div class="cv-item"><span class="cv-year">${a.year || ''}</span><span class="cv-detail">${smartenHtml(a.description || '')}${a.amount ? `&nbsp;<span class="cv-award-amount">${a.amount}</span>` : ''}</span></div>`
   ).join('');
   const allAwards = (cv.awards || []) as any[];
   const majorAwards = allAwards.filter(a => a.major);

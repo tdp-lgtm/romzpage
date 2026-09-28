@@ -41,18 +41,22 @@ function isDropdownActive(item: NavItem): boolean {
 }
 ---
 
-<nav>
+<nav aria-label="Main">
   {items.map(item => {
     if (item.subitems && item.subitems.length > 0) {
       const active = isDropdownActive(item);
       const dropKey = item.label.toLowerCase();
+      const menuId = `nav-menu-${dropKey.replace(/[^a-z0-9]+/g, '-')}`;
       return (
         <div class={`nav-dropdown${active ? ' active' : ''}`} data-dropdown-root>
-          <button class="nav-dropdown-trigger" data-dropdown={dropKey}>{item.label}</button>
-          <ul class="nav-dropdown-menu">
-            {item.subitems.map(s => (
-              <li><a href={makeHref(s.href)}>{s.label}</a></li>
-            ))}
+          <button class="nav-dropdown-trigger" type="button" data-dropdown={dropKey} aria-expanded="false" aria-controls={menuId}>{item.label}</button>
+          <ul class="nav-dropdown-menu" id={menuId}>
+            {item.subitems.map(s => {
+              const subActive = isActive(s.href) || path.startsWith('/' + s.href.replace(/\.html$/, '') + '/');
+              return (
+                <li><a href={makeHref(s.href)} aria-current={subActive ? 'page' : undefined}>{s.label}</a></li>
+              );
+            })}
           </ul>
         </div>
       );
@@ -60,31 +64,33 @@ function isDropdownActive(item: NavItem): boolean {
     const href = item.href ? makeHref(item.href) : (base || '/');
     const active = item.href ? isActive(item.href) : (path === '/');
     return (
-      <a href={href} class={active ? 'active' : undefined}>{item.label}</a>
+      <a href={href} aria-current={active ? 'page' : undefined}>{item.label}</a>
     );
   })}
 </nav>
 
 <script>
+  function closeAll(except?: Element | null) {
+    document.querySelectorAll('[data-dropdown-root].open').forEach(d => {
+      if (d === except) return;
+      d.classList.remove('open');
+      d.querySelector('.nav-dropdown-trigger')?.setAttribute('aria-expanded', 'false');
+    });
+  }
   function initNav() {
-    // Use onclick property to avoid duplicate listeners across soft navigations
     document.querySelectorAll<HTMLButtonElement>('.nav-dropdown-trigger').forEach(trigger => {
       trigger.onclick = (e) => {
         e.stopPropagation();
         const dropdown = trigger.closest('[data-dropdown-root]');
         if (!dropdown) return;
-        const isOpen = dropdown.classList.contains('open');
-        document.querySelectorAll('[data-dropdown-root].open').forEach(d => d.classList.remove('open'));
-        if (!isOpen) dropdown.classList.add('open');
+        closeAll(dropdown);
+        const open = dropdown.classList.toggle('open');
+        trigger.setAttribute('aria-expanded', String(open));
       };
     });
   }
-
-  // Close on outside click — set once, persists across navigations
-  document.addEventListener('click', () => {
-    document.querySelectorAll('[data-dropdown-root].open').forEach(d => d.classList.remove('open'));
-  });
-
+  // Close on outside click or Escape
+  document.addEventListener('click', () => closeAll());
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeAll(); });
   initNav();
-  document.addEventListener('astro:page-load', initNav);
 </script>
