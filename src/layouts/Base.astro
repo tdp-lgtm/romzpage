@@ -63,7 +63,9 @@ const ogImageURL = new URL(settings.og_image || '/assets/portrait.jpg', Astro.si
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content={title} />
   <meta name="twitter:description" content={metaDesc} />
-  <link rel="icon" type="image/svg+xml" href={`${base}/assets/favicon.svg`} />
+  <link rel="icon" type="image/png" sizes="32x32" href={`${base}/assets/favicon-32.png`} />
+  <link rel="icon" type="image/png" sizes="192x192" href={`${base}/assets/favicon-192.png`} />
+  <link rel="apple-touch-icon" href={`${base}/assets/apple-touch-icon.png`} />
   <link rel="stylesheet" href={`${base}/styles/style.css`} />
   {fontLinks.length > 0 && <link rel="preconnect" href="https://fonts.googleapis.com" />}
   {fontLinks.length > 0 && <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />}
