@@ -9,6 +9,7 @@ permissions:
   contents: read
   pages: write
   id-token: write
+  issues: write   # to open/close the "CV PDFs out of date" notice
 
 concurrency:
   group: pages
@@ -37,16 +38,24 @@ jobs:
       - run: npm run build
 
       # Generate the CV PDFs from the built /cv pages so they always match the site.
-      # If this ever breaks (e.g. GitHub updates its build machines before the PDF
-      # tool supports them), the site still deploys: the next step keeps the
-      # previously published PDFs and the run shows a warning.
+      # First with Playwright's own Chromium; if that can't be installed or fails
+      # (e.g. GitHub updated its build machines before Playwright supports them),
+      # again with the Google Chrome that GitHub preinstalls on its machines.
+      # If both fail, the site still deploys with the previous PDFs (next step)
+      # and an issue is opened so it doesn't go unnoticed.
       - name: Generate CV PDFs
         id: cv_pdf
         continue-on-error: true
-        timeout-minutes: 10  # a hang counts as a failure, so the site still deploys
+        timeout-minutes: 12  # a hang counts as a failure, so the site still deploys
         run: |
-          npx playwright install --with-deps chromium
-          node scripts/generate-cv-pdf.mjs
+          if timeout 7m npx playwright install --with-deps chromium \
+             && timeout 3m node scripts/generate-cv-pdf.mjs; then
+            exit 0
+          fi
+          echo "::notice title=CV PDFs::Playwright's Chromium failed; retrying with the build machine's Google Chrome."
+          CHROME=$(command -v google-chrome || command -v google-chrome-stable || true)
+          [ -n "$CHROME" ] || { echo "No Google Chrome on this build machine."; exit 1; }
+          PW_CHROMIUM_PATH="$CHROME" timeout 3m node scripts/generate-cv-pdf.mjs
 
       - name: Keep the previously published CV PDFs
         if: steps.cv_pdf.outcome == 'failure'
@@ -62,6 +71,45 @@ jobs:
               rm -f "$f.tmp"
               echo "::warning::Could not fetch the previous $f either; its download link will be broken until the next successful build."
             fi
+          done
+
+      # Make stale PDFs visible: open an issue (assigned to the repo owner, so it
+      # arrives by email) when the previous PDFs had to be used, and close it again
+      # on the next build that regenerates them. Never blocks the deploy.
+      - name: Report out-of-date CV PDFs
+        if: steps.cv_pdf.outcome == 'failure'
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          OWNER: ${{ github.repository_owner }}
+          TITLE: CV PDFs on the website are out of date
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          num=$(gh issue list --state open --limit 100 --json number,title --jq '.[] | select(.title == env.TITLE) | .number' | head -n1)
+          if [ -n "$num" ]; then
+            gh issue comment "$num" --body "Still out of date after another update: $RUN_URL"
+            exit 0
+          fi
+          body="@$OWNER The website was updated, but the downloadable CV PDFs (cv.pdf and cv-short.pdf) could not be regenerated, so the site is still serving the previous versions. The CV page itself is up to date.
+
+          Build: $RUN_URL (see the 'Generate CV PDFs' step)
+
+          This issue closes itself after the next build that regenerates the PDFs."
+          gh issue create --title "$TITLE" --body "$body" --assignee "$OWNER" \
+            || gh issue create --title "$TITLE" --body "$body"
+
+      - name: Close the out-of-date notice
+        if: steps.cv_pdf.outcome == 'success'
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          TITLE: CV PDFs on the website are out of date
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          for num in $(gh issue list --state open --limit 100 --json number,title --jq '.[] | select(.title == env.TITLE) | .number'); do
+            gh issue close "$num" --comment "Fixed: the CV PDFs were regenerated in $RUN_URL"
           done
 
       # CNAME must be in the dist root for GitHub Pages to respect the custom domain
