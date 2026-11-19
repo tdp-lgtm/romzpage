@@ -43,6 +43,7 @@ jobs:
       - name: Generate CV PDFs
         id: cv_pdf
         continue-on-error: true
+        timeout-minutes: 10  # a hang counts as a failure, so the site still deploys
         run: |
           npx playwright install --with-deps chromium
           node scripts/generate-cv-pdf.mjs
@@ -54,8 +55,13 @@ jobs:
           mkdir -p dist/assets
           for f in cv.pdf cv-short.pdf; do
             [ -s "dist/assets/$f" ] && continue  # made in this run before the failure
-            curl -fsSL --retry 3 "https://romyeskens.com/assets/$f" -o "dist/assets/$f" \
-              || echo "::warning::Could not fetch the previous $f either; its download link will be broken until the next successful build."
+            if curl -fsSL --retry 3 "https://romyeskens.com/assets/$f" -o "$f.tmp" \
+               && [ "$(head -c 4 "$f.tmp")" = "%PDF" ]; then
+              mv "$f.tmp" "dist/assets/$f"
+            else
+              rm -f "$f.tmp"
+              echo "::warning::Could not fetch the previous $f either; its download link will be broken until the next successful build."
+            fi
           done
 
       # CNAME must be in the dist root for GitHub Pages to respect the custom domain
