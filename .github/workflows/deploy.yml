@@ -18,11 +18,11 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
-          node-version: 20
+          node-version: 22
           cache: npm
 
       - run: npm ci
@@ -36,9 +36,27 @@ jobs:
 
       - run: npm run build
 
-      # Generate the CV PDF from the built /cv page so it always matches the site
-      - run: npx playwright install --with-deps chromium
-      - run: node scripts/generate-cv-pdf.mjs
+      # Generate the CV PDFs from the built /cv pages so they always match the site.
+      # If this ever breaks (e.g. GitHub updates its build machines before the PDF
+      # tool supports them), the site still deploys: the next step keeps the
+      # previously published PDFs and the run shows a warning.
+      - name: Generate CV PDFs
+        id: cv_pdf
+        continue-on-error: true
+        run: |
+          npx playwright install --with-deps chromium
+          node scripts/generate-cv-pdf.mjs
+
+      - name: Keep the previously published CV PDFs
+        if: steps.cv_pdf.outcome == 'failure'
+        run: |
+          echo "::warning title=CV PDFs not regenerated::Generating the CV PDFs failed, so the site was deployed with the previously published PDFs. See the 'Generate CV PDFs' step."
+          mkdir -p dist/assets
+          for f in cv.pdf cv-short.pdf; do
+            [ -s "dist/assets/$f" ] && continue  # made in this run before the failure
+            curl -fsSL --retry 3 "https://romyeskens.com/assets/$f" -o "dist/assets/$f" \
+              || echo "::warning::Could not fetch the previous $f either; its download link will be broken until the next successful build."
+          done
 
       # CNAME must be in the dist root for GitHub Pages to respect the custom domain
       - run: cp CNAME dist/CNAME
